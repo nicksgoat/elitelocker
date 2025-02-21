@@ -110,15 +110,15 @@ export function WaitlistDialog({
             </label>
             <select
               id="role"
-              className="w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary text-black bg-white"
               value={formData.role}
               onChange={(e) => setFormData({ ...formData, role: e.target.value })}
             >
               <option value="">Select your role</option>
-              <option value="student">Student</option>
-              <option value="professional">Professional</option>
-              <option value="teacher">Teacher</option>
-              <option value="other">Other</option>
+              <option value="athlete">Athlete</option>
+              <option value="trainer">Trainer</option>
+              <option value="coach">Coach</option>
+              <option value="organization">Organization</option>
             </select>
           </div>
           <button
@@ -132,3 +132,4 @@ export function WaitlistDialog({
     </Dialog>
   );
 }
+
