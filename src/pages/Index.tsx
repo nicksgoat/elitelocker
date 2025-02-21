@@ -44,11 +44,7 @@ const Index = () => {
             <img alt="Elite Locker Logo" className="h-10 w-10 object-fill" src="/lovable-uploads/5d4b23a0-82f4-4bf3-be9f-aa34c7594d27.jpg" />
             <span className="text-2xl font-heading font-bold text-primary">Elite Locker</span>
           </a>
-          <div className="hidden md:flex space-x-8">
-            <a href="#courses" className="text-gray-400 hover:text-primary transition-colors">Programs</a>
-            <a href="#features" className="text-gray-400 hover:text-primary transition-colors">Features</a>
-            <a href="#testimonials" className="text-gray-400 hover:text-primary transition-colors">Results</a>
-          </div>
+          
           <button onClick={openDialog} className="metal-gradient text-white px-6 py-2 rounded-md hover:opacity-90 transition-opacity">
             Join Waitlist
           </button>
