@@ -5,25 +5,25 @@
  
 @layer base {
   :root {
-    --background: 220 13% 13%;
+    --background: 0 0% 7%;
     --foreground: 0 0% 98%;
-    --card: 220 13% 13%;
+    --card: 0 0% 7%;
     --card-foreground: 0 0% 98%;
-    --popover: 220 13% 13%;
+    --popover: 0 0% 7%;
     --popover-foreground: 0 0% 98%;
-    --primary: 220 12% 80%;
-    --primary-foreground: 220 13% 13%;
-    --secondary: 220 13% 18%;
+    --primary: 0 0% 80%;
+    --primary-foreground: 0 0% 7%;
+    --secondary: 0 0% 11%;
     --secondary-foreground: 0 0% 98%;
-    --muted: 220 13% 18%;
-    --muted-foreground: 220 12% 70%;
-    --accent: 220 13% 18%;
+    --muted: 0 0% 11%;
+    --muted-foreground: 0 0% 70%;
+    --accent: 0 0% 11%;
     --accent-foreground: 0 0% 98%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 220 13% 18%;
-    --input: 220 13% 18%;
-    --ring: 220 12% 80%;
+    --border: 0 0% 11%;
+    --input: 0 0% 11%;
+    --ring: 0 0% 80%;
     --radius: 0.5rem;
   }
 
@@ -36,7 +36,7 @@
   }
 
   .glass-card {
-    @apply backdrop-blur-lg bg-white/5 border border-white/10 shadow-lg;
+    @apply backdrop-blur-lg bg-black/5 border border-white/10 shadow-lg;
   }
 
   .hover-card {
@@ -58,4 +58,3 @@
   transform: translateY(0);
   transition: opacity 300ms, transform 300ms;
 }
-
