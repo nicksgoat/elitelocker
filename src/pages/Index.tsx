@@ -45,10 +45,10 @@ const Index = () => {
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
           <a href="/" className="flex items-center gap-2">
             <img alt="Elite Locker Logo" className="h-8 w-8 md:h-10 md:w-10 object-fill" src="/lovable-uploads/5d4b23a0-82f4-4bf3-be9f-aa34c7594d27.jpg" />
-            <span className="text-xl md:text-2xl font-heading font-bold text-primary">Elite Locker</span>
+            <span className="text-xl md:text-2xl font-bold text-primary">Elite Locker</span>
           </a>
           
-          <button onClick={openDialog} className="metal-gradient text-white px-4 py-2 text-sm md:px-6 md:text-base rounded-md hover:opacity-90 transition-opacity">
+          <button onClick={openDialog} className="metal-gradient text-white px-4 py-2 text-sm md:px-6 md:text-base rounded-md hover:opacity-90 transition-opacity font-medium">
             Join Waitlist
           </button>
         </div>
@@ -66,14 +66,14 @@ const Index = () => {
         }} transition={{
           duration: 0.6
         }}>
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-heading font-bold mb-4 md:mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 md:mb-6">
               Transform Your
               <span className="text-primary"> Performance</span>
             </h1>
-            <p className="text-lg md:text-xl text-gray-400 mb-6 md:mb-8 max-w-2xl mx-auto px-4">
+            <p className="text-lg md:text-xl text-gray-400 mb-6 md:mb-8 max-w-2xl mx-auto px-4 font-medium">
               Elite training programs designed to help you reach your peak potential. Join the community of dedicated athletes and fitness enthusiasts.
             </p>
-            <button onClick={openDialog} className="metal-gradient text-white px-6 py-3 md:px-8 md:py-4 rounded-md text-base md:text-lg font-semibold hover:opacity-90 transition-opacity inline-flex items-center group">
+            <button onClick={openDialog} className="metal-gradient text-white px-6 py-3 md:px-8 md:py-4 rounded-md text-base md:text-lg font-bold hover:opacity-90 transition-opacity inline-flex items-center group">
               Join Waitlist
               <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
             </button>
@@ -84,7 +84,7 @@ const Index = () => {
       {/* Features Section */}
       <section id="features" className="py-16 md:py-20 bg-secondary">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-center mb-12 md:mb-16 text-primary">Why Choose Elite Locker</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 text-primary">Why Choose Elite Locker</h2>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
             {features.map((feature, index) => <motion.div key={feature.title} initial={{
             opacity: 0,
@@ -96,7 +96,7 @@ const Index = () => {
             delay: index * 0.2
           }} className="glass-card hover-card p-6 md:p-8 rounded-lg">
                 <feature.icon className="w-10 h-10 md:w-12 md:h-12 text-primary mb-4 md:mb-6" />
-                <h3 className="text-lg md:text-xl font-heading font-bold mb-3 md:mb-4 text-white">{feature.title}</h3>
+                <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4 text-white">{feature.title}</h3>
                 <p className="text-sm md:text-base text-gray-400">{feature.description}</p>
               </motion.div>)}
           </div>
@@ -106,7 +106,7 @@ const Index = () => {
       {/* Courses Section */}
       <section id="courses" className="py-16 md:py-20">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-center mb-12 md:mb-16 text-primary">Featured Programs</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 text-primary">Featured Programs</h2>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
             {courses.map((course, index) => <motion.div key={course.title} initial={{
             opacity: 0,
@@ -119,8 +119,8 @@ const Index = () => {
           }} className="glass-card hover-card rounded-lg overflow-hidden">
                 <img src={course.image} alt={course.title} className="w-full h-40 md:h-48 object-cover" />
                 <div className="p-4 md:p-6">
-                  <span className="text-xs md:text-sm font-semibold text-primary">{course.category}</span>
-                  <h3 className="text-lg md:text-xl font-heading font-bold mt-2 mb-2 md:mb-3 text-white">{course.title}</h3>
+                  <span className="text-xs md:text-sm font-bold text-primary">{course.category}</span>
+                  <h3 className="text-lg md:text-xl font-bold mt-2 mb-2 md:mb-3 text-white">{course.title}</h3>
                   <p className="text-sm md:text-base text-gray-400 mb-4">{course.description}</p>
                 </div>
               </motion.div>)}
@@ -131,11 +131,11 @@ const Index = () => {
       {/* CTA Section */}
       <section className="py-16 md:py-20 metal-gradient">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4 md:mb-6 text-white">Ready to Start Your Journey?</h2>
-          <p className="text-lg md:text-xl text-gray-300 mb-6 md:mb-8 max-w-2xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-white">Ready to Start Your Journey?</h2>
+          <p className="text-lg md:text-xl text-gray-300 mb-6 md:mb-8 max-w-2xl mx-auto font-medium">
             Join thousands of athletes already training with Elite Locker. Start your transformation today.
           </p>
-          <button onClick={openDialog} className="bg-white text-gray-900 px-6 py-3 md:px-8 md:py-4 rounded-md text-base md:text-lg font-semibold hover:bg-gray-100 transition-colors">
+          <button onClick={openDialog} className="bg-white text-gray-900 px-6 py-3 md:px-8 md:py-4 rounded-md text-base md:text-lg font-bold hover:bg-gray-100 transition-colors">
             Join Waitlist
           </button>
         </div>

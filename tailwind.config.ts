@@ -55,8 +55,8 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        heading: ['Plus Jakarta Sans', 'sans-serif'],
+        sans: ['Sportize', 'sans-serif'],
+        heading: ['Sportize', 'sans-serif'],
       },
       keyframes: {
         "accordion-down": {
