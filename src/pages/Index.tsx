@@ -2,9 +2,10 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle, Globe, Users, Zap } from "lucide-react";
+import { WaitlistDialog } from "@/components/WaitlistDialog";
 
 const Index = () => {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const features = [
     {
@@ -45,8 +46,12 @@ const Index = () => {
     }
   ];
 
+  const openDialog = () => setIsDialogOpen(true);
+
   return (
     <div className="min-h-screen w-full overflow-x-hidden">
+      <WaitlistDialog isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
+      
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-lg border-b border-gray-200">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -56,7 +61,10 @@ const Index = () => {
             <a href="#features" className="text-gray-600 hover:text-gray-900 transition-colors">Features</a>
             <a href="#testimonials" className="text-gray-600 hover:text-gray-900 transition-colors">Testimonials</a>
           </div>
-          <button className="bg-primary text-white px-6 py-2 rounded-full hover:bg-primary/90 transition-colors">
+          <button 
+            onClick={openDialog}
+            className="bg-primary text-white px-6 py-2 rounded-full hover:bg-primary/90 transition-colors"
+          >
             Get Started
           </button>
         </div>
@@ -77,7 +85,10 @@ const Index = () => {
             <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
               Premium online courses to accelerate your career growth. Learn from industry experts and join a community of ambitious learners.
             </p>
-            <button className="bg-primary text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-primary/90 transition-colors inline-flex items-center group">
+            <button 
+              onClick={openDialog}
+              className="bg-primary text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-primary/90 transition-colors inline-flex items-center group"
+            >
               Explore Courses
               <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
             </button>
@@ -143,7 +154,10 @@ const Index = () => {
           <p className="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
             Join thousands of students already learning with APX Academy. Start your journey today.
           </p>
-          <button className="bg-white text-primary px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-100 transition-colors">
+          <button 
+            onClick={openDialog}
+            className="bg-white text-primary px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-100 transition-colors"
+          >
             Get Started Now
           </button>
         </div>
