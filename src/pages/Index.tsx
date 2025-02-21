@@ -2,7 +2,6 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle, Globe, Users, Zap } from "lucide-react";
 import { WaitlistDialog } from "@/components/WaitlistDialog";
-
 const Index = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const features = [{
@@ -39,7 +38,7 @@ const Index = () => {
       <WaitlistDialog isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
       
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-lg border-b border-white/10">
+      <nav className="fixed top-0 w-full z-50 backdrop-blur-lg border-b border-white/10 bg-[#1f1f1f]">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <a href="/" className="flex items-center gap-2">
             <img src="/lovable-uploads/2f64c8c2-b547-4a26-9830-a065fc36a0b4.png" alt="Elite Locker Logo" className="h-10 w-10" />
