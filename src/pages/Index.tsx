@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle, Globe, Users, Zap } from "lucide-react";
 import { WaitlistDialog } from "@/components/WaitlistDialog";
+
 const Index = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const features = [{
@@ -40,14 +41,17 @@ const Index = () => {
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-lg border-b border-white/10">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <a href="/" className="text-2xl font-heading font-bold text-primary">Elite Locker</a>
+          <a href="/" className="flex items-center gap-2">
+            <img src="/lovable-uploads/2f64c8c2-b547-4a26-9830-a065fc36a0b4.png" alt="Elite Locker Logo" className="h-10 w-10" />
+            <span className="text-2xl font-heading font-bold text-primary">Elite Locker</span>
+          </a>
           <div className="hidden md:flex space-x-8">
             <a href="#courses" className="text-gray-400 hover:text-primary transition-colors">Programs</a>
             <a href="#features" className="text-gray-400 hover:text-primary transition-colors">Features</a>
             <a href="#testimonials" className="text-gray-400 hover:text-primary transition-colors">Results</a>
           </div>
           <button onClick={openDialog} className="metal-gradient text-white px-6 py-2 rounded-md hover:opacity-90 transition-opacity">
-            Get Started
+            Join Waitlist
           </button>
         </div>
       </nav>
@@ -72,7 +76,7 @@ const Index = () => {
               Elite training programs designed to help you reach your peak potential. Join the community of dedicated athletes and fitness enthusiasts.
             </p>
             <button onClick={openDialog} className="metal-gradient text-white px-8 py-4 rounded-md text-lg font-semibold hover:opacity-90 transition-opacity inline-flex items-center group">
-              Start Training
+              Join Waitlist
               <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
             </button>
           </motion.div>
@@ -135,7 +139,7 @@ const Index = () => {
             Join thousands of athletes already training with Elite Locker. Start your transformation today.
           </p>
           <button onClick={openDialog} className="bg-white text-gray-900 px-8 py-4 rounded-md text-lg font-semibold hover:bg-gray-100 transition-colors">
-            Get Started Now
+            Join Waitlist
           </button>
         </div>
       </section>
