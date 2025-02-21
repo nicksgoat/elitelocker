@@ -41,7 +41,7 @@ const Index = () => {
       <nav className="fixed top-0 w-full z-50 backdrop-blur-lg border-b border-white/10 bg-[#1f1f1f]">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <a href="/" className="flex items-center gap-2">
-            <img alt="Elite Locker Logo" src="/lovable-uploads/8055762e-fa4c-4930-a75f-23e5c1285142.jpg" className="h-15 w-15 object-fill" />
+            <img alt="Elite Locker Logo" src="/lovable-uploads/8055762e-fa4c-4930-a75f-23e5c1285142.jpg" className="h-15 w-15 object-contain" />
             <span className="text-2xl font-heading font-bold text-primary">Elite Locker</span>
           </a>
           <div className="hidden md:flex space-x-8">
