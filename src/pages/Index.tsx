@@ -120,10 +120,7 @@ const Index = () => {
                   <span className="text-sm font-semibold text-primary">{course.category}</span>
                   <h3 className="text-xl font-heading font-bold mt-2 mb-3 text-white">{course.title}</h3>
                   <p className="text-gray-400 mb-4">{course.description}</p>
-                  <button className="text-primary font-semibold inline-flex items-center group">
-                    Learn More
-                    <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </button>
+                  
                 </div>
               </motion.div>)}
           </div>
