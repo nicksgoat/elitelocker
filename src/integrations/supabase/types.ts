@@ -9,6 +9,132 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      activity_metrics: {
+        Row: {
+          created_at: string | null
+          id: string
+          metric_name: string
+          metric_value: number
+          recorded_at: string | null
+          workout_session_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          metric_name: string
+          metric_value: number
+          recorded_at?: string | null
+          workout_session_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          metric_name?: string
+          metric_value?: number
+          recorded_at?: string | null
+          workout_session_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "activity_metrics_workout_session_id_fkey"
+            columns: ["workout_session_id"]
+            isOneToOne: false
+            referencedRelation: "workout_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      activity_splits: {
+        Row: {
+          average_pace: unknown | null
+          average_speed: number | null
+          created_at: string | null
+          distance_km: number
+          duration: unknown
+          elevation_gain: number | null
+          elevation_loss: number | null
+          id: string
+          split_number: number
+          workout_session_id: string | null
+        }
+        Insert: {
+          average_pace?: unknown | null
+          average_speed?: number | null
+          created_at?: string | null
+          distance_km: number
+          duration: unknown
+          elevation_gain?: number | null
+          elevation_loss?: number | null
+          id?: string
+          split_number: number
+          workout_session_id?: string | null
+        }
+        Update: {
+          average_pace?: unknown | null
+          average_speed?: number | null
+          created_at?: string | null
+          distance_km?: number
+          duration?: unknown
+          elevation_gain?: number | null
+          elevation_loss?: number | null
+          id?: string
+          split_number?: number
+          workout_session_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "activity_splits_workout_session_id_fkey"
+            columns: ["workout_session_id"]
+            isOneToOne: false
+            referencedRelation: "workout_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      activity_waypoints: {
+        Row: {
+          accuracy: number | null
+          altitude: number | null
+          created_at: string | null
+          id: string
+          latitude: number
+          longitude: number
+          speed: number | null
+          timestamp: string
+          workout_session_id: string | null
+        }
+        Insert: {
+          accuracy?: number | null
+          altitude?: number | null
+          created_at?: string | null
+          id?: string
+          latitude: number
+          longitude: number
+          speed?: number | null
+          timestamp: string
+          workout_session_id?: string | null
+        }
+        Update: {
+          accuracy?: number | null
+          altitude?: number | null
+          created_at?: string | null
+          id?: string
+          latitude?: number
+          longitude?: number
+          speed?: number | null
+          timestamp?: string
+          workout_session_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "activity_waypoints_workout_session_id_fkey"
+            columns: ["workout_session_id"]
+            isOneToOne: false
+            referencedRelation: "workout_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       auth_accounts: {
         Row: {
           created_at: string | null
@@ -221,7 +347,7 @@ export type Database = {
           id: string
           metric_name: string
           metric_value: number
-          period: Database["public"]["Enums"]["leaderboard_period"]
+          period: string
           start_date: string
           updated_at: string | null
         }
@@ -232,7 +358,7 @@ export type Database = {
           id?: string
           metric_name: string
           metric_value?: number
-          period: Database["public"]["Enums"]["leaderboard_period"]
+          period?: string
           start_date: string
           updated_at?: string | null
         }
@@ -243,7 +369,7 @@ export type Database = {
           id?: string
           metric_name?: string
           metric_value?: number
-          period?: Database["public"]["Enums"]["leaderboard_period"]
+          period?: string
           start_date?: string
           updated_at?: string | null
         }
@@ -265,7 +391,7 @@ export type Database = {
           id: string
           metric_name: string
           metric_value: number
-          period: Database["public"]["Enums"]["leaderboard_period"]
+          period: string
           start_date: string
           updated_at: string | null
           user_id: string
@@ -277,7 +403,7 @@ export type Database = {
           id?: string
           metric_name: string
           metric_value?: number
-          period: Database["public"]["Enums"]["leaderboard_period"]
+          period?: string
           start_date: string
           updated_at?: string | null
           user_id: string
@@ -289,7 +415,7 @@ export type Database = {
           id?: string
           metric_name?: string
           metric_value?: number
-          period?: Database["public"]["Enums"]["leaderboard_period"]
+          period?: string
           start_date?: string
           updated_at?: string | null
           user_id?: string
@@ -1004,6 +1130,80 @@ export type Database = {
           },
         ]
       }
+      conversations: {
+        Row: {
+          created_at: string | null
+          id: string
+          last_message_at: string | null
+          last_message_id: string | null
+          unread_count_user1: number | null
+          unread_count_user2: number | null
+          updated_at: string | null
+          user1_id: string
+          user2_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          last_message_at?: string | null
+          last_message_id?: string | null
+          unread_count_user1?: number | null
+          unread_count_user2?: number | null
+          updated_at?: string | null
+          user1_id: string
+          user2_id: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          last_message_at?: string | null
+          last_message_id?: string | null
+          unread_count_user1?: number | null
+          unread_count_user2?: number | null
+          updated_at?: string | null
+          user1_id?: string
+          user2_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "conversations_last_message_id_fkey"
+            columns: ["last_message_id"]
+            isOneToOne: false
+            referencedRelation: "direct_messages"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      direct_messages: {
+        Row: {
+          content: string
+          created_at: string | null
+          id: string
+          is_deleted: boolean | null
+          read_at: string | null
+          recipient_id: string
+          sender_id: string
+        }
+        Insert: {
+          content: string
+          created_at?: string | null
+          id?: string
+          is_deleted?: boolean | null
+          read_at?: string | null
+          recipient_id: string
+          sender_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string | null
+          id?: string
+          is_deleted?: boolean | null
+          read_at?: string | null
+          recipient_id?: string
+          sender_id?: string
+        }
+        Relationships: []
+      }
       exercise_cache: {
         Row: {
           cached_data: Json
@@ -1047,6 +1247,7 @@ export type Database = {
       }
       exercise_categories: {
         Row: {
+          category_type: string | null
           color: string | null
           created_at: string
           description: string | null
@@ -1056,6 +1257,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          category_type?: string | null
           color?: string | null
           created_at?: string
           description?: string | null
@@ -1065,6 +1267,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          category_type?: string | null
           color?: string | null
           created_at?: string
           description?: string | null
@@ -1074,6 +1277,42 @@ export type Database = {
           updated_at?: string
         }
         Relationships: []
+      }
+      exercise_category_map: {
+        Row: {
+          category_id: string | null
+          created_at: string
+          exercise_id: string | null
+          id: string
+        }
+        Insert: {
+          category_id?: string | null
+          created_at?: string
+          exercise_id?: string | null
+          id?: string
+        }
+        Update: {
+          category_id?: string | null
+          created_at?: string
+          exercise_id?: string | null
+          id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "exercise_category_map_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "exercise_categories"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exercise_category_map_exercise_id_fkey"
+            columns: ["exercise_id"]
+            isOneToOne: false
+            referencedRelation: "exercises"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       exercise_collections: {
         Row: {
@@ -1346,6 +1585,42 @@ export type Database = {
           },
         ]
       }
+      exercise_sport_map: {
+        Row: {
+          created_at: string
+          exercise_id: string | null
+          id: string
+          sport_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          exercise_id?: string | null
+          id?: string
+          sport_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          exercise_id?: string | null
+          id?: string
+          sport_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "exercise_sport_map_exercise_id_fkey"
+            columns: ["exercise_id"]
+            isOneToOne: false
+            referencedRelation: "exercises"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exercise_sport_map_sport_id_fkey"
+            columns: ["sport_id"]
+            isOneToOne: false
+            referencedRelation: "sport_categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       exercise_templates: {
         Row: {
           created_at: string
@@ -1419,12 +1694,14 @@ export type Database = {
         Row: {
           confidence_level: number | null
           created_at: string
-          current_max: number
           established_date: string
           exercise_id: string
           id: string
+          max_value: number
+          measurement_unit: string | null
           notes: string | null
           testing_method: Database["public"]["Enums"]["testing_method"]
+          unit_type: Database["public"]["Enums"]["measurement_unit_type"]
           updated_at: string
           user_id: string
           valid_until: string | null
@@ -1432,12 +1709,14 @@ export type Database = {
         Insert: {
           confidence_level?: number | null
           created_at?: string
-          current_max: number
           established_date?: string
           exercise_id: string
           id?: string
+          max_value: number
+          measurement_unit?: string | null
           notes?: string | null
           testing_method?: Database["public"]["Enums"]["testing_method"]
+          unit_type?: Database["public"]["Enums"]["measurement_unit_type"]
           updated_at?: string
           user_id: string
           valid_until?: string | null
@@ -1445,12 +1724,14 @@ export type Database = {
         Update: {
           confidence_level?: number | null
           created_at?: string
-          current_max?: number
           established_date?: string
           exercise_id?: string
           id?: string
+          max_value?: number
+          measurement_unit?: string | null
           notes?: string | null
           testing_method?: Database["public"]["Enums"]["testing_method"]
+          unit_type?: Database["public"]["Enums"]["measurement_unit_type"]
           updated_at?: string
           user_id?: string
           valid_until?: string | null
@@ -1473,6 +1754,8 @@ export type Database = {
           created_at: string
           created_by: string | null
           custom_metrics: Json | null
+          default_measurement_type: Database["public"]["Enums"]["measurement_unit_type"]
+          default_measurement_unit: string | null
           demonstration_tips: string[] | null
           description: string | null
           difficulty: Database["public"]["Enums"]["difficulty_level"]
@@ -1484,6 +1767,7 @@ export type Database = {
           instructions: string[] | null
           last_synced_at: string | null
           measurement_type: Database["public"]["Enums"]["exercise_measurement_type"]
+          measurements_config: Json | null
           media_type: string | null
           media_url: string | null
           name: string
@@ -1495,6 +1779,7 @@ export type Database = {
           secondary_muscle_groups: string[] | null
           shared_by: string | null
           sport_categories: string[] | null
+          thumbnail_url: string | null
           updated_at: string
           video_url: string | null
         }
@@ -1505,6 +1790,8 @@ export type Database = {
           created_at?: string
           created_by?: string | null
           custom_metrics?: Json | null
+          default_measurement_type?: Database["public"]["Enums"]["measurement_unit_type"]
+          default_measurement_unit?: string | null
           demonstration_tips?: string[] | null
           description?: string | null
           difficulty?: Database["public"]["Enums"]["difficulty_level"]
@@ -1516,6 +1803,7 @@ export type Database = {
           instructions?: string[] | null
           last_synced_at?: string | null
           measurement_type?: Database["public"]["Enums"]["exercise_measurement_type"]
+          measurements_config?: Json | null
           media_type?: string | null
           media_url?: string | null
           name: string
@@ -1527,6 +1815,7 @@ export type Database = {
           secondary_muscle_groups?: string[] | null
           shared_by?: string | null
           sport_categories?: string[] | null
+          thumbnail_url?: string | null
           updated_at?: string
           video_url?: string | null
         }
@@ -1537,6 +1826,8 @@ export type Database = {
           created_at?: string
           created_by?: string | null
           custom_metrics?: Json | null
+          default_measurement_type?: Database["public"]["Enums"]["measurement_unit_type"]
+          default_measurement_unit?: string | null
           demonstration_tips?: string[] | null
           description?: string | null
           difficulty?: Database["public"]["Enums"]["difficulty_level"]
@@ -1548,6 +1839,7 @@ export type Database = {
           instructions?: string[] | null
           last_synced_at?: string | null
           measurement_type?: Database["public"]["Enums"]["exercise_measurement_type"]
+          measurements_config?: Json | null
           media_type?: string | null
           media_url?: string | null
           name?: string
@@ -1559,6 +1851,7 @@ export type Database = {
           secondary_muscle_groups?: string[] | null
           shared_by?: string | null
           sport_categories?: string[] | null
+          thumbnail_url?: string | null
           updated_at?: string
           video_url?: string | null
         }
@@ -2119,6 +2412,66 @@ export type Database = {
         }
         Relationships: []
       }
+      program_enrollments: {
+        Row: {
+          completion_date: string | null
+          created_at: string | null
+          current_day: number | null
+          current_week: number | null
+          id: string
+          last_completed_workout: string | null
+          program_id: string
+          schedule_preferences: Json | null
+          start_date: string
+          status: string
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          completion_date?: string | null
+          created_at?: string | null
+          current_day?: number | null
+          current_week?: number | null
+          id?: string
+          last_completed_workout?: string | null
+          program_id: string
+          schedule_preferences?: Json | null
+          start_date: string
+          status?: string
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          completion_date?: string | null
+          created_at?: string | null
+          current_day?: number | null
+          current_week?: number | null
+          id?: string
+          last_completed_workout?: string | null
+          program_id?: string
+          schedule_preferences?: Json | null
+          start_date?: string
+          status?: string
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "program_enrollments_program_id_fkey"
+            columns: ["program_id"]
+            isOneToOne: false
+            referencedRelation: "programs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "program_enrollments_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       program_exercise_percentages: {
         Row: {
           created_at: string
@@ -2230,6 +2583,86 @@ export type Database = {
             columns: ["program_id"]
             isOneToOne: false
             referencedRelation: "programs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      program_workout_schedules: {
+        Row: {
+          completed_date: string | null
+          created_at: string | null
+          day_number: number
+          enrollment_id: string
+          id: string
+          program_workout_id: string | null
+          rescheduled_from: string | null
+          scheduled_date: string
+          scheduled_time: string | null
+          session_id: string | null
+          status: string
+          updated_at: string | null
+          week_number: number
+          workout_id: string
+        }
+        Insert: {
+          completed_date?: string | null
+          created_at?: string | null
+          day_number: number
+          enrollment_id: string
+          id?: string
+          program_workout_id?: string | null
+          rescheduled_from?: string | null
+          scheduled_date: string
+          scheduled_time?: string | null
+          session_id?: string | null
+          status?: string
+          updated_at?: string | null
+          week_number: number
+          workout_id: string
+        }
+        Update: {
+          completed_date?: string | null
+          created_at?: string | null
+          day_number?: number
+          enrollment_id?: string
+          id?: string
+          program_workout_id?: string | null
+          rescheduled_from?: string | null
+          scheduled_date?: string
+          scheduled_time?: string | null
+          session_id?: string | null
+          status?: string
+          updated_at?: string | null
+          week_number?: number
+          workout_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "program_workout_schedules_enrollment_id_fkey"
+            columns: ["enrollment_id"]
+            isOneToOne: false
+            referencedRelation: "program_enrollments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "program_workout_schedules_program_workout_id_fkey"
+            columns: ["program_workout_id"]
+            isOneToOne: false
+            referencedRelation: "program_workouts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "program_workout_schedules_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "workout_sessions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "program_workout_schedules_workout_id_fkey"
+            columns: ["workout_id"]
+            isOneToOne: false
+            referencedRelation: "workouts"
             referencedColumns: ["id"]
           },
         ]
@@ -2769,6 +3202,33 @@ export type Database = {
           theme_style?: string | null
           updated_at?: string
           user_id?: string | null
+        }
+        Relationships: []
+      }
+      sport_categories: {
+        Row: {
+          created_at: string
+          description: string | null
+          icon_name: string | null
+          id: string
+          name: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          icon_name?: string | null
+          id?: string
+          name: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          icon_name?: string | null
+          id?: string
+          name?: string
+          updated_at?: string
         }
         Relationships: []
       }
@@ -3442,6 +3902,7 @@ export type Database = {
           measurement_type:
             | Database["public"]["Enums"]["exercise_measurement_type"]
             | null
+          measurement_types: string[] | null
           notes: string | null
           order_index: number
           reps: number
@@ -3451,6 +3912,7 @@ export type Database = {
           thumbnail_url: string | null
           updated_at: string
           weight: number | null
+          weight_percentage: number | null
           workout_id: string
         }
         Insert: {
@@ -3467,6 +3929,7 @@ export type Database = {
           measurement_type?:
             | Database["public"]["Enums"]["exercise_measurement_type"]
             | null
+          measurement_types?: string[] | null
           notes?: string | null
           order_index?: number
           reps?: number
@@ -3476,6 +3939,7 @@ export type Database = {
           thumbnail_url?: string | null
           updated_at?: string
           weight?: number | null
+          weight_percentage?: number | null
           workout_id: string
         }
         Update: {
@@ -3492,6 +3956,7 @@ export type Database = {
           measurement_type?:
             | Database["public"]["Enums"]["exercise_measurement_type"]
             | null
+          measurement_types?: string[] | null
           notes?: string | null
           order_index?: number
           reps?: number
@@ -3501,6 +3966,7 @@ export type Database = {
           thumbnail_url?: string | null
           updated_at?: string
           weight?: number | null
+          weight_percentage?: number | null
           workout_id?: string
         }
         Relationships: [
@@ -3684,51 +4150,85 @@ export type Database = {
       }
       workout_sessions: {
         Row: {
+          activity_type: Database["public"]["Enums"]["workout_type"] | null
+          average_pace: unknown | null
+          club_id: string | null
           created_at: string
+          distance_km: number | null
+          elevation_gain: number | null
+          elevation_loss: number | null
           end_time: string | null
           id: string
+          max_speed: number | null
           profile_id: string
+          route_data: Json | null
           source: string | null
           start_time: string
           status: Database["public"]["Enums"]["workout_session_status"] | null
           total_duration: unknown | null
           total_time: unknown | null
           total_volume: number | null
+          tracking_mode: string
           updated_at: string
           user_id: string
           workout_id: string | null
         }
         Insert: {
+          activity_type?: Database["public"]["Enums"]["workout_type"] | null
+          average_pace?: unknown | null
+          club_id?: string | null
           created_at?: string
+          distance_km?: number | null
+          elevation_gain?: number | null
+          elevation_loss?: number | null
           end_time?: string | null
           id?: string
+          max_speed?: number | null
           profile_id: string
+          route_data?: Json | null
           source?: string | null
           start_time?: string
           status?: Database["public"]["Enums"]["workout_session_status"] | null
           total_duration?: unknown | null
           total_time?: unknown | null
           total_volume?: number | null
+          tracking_mode?: string
           updated_at?: string
           user_id: string
           workout_id?: string | null
         }
         Update: {
+          activity_type?: Database["public"]["Enums"]["workout_type"] | null
+          average_pace?: unknown | null
+          club_id?: string | null
           created_at?: string
+          distance_km?: number | null
+          elevation_gain?: number | null
+          elevation_loss?: number | null
           end_time?: string | null
           id?: string
+          max_speed?: number | null
           profile_id?: string
+          route_data?: Json | null
           source?: string | null
           start_time?: string
           status?: Database["public"]["Enums"]["workout_session_status"] | null
           total_duration?: unknown | null
           total_time?: unknown | null
           total_volume?: number | null
+          tracking_mode?: string
           updated_at?: string
           user_id?: string
           workout_id?: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "workout_sessions_club_id_fkey"
+            columns: ["club_id"]
+            isOneToOne: false
+            referencedRelation: "clubs"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "workout_sessions_profile_id_fkey"
             columns: ["profile_id"]
@@ -3842,6 +4342,7 @@ export type Database = {
       }
       workout_stats: {
         Row: {
+          avg_duration: unknown | null
           completion_time: unknown | null
           created_at: string | null
           global_avg_completion_time: unknown | null
@@ -3863,6 +4364,7 @@ export type Database = {
           workout_id: string
         }
         Insert: {
+          avg_duration?: unknown | null
           completion_time?: unknown | null
           created_at?: string | null
           global_avg_completion_time?: unknown | null
@@ -3884,6 +4386,7 @@ export type Database = {
           workout_id: string
         }
         Update: {
+          avg_duration?: unknown | null
           completion_time?: unknown | null
           created_at?: string | null
           global_avg_completion_time?: unknown | null
@@ -4077,6 +4580,15 @@ export type Database = {
         }
         Returns: undefined
       }
+      activate_program: {
+        Args: {
+          p_user_id: string
+          p_program_id: string
+          p_start_date: string
+          p_schedule_preferences?: Json
+        }
+        Returns: string
+      }
       calculate_working_weight: {
         Args: {
           p_training_max: number
@@ -4100,7 +4612,7 @@ export type Database = {
       get_club_member_leaderboards: {
         Args: {
           p_club_id: string
-          p_period: Database["public"]["Enums"]["leaderboard_period"]
+          p_period?: string
           p_metric_name?: string
           p_limit?: number
         }
@@ -4225,6 +4737,24 @@ export type Database = {
           completion_status: string
           total_exercises: number
           difficulty_level: string
+        }[]
+      }
+      get_upcoming_program_workouts: {
+        Args: {
+          p_user_id: string
+          p_days?: number
+        }
+        Returns: {
+          schedule_id: string
+          enrollment_id: string
+          program_id: string
+          program_name: string
+          workout_id: string
+          workout_name: string
+          scheduled_date: string
+          status: string
+          week_number: number
+          day_number: number
         }[]
       }
       get_user_liked_items: {
@@ -4433,7 +4963,12 @@ export type Database = {
     Enums: {
       auth_provider: "email" | "google" | "apple"
       auth_token_status: "active" | "expired" | "revoked"
-      category_type: "body_part" | "sport" | "purpose"
+      category_type:
+        | "strength_training"
+        | "speed_agility"
+        | "endurance"
+        | "plyometrics"
+        | "sport_specific"
       club_content_type: "text" | "workout" | "progress"
       club_leaderboard_type:
         | "total_volume"
@@ -4484,8 +5019,9 @@ export type Database = {
         | "personal_record"
         | "share"
       import_status: "pending" | "processing" | "completed" | "failed"
-      leaderboard_period: "weekly" | "monthly" | "all_time"
+      leaderboard_period: "daily" | "weekly" | "monthly" | "yearly" | "all_time"
       liked_item_type: "workout" | "exercise" | "program"
+      measurement_unit_type: "weight" | "time" | "distance" | "height"
       membership_role: "member" | "admin" | "founder"
       muscle_group:
         | "chest"
@@ -4516,6 +5052,7 @@ export type Database = {
       waitlist_status: "pending" | "invited" | "registered"
       workout_session_status: "in_progress" | "completed" | "cancelled"
       workout_status: "draft" | "completed" | "in_progress"
+      workout_type: "strength" | "run" | "cycle" | "swim" | "other"
       workout_visibility:
         | "public"
         | "private"

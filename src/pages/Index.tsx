@@ -1,11 +1,15 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle, Globe, Users, Zap } from "lucide-react";
 import { WaitlistDialog } from "@/components/WaitlistDialog";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Index = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const isMobile = useIsMobile();
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  
   const features = [{
     icon: Globe,
     title: "Elite Training",
@@ -37,6 +41,19 @@ const Index = () => {
   }];
   const openDialog = () => setIsDialogOpen(true);
 
+  // This effect is used to update the videoLoaded state when the video is loaded
+  useEffect(() => {
+    const video = document.getElementById(isMobile ? "mobile-video" : "desktop-video") as HTMLVideoElement;
+    if (video) {
+      const handleVideoLoaded = () => setVideoLoaded(true);
+      video.addEventListener('loadeddata', handleVideoLoaded);
+      return () => video.removeEventListener('loadeddata', handleVideoLoaded);
+    }
+  }, [isMobile]);
+
+  const desktopVideoUrl = "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/videos/desktop-background.mp4";
+  const mobileVideoUrl = "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/videos/mobile-background.mp4";
+
   return <div className="min-h-screen w-full overflow-x-hidden bg-background">
       <WaitlistDialog isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
       
@@ -54,9 +71,53 @@ const Index = () => {
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="pt-24 md:pt-32 pb-16 md:pb-20 px-4">
-        <div className="container mx-auto text-center">
+      {/* Hero Section with Video Background */}
+      <section className="relative pt-24 md:pt-32 pb-16 md:pb-20 px-4 min-h-[80vh] flex items-center">
+        {/* Video Background */}
+        <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
+          {/* Loading placeholder */}
+          {!videoLoaded && (
+            <div className="absolute inset-0 bg-black/70 flex items-center justify-center">
+              <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+            </div>
+          )}
+          
+          {/* Desktop Video */}
+          {!isMobile && (
+            <video 
+              id="desktop-video"
+              autoPlay 
+              muted 
+              loop 
+              playsInline
+              className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
+              src={desktopVideoUrl}
+            >
+              Your browser does not support the video tag.
+            </video>
+          )}
+          
+          {/* Mobile Video */}
+          {isMobile && (
+            <video 
+              id="mobile-video"
+              autoPlay 
+              muted 
+              loop 
+              playsInline
+              className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
+              src={mobileVideoUrl}
+            >
+              Your browser does not support the video tag.
+            </video>
+          )}
+          
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-black/50 z-10"></div>
+        </div>
+        
+        {/* Hero Content */}
+        <div className="container mx-auto text-center relative z-20">
           <motion.div initial={{
           opacity: 0,
           y: 20
