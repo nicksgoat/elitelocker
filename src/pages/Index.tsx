@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle, Globe, Users, Zap } from "lucide-react";
@@ -51,8 +50,8 @@ const Index = () => {
     }
   }, [isMobile]);
 
-  const desktopVideoUrl = "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/videos/desktop-background.mp4";
-  const mobileVideoUrl = "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/videos/mobile-background.mp4";
+  // Updated to use the video you've uploaded to Supabase
+  const videoUrl = "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/videos/C6466_Proxy.mp4";
 
   return <div className="min-h-screen w-full overflow-x-hidden bg-background">
       <WaitlistDialog isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
@@ -82,35 +81,18 @@ const Index = () => {
             </div>
           )}
           
-          {/* Desktop Video */}
-          {!isMobile && (
-            <video 
-              id="desktop-video"
-              autoPlay 
-              muted 
-              loop 
-              playsInline
-              className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
-              src={desktopVideoUrl}
-            >
-              Your browser does not support the video tag.
-            </video>
-          )}
-          
-          {/* Mobile Video */}
-          {isMobile && (
-            <video 
-              id="mobile-video"
-              autoPlay 
-              muted 
-              loop 
-              playsInline
-              className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
-              src={mobileVideoUrl}
-            >
-              Your browser does not support the video tag.
-            </video>
-          )}
+          {/* Video - now using the same video for both mobile and desktop */}
+          <video 
+            id={isMobile ? "mobile-video" : "desktop-video"}
+            autoPlay 
+            muted 
+            loop 
+            playsInline
+            className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
+            src={videoUrl}
+          >
+            Your browser does not support the video tag.
+          </video>
           
           {/* Overlay */}
           <div className="absolute inset-0 bg-black/50 z-10"></div>
@@ -205,3 +187,4 @@ const Index = () => {
 };
 
 export default Index;
+
