@@ -1,8 +1,10 @@
+
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle, Globe, Users, Zap } from "lucide-react";
 import { WaitlistDialog } from "@/components/WaitlistDialog";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { ExerciseShowcase } from "@/components/ExerciseShowcase";
 
 const Index = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -146,6 +148,9 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Exercise Showcase Section */}
+      <ExerciseShowcase />
+
       {/* Courses Section */}
       <section id="courses" className="py-16 md:py-20">
         <div className="container mx-auto px-4">
@@ -187,4 +192,3 @@ const Index = () => {
 };
 
 export default Index;
-

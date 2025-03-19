@@ -135,6 +135,27 @@ export type Database = {
           },
         ]
       }
+      admin_users: {
+        Row: {
+          created_at: string | null
+          role: string
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          role?: string
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          role?: string
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
       auth_accounts: {
         Row: {
           created_at: string | null
@@ -1126,6 +1147,93 @@ export type Database = {
             columns: ["user_id"]
             isOneToOne: false
             referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      commission_payouts: {
+        Row: {
+          amount: number
+          created_at: string | null
+          id: string
+          payout_date: string | null
+          payout_details: Json | null
+          payout_method: string | null
+          status: string
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          amount: number
+          created_at?: string | null
+          id?: string
+          payout_date?: string | null
+          payout_details?: Json | null
+          payout_method?: string | null
+          status?: string
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          amount?: number
+          created_at?: string | null
+          id?: string
+          payout_date?: string | null
+          payout_details?: Json | null
+          payout_method?: string | null
+          status?: string
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      commissions: {
+        Row: {
+          amount: number
+          created_at: string | null
+          id: string
+          order_id: string
+          paid_at: string | null
+          referral_code_id: string
+          status: string | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          amount: number
+          created_at?: string | null
+          id?: string
+          order_id: string
+          paid_at?: string | null
+          referral_code_id: string
+          status?: string | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string | null
+          id?: string
+          order_id?: string
+          paid_at?: string | null
+          referral_code_id?: string
+          status?: string | null
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "commissions_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "store_orders"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "commissions_referral_code_id_fkey"
+            columns: ["referral_code_id"]
+            isOneToOne: false
+            referencedRelation: "referral_codes"
             referencedColumns: ["id"]
           },
         ]
@@ -2124,6 +2232,51 @@ export type Database = {
           },
         ]
       }
+      order_items: {
+        Row: {
+          created_at: string | null
+          id: string
+          order_id: string
+          price_per_unit: number
+          product_id: string
+          quantity: number
+          total_price: number
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          order_id: string
+          price_per_unit: number
+          product_id: string
+          quantity: number
+          total_price: number
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          order_id?: string
+          price_per_unit?: number
+          product_id?: string
+          quantity?: number
+          total_price?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "order_items_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "store_orders"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "order_items_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "store_products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       payment_history: {
         Row: {
           amount: number
@@ -2348,6 +2501,50 @@ export type Database = {
           status?: string | null
         }
         Relationships: []
+      }
+      product_variants: {
+        Row: {
+          created_at: string | null
+          id: string
+          inventory_count: number | null
+          price_adjustment: number | null
+          product_id: string | null
+          sku: string | null
+          updated_at: string | null
+          variant_type: string
+          variant_value: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          inventory_count?: number | null
+          price_adjustment?: number | null
+          product_id?: string | null
+          sku?: string | null
+          updated_at?: string | null
+          variant_type: string
+          variant_value: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          inventory_count?: number | null
+          price_adjustment?: number | null
+          product_id?: string | null
+          sku?: string | null
+          updated_at?: string | null
+          variant_type?: string
+          variant_value?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "product_variants_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "store_products"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       profiles: {
         Row: {
@@ -2587,6 +2784,144 @@ export type Database = {
           },
         ]
       }
+      program_schedule: {
+        Row: {
+          created_at: string | null
+          day_number: number
+          day_type: string | null
+          id: string
+          is_rest_day: boolean | null
+          program_id: string
+          template_id: string | null
+          updated_at: string | null
+          week_number: number
+        }
+        Insert: {
+          created_at?: string | null
+          day_number: number
+          day_type?: string | null
+          id?: string
+          is_rest_day?: boolean | null
+          program_id: string
+          template_id?: string | null
+          updated_at?: string | null
+          week_number: number
+        }
+        Update: {
+          created_at?: string | null
+          day_number?: number
+          day_type?: string | null
+          id?: string
+          is_rest_day?: boolean | null
+          program_id?: string
+          template_id?: string | null
+          updated_at?: string | null
+          week_number?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "program_schedule_program_id_fkey"
+            columns: ["program_id"]
+            isOneToOne: false
+            referencedRelation: "programs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "program_schedule_template_id_fkey"
+            columns: ["template_id"]
+            isOneToOne: false
+            referencedRelation: "program_templates"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      program_template_assignments: {
+        Row: {
+          created_at: string | null
+          day_number: number
+          id: string
+          order_index: number | null
+          program_id: string
+          template_id: string
+          updated_at: string | null
+          week_number: number
+        }
+        Insert: {
+          created_at?: string | null
+          day_number: number
+          id?: string
+          order_index?: number | null
+          program_id: string
+          template_id: string
+          updated_at?: string | null
+          week_number: number
+        }
+        Update: {
+          created_at?: string | null
+          day_number?: number
+          id?: string
+          order_index?: number | null
+          program_id?: string
+          template_id?: string
+          updated_at?: string | null
+          week_number?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "program_template_assignments_program_id_fkey"
+            columns: ["program_id"]
+            isOneToOne: false
+            referencedRelation: "programs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "program_template_assignments_template_id_fkey"
+            columns: ["template_id"]
+            isOneToOne: false
+            referencedRelation: "program_templates"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      program_templates: {
+        Row: {
+          created_at: string | null
+          created_by: string | null
+          description: string | null
+          exercise_count: number | null
+          id: string
+          image_url: string | null
+          name: string
+          target_muscles: string[] | null
+          total_sets: number | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          created_by?: string | null
+          description?: string | null
+          exercise_count?: number | null
+          id?: string
+          image_url?: string | null
+          name: string
+          target_muscles?: string[] | null
+          total_sets?: number | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          created_by?: string | null
+          description?: string | null
+          exercise_count?: number | null
+          id?: string
+          image_url?: string | null
+          name?: string
+          target_muscles?: string[] | null
+          total_sets?: number | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       program_workout_schedules: {
         Row: {
           completed_date: string | null
@@ -2747,7 +3082,12 @@ export type Database = {
           metadata: Json | null
           name: string
           price: number | null
+          program_goal: string | null
+          rest_day_distribution: string | null
+          rest_days_per_week: number | null
+          scheduling_method: string | null
           shared_by: string | null
+          split_type: string | null
           status: string | null
           updated_at: string
           visibility: Database["public"]["Enums"]["program_visibility"] | null
@@ -2764,7 +3104,12 @@ export type Database = {
           metadata?: Json | null
           name: string
           price?: number | null
+          program_goal?: string | null
+          rest_day_distribution?: string | null
+          rest_days_per_week?: number | null
+          scheduling_method?: string | null
           shared_by?: string | null
+          split_type?: string | null
           status?: string | null
           updated_at?: string
           visibility?: Database["public"]["Enums"]["program_visibility"] | null
@@ -2781,7 +3126,12 @@ export type Database = {
           metadata?: Json | null
           name?: string
           price?: number | null
+          program_goal?: string | null
+          rest_day_distribution?: string | null
+          rest_days_per_week?: number | null
+          scheduling_method?: string | null
           shared_by?: string | null
+          split_type?: string | null
           status?: string | null
           updated_at?: string
           visibility?: Database["public"]["Enums"]["program_visibility"] | null
@@ -2795,6 +3145,42 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      referral_codes: {
+        Row: {
+          code: string
+          commission_percentage: number | null
+          created_at: string | null
+          discount_percentage: number | null
+          id: string
+          is_active: boolean | null
+          updated_at: string | null
+          usage_count: number | null
+          user_id: string
+        }
+        Insert: {
+          code: string
+          commission_percentage?: number | null
+          created_at?: string | null
+          discount_percentage?: number | null
+          id?: string
+          is_active?: boolean | null
+          updated_at?: string | null
+          usage_count?: number | null
+          user_id: string
+        }
+        Update: {
+          code?: string
+          commission_percentage?: number | null
+          created_at?: string | null
+          discount_percentage?: number | null
+          id?: string
+          is_active?: boolean | null
+          updated_at?: string | null
+          usage_count?: number | null
+          user_id?: string
+        }
+        Relationships: []
       }
       scheduled_tasks: {
         Row: {
@@ -3232,6 +3618,104 @@ export type Database = {
         }
         Relationships: []
       }
+      store_orders: {
+        Row: {
+          created_at: string | null
+          discount_amount: number | null
+          id: string
+          payment_method: string | null
+          payment_status: string | null
+          payment_transaction_id: string | null
+          referral_code_id: string | null
+          shipping_address: Json | null
+          status: string | null
+          total_amount: number
+          tracking_number: string | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          discount_amount?: number | null
+          id?: string
+          payment_method?: string | null
+          payment_status?: string | null
+          payment_transaction_id?: string | null
+          referral_code_id?: string | null
+          shipping_address?: Json | null
+          status?: string | null
+          total_amount: number
+          tracking_number?: string | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          discount_amount?: number | null
+          id?: string
+          payment_method?: string | null
+          payment_status?: string | null
+          payment_transaction_id?: string | null
+          referral_code_id?: string | null
+          shipping_address?: Json | null
+          status?: string | null
+          total_amount?: number
+          tracking_number?: string | null
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "store_orders_referral_code_id_fkey"
+            columns: ["referral_code_id"]
+            isOneToOne: false
+            referencedRelation: "referral_codes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      store_products: {
+        Row: {
+          category: string
+          created_at: string | null
+          description: string | null
+          id: string
+          image_url: string | null
+          inventory_count: number | null
+          is_active: boolean | null
+          name: string
+          price: number
+          sku: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          category: string
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          inventory_count?: number | null
+          is_active?: boolean | null
+          name: string
+          price: number
+          sku?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          category?: string
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          inventory_count?: number | null
+          is_active?: boolean | null
+          name?: string
+          price?: number
+          sku?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       stripe_configuration: {
         Row: {
           created_at: string
@@ -3554,6 +4038,30 @@ export type Database = {
           id?: string
           item_id?: string
           item_type?: Database["public"]["Enums"]["liked_item_type"]
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_presence: {
+        Row: {
+          created_at: string | null
+          is_online: boolean | null
+          last_seen: string | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          is_online?: boolean | null
+          last_seen?: string | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          is_online?: boolean | null
+          last_seen?: string | null
+          updated_at?: string | null
           user_id?: string
         }
         Relationships: []
@@ -4959,6 +5467,13 @@ export type Database = {
         }
         Returns: undefined
       }
+      update_user_online_status: {
+        Args: {
+          p_user_id: string
+          p_is_online: boolean
+        }
+        Returns: undefined
+      }
     }
     Enums: {
       auth_provider: "email" | "google" | "apple"
@@ -5034,7 +5549,16 @@ export type Database = {
         | "full_body"
       old_session_type: "one_on_one" | "group_class" | "webinar"
       onboarding_status: "not_started" | "in_progress" | "completed"
+      order_status:
+        | "pending"
+        | "processing"
+        | "shipped"
+        | "delivered"
+        | "cancelled"
+        | "refunded"
+      payout_status: "pending" | "approved" | "paid" | "rejected"
       performance_metric_type: "numeric" | "time" | "distance" | "boolean"
+      product_category: "supplements" | "apparel" | "accessories" | "equipment"
       program_visibility: "private" | "public" | "clubs_only" | "subscription"
       security_level: "basic" | "enhanced" | "maximum"
       session_status:
