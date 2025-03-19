@@ -50,6 +50,27 @@
   .metal-gradient {
     @apply bg-gradient-to-b from-[#444444] to-[#222222];
   }
+  
+  /* Header and footer styling */
+  .app-header {
+    @apply fixed top-0 w-full z-50 bg-[#121212] border-b border-[#333] shadow-md;
+  }
+  
+  .app-footer {
+    @apply fixed bottom-0 w-full z-50 bg-[#121212] border-t border-[#333] shadow-md;
+  }
+  
+  .header-icon {
+    @apply p-3 flex items-center justify-center text-gray-400 hover:text-white transition-colors duration-200;
+  }
+  
+  .footer-item {
+    @apply flex flex-col items-center justify-center text-sm text-gray-400 hover:text-primary transition-colors duration-200;
+  }
+  
+  .footer-item.active {
+    @apply text-rose-500;
+  }
 }
 
 .slide-enter {
