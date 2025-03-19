@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle, Globe, Users, Zap } from "lucide-react";
@@ -10,6 +9,7 @@ import { AppFooter } from "@/components/AppFooter";
 
 const Index = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [dialogTitle, setDialogTitle] = useState("Join the Waitlist");
   const isMobile = useIsMobile();
   const [videoLoaded, setVideoLoaded] = useState(false);
   
@@ -42,7 +42,16 @@ const Index = () => {
     image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=800&q=80",
     category: "Nutrition"
   }];
-  const openDialog = () => setIsDialogOpen(true);
+  
+  const openDialog = () => {
+    setDialogTitle("Join the Waitlist");
+    setIsDialogOpen(true);
+  };
+
+  const openComingSoonDialog = () => {
+    setDialogTitle("Coming soon...");
+    setIsDialogOpen(true);
+  };
 
   // This effect is used to update the videoLoaded state when the video is loaded
   useEffect(() => {
@@ -59,10 +68,17 @@ const Index = () => {
 
   return (
     <div className="min-h-screen w-full overflow-x-hidden bg-background pb-16">
-      <WaitlistDialog isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
+      <WaitlistDialog 
+        isOpen={isDialogOpen} 
+        onClose={() => setIsDialogOpen(false)} 
+        title={dialogTitle} 
+      />
       
       {/* Header */}
-      <AppHeader openDialog={openDialog} />
+      <AppHeader 
+        openDialog={openDialog} 
+        openComingSoonDialog={openComingSoonDialog} 
+      />
       
       {/* Main Content - add padding to account for fixed header */}
       <main className="pt-16">
@@ -185,7 +201,7 @@ const Index = () => {
       </main>
       
       {/* Footer */}
-      <AppFooter />
+      <AppFooter openComingSoonDialog={openComingSoonDialog} />
     </div>
   );
 };

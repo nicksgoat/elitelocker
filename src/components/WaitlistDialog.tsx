@@ -12,9 +12,11 @@ import { useToast } from "@/hooks/use-toast";
 export function WaitlistDialog({
   isOpen,
   onClose,
+  title = "Join the Waitlist",
 }: {
   isOpen: boolean;
   onClose: () => void;
+  title?: string;
 }) {
   const [formData, setFormData] = useState({
     name: "",
@@ -50,7 +52,7 @@ export function WaitlistDialog({
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle className="text-2xl font-heading font-bold flex items-center gap-2">
-            Join the Waitlist <span className="animate-float">🚀</span>
+            {title} <span className="animate-float">🚀</span>
           </DialogTitle>
           <button
             onClick={onClose}
@@ -132,4 +134,3 @@ export function WaitlistDialog({
     </Dialog>
   );
 }
-
