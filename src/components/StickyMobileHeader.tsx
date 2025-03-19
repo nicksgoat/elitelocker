@@ -53,7 +53,7 @@ export function StickyMobileHeader({
               </TabsTrigger>
             ))}
           </TabsList>
-          {children && <div className="mt-2">{children}</div>}
+          <div className="mt-2">{children}</div>
         </Tabs>
       )}
       
