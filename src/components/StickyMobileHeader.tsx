@@ -1,9 +1,7 @@
-
 import { ReactNode } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-
 interface StickyMobileHeaderProps {
   children?: ReactNode;
   className?: string;
@@ -15,49 +13,36 @@ interface StickyMobileHeaderProps {
   onTabChange?: (value: string) => void;
   headerContent?: ReactNode;
 }
-
 export function StickyMobileHeader({
   children,
   className,
   tabs,
   defaultTab,
   onTabChange,
-  headerContent,
+  headerContent
 }: StickyMobileHeaderProps) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: -10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.2 }}
-      className={cn(
-        "bg-background/90 backdrop-blur-lg border-b border-border",
-        className
-      )}
-    >
-      {headerContent && (
-        <div className="px-4 py-3">
+  return <motion.div initial={{
+    opacity: 0,
+    y: -10
+  }} animate={{
+    opacity: 1,
+    y: 0
+  }} transition={{
+    duration: 0.2
+  }} className={cn("bg-background/90 backdrop-blur-lg border-b border-border", className)}>
+      {headerContent && <div className="px-4 py-3">
           {headerContent}
-        </div>
-      )}
+        </div>}
       
-      {tabs && tabs.length > 0 && (
-        <Tabs defaultValue={defaultTab || tabs[0].value} onValueChange={onTabChange} className="w-full">
+      {tabs && tabs.length > 0 && <Tabs defaultValue={defaultTab || tabs[0].value} onValueChange={onTabChange} className="w-full">
           <TabsList className="justify-start px-4 bg-transparent">
-            {tabs.map((tab) => (
-              <TabsTrigger 
-                key={tab.value} 
-                value={tab.value}
-                className="data-[state=active]:bg-primary/10 data-[state=active]:text-primary"
-              >
+            {tabs.map(tab => <TabsTrigger key={tab.value} value={tab.value} className="data-[state=active]:bg-primary/0 data-[state=active]:text-primary py-0 my-0 mx-0 px-[32px]">
                 {tab.label}
-              </TabsTrigger>
-            ))}
+              </TabsTrigger>)}
           </TabsList>
           <div className="mt-2">{children}</div>
-        </Tabs>
-      )}
+        </Tabs>}
       
       {!tabs && children}
-    </motion.div>
-  );
+    </motion.div>;
 }
