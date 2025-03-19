@@ -55,8 +55,9 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Sportize', 'sans-serif'],
-        heading: ['Sportize', 'sans-serif'],
+        sans: ['BebasNeue', 'Sportize', 'sans-serif'],
+        heading: ['BebasNeue', 'Sportize', 'sans-serif'],
+        bebas: ['BebasNeue', 'sans-serif'],
       },
       keyframes: {
         "accordion-down": {

@@ -16,8 +16,8 @@ export const ExerciseShowcase: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-10 md:mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-primary">
-            Explore Our Exercise Library
+          <h2 className="text-3xl md:text-4xl font-bebas font-bold mb-4 md:mb-6 text-primary tracking-wider">
+            EXPLORE OUR EXERCISE LIBRARY
           </h2>
           <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto">
             Browse through our extensive collection of professionally designed exercises for all fitness levels
@@ -45,8 +45,8 @@ export const ExerciseShowcase: React.FC = () => {
         )}
 
         <div className="text-center mt-10 md:mt-12">
-          <button className="metal-gradient text-white px-6 py-3 rounded-md hover:opacity-90 transition-opacity font-semibold">
-            View More Exercises
+          <button className="metal-gradient text-white px-6 py-3 rounded-md hover:opacity-90 transition-opacity font-bebas tracking-wider text-lg">
+            VIEW MORE EXERCISES
           </button>
         </div>
       </div>
