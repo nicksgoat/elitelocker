@@ -35,7 +35,7 @@ export function StickyMobileHeader({
         </div>}
       
       {tabs && tabs.length > 0 && <Tabs defaultValue={defaultTab || tabs[0].value} onValueChange={onTabChange} className="w-full">
-          <TabsList className="justify-start px-4 bg-transparent py-0 my-[25px]">
+          <TabsList className="justify-start px-4 bg-transparent py-0 my-[19px]">
             {tabs.map(tab => <TabsTrigger key={tab.value} value={tab.value} className="data-[state=active]:bg-primary/0 data-[state=active]:text-primary py-0 my-0 mx-0 px-[32px]">
                 {tab.label}
               </TabsTrigger>)}
