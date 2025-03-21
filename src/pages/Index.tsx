@@ -76,7 +76,7 @@ const Index = () => {
       <AppHeader openDialog={openDialog} openComingSoonDialog={openComingSoonDialog} />
       
       <main className="pt-16">
-        {isMobile ? <div className="pb-16">
+        {isMobile ? <div className="pb-16 my-0 mx-0 px-0">
             <div className="sticky top-14 z-10 w-full">
               <StickyMobileHeader tabs={mobileTabs} defaultTab="featured" onTabChange={setActiveTab}>
                 <Tabs value={activeTab}>
@@ -119,7 +119,7 @@ const Index = () => {
                       </div>
                     </section>
 
-                    <section id="features" className="py-16 md:py-20 bg-secondary">
+                    <section id="features" className="md:py-20 bg-secondary py-[39px]">
                       <div className="container mx-auto px-4">
                         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 text-primary">Why Choose Elite Locker</h2>
                         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
@@ -260,7 +260,7 @@ const Index = () => {
             </section>
           </>}
 
-        <section className="py-16 md:py-20 metal-gradient">
+        <section className="md:py-20 metal-gradient py-[38px]">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-white">Ready to Start Your Journey?</h2>
             <p className="text-lg md:text-xl text-gray-300 mb-6 md:mb-8 max-w-2xl mx-auto font-medium">
