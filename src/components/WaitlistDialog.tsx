@@ -1,6 +1,9 @@
+
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
+import { Input } from "@/components/ui/input";
+
 export function WaitlistDialog({
   isOpen,
   onClose,
@@ -16,9 +19,8 @@ export function WaitlistDialog({
     phone: "",
     role: ""
   });
-  const {
-    toast
-  } = useToast();
+  const { toast } = useToast();
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email) {
@@ -44,13 +46,14 @@ export function WaitlistDialog({
       role: ""
     });
   };
-  return <Dialog open={isOpen} onOpenChange={onClose}>
+
+  return (
+    <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle className="text-2xl font-heading font-bold flex items-center gap-2">
             {title} <span className="animate-float">🚀</span>
           </DialogTitle>
-          {/* Removed the redundant close button here */}
         </DialogHeader>
         <p className="text-sm text-gray-500">
           Get ahead of the competition. Secure your spot for early access and insider updates!
@@ -60,37 +63,65 @@ export function WaitlistDialog({
             <label htmlFor="name" className="block text-sm font-medium mb-1">
               Name
             </label>
-            <input id="name" type="text" placeholder="Enter your full name" className="w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary" value={formData.name} onChange={e => setFormData({
-            ...formData,
-            name: e.target.value
-          })} required />
+            <Input 
+              id="name" 
+              type="text" 
+              placeholder="Enter your full name" 
+              className="text-black" 
+              value={formData.name} 
+              onChange={e => setFormData({
+                ...formData,
+                name: e.target.value
+              })} 
+              required 
+            />
           </div>
           <div>
             <label htmlFor="email" className="block text-sm font-medium mb-1">
               Email
             </label>
-            <input id="email" type="email" placeholder="Enter your email address" className="w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary" value={formData.email} onChange={e => setFormData({
-            ...formData,
-            email: e.target.value
-          })} required />
+            <Input 
+              id="email" 
+              type="email" 
+              placeholder="Enter your email address" 
+              className="text-black" 
+              value={formData.email} 
+              onChange={e => setFormData({
+                ...formData,
+                email: e.target.value
+              })} 
+              required 
+            />
           </div>
           <div>
             <label htmlFor="phone" className="block text-sm font-medium mb-1">
               Phone number <span className="text-gray-500">(Optional for Launch Updates)</span>
             </label>
-            <input id="phone" type="tel" placeholder="Enter your phone number" className="w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary" value={formData.phone} onChange={e => setFormData({
-            ...formData,
-            phone: e.target.value
-          })} />
+            <Input 
+              id="phone" 
+              type="tel" 
+              placeholder="Enter your phone number" 
+              className="text-black" 
+              value={formData.phone} 
+              onChange={e => setFormData({
+                ...formData,
+                phone: e.target.value
+              })} 
+            />
           </div>
           <div>
             <label htmlFor="role" className="block text-sm font-medium mb-1">
               Your role <span className="text-gray-500">(Optional)</span>
             </label>
-            <select id="role" className="w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary text-black bg-white" value={formData.role} onChange={e => setFormData({
-            ...formData,
-            role: e.target.value
-          })}>
+            <select 
+              id="role" 
+              className="w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary text-black bg-white" 
+              value={formData.role} 
+              onChange={e => setFormData({
+                ...formData,
+                role: e.target.value
+              })}
+            >
               <option value="">Select your role</option>
               <option value="athlete">Athlete</option>
               <option value="trainer">Trainer</option>
@@ -103,5 +134,6 @@ export function WaitlistDialog({
           </button>
         </form>
       </DialogContent>
-    </Dialog>;
+    </Dialog>
+  );
 }
