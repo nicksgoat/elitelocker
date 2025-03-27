@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle, Globe, Users, Zap } from "lucide-react";
@@ -116,6 +117,12 @@ const Index = () => {
       <AppHeader openDialog={openDialog} openComingSoonDialog={openComingSoonDialog} />
       
       <main className="pt-16">
+        {/* Tab Interface - Moved before hero section */}
+        <TabInterface 
+          creatorContent={creatorContent} 
+          athleteContent={<AthleteSection />} 
+        />
+        
         {/* Hero Section */}
         <section className="relative pt-12 md:pt-16 pb-16 md:pb-20 px-4 min-h-[80vh] flex items-center">
           <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
@@ -160,10 +167,11 @@ const Index = () => {
               <StickyMobileHeader tabs={mobileTabs} defaultTab="featured" onTabChange={setActiveTab}>
                 <Tabs value={activeTab}>
                   <TabsContent value="featured" className="mt-0">
-                    <TabInterface 
+                    {/* Remove duplicate TabInterface here since we moved it above the hero */}
+                    {/* <TabInterface 
                       creatorContent={creatorContent} 
                       athleteContent={<AthleteSection />} 
-                    />
+                    /> */}
                   </TabsContent>
     
                   <TabsContent value="exercises" className="mt-0">
@@ -202,10 +210,11 @@ const Index = () => {
         ) : (
           <>
             {/* Desktop View */}
-            <TabInterface 
+            {/* Remove duplicate TabInterface here since we moved it above the hero */}
+            {/* <TabInterface 
               creatorContent={creatorContent} 
               athleteContent={<AthleteSection />} 
-            />
+            /> */}
 
             <ExerciseShowcase />
 
