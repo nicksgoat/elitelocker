@@ -58,12 +58,17 @@ export const TypewriterEffect = ({
     return () => clearTimeout(timer);
   }, [words, wordIndex, isDeleting, text, delta, typingSpeed, deletingSpeed, delayBetweenWords]);
 
-  if (multiLine) {
-    const formattedText = text.split('\n').map((line, i) => (
-      <div key={i} className="line">{line}</div>
-    ));
+  if (multiLine && text) {
+    // For multiLine, we'll treat each line separately
+    const lines = text.split('\n');
     
-    return <span className={className}>{formattedText}</span>;
+    return (
+      <span className={className}>
+        {lines.map((line, i) => (
+          <div key={i} className="line">{line}</div>
+        ))}
+      </span>
+    );
   }
 
   return <span className={className}>{text}</span>;
