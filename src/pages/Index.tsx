@@ -108,7 +108,17 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 text-primary">Creator Features</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {creatorFeatures.map((feature, index) => <FeatureCard key={feature.title} title={feature.title} description={feature.description} icon={feature.icon} color={feature.color} image={feature.image} delay={index * 0.2} bullets={feature.bullets} />)}
+            {creatorFeatures.map((feature, index) => (
+              <FeatureCard 
+                key={feature.title} 
+                title={feature.title} 
+                description={feature.description} 
+                icon={feature.icon} 
+                color={feature.color}
+                delay={index * 0.2} 
+                bullets={feature.bullets} 
+              />
+            ))}
           </div>
         </div>
       </section>
