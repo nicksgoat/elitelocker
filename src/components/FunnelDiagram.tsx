@@ -167,7 +167,7 @@ export const FunnelDiagram: React.FC = () => {
   return <section className="py-16 md:py-24 bg-gradient-to-b from-black to-secondary/30 relative overflow-hidden">
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMyMjIiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djZoNnYtNmgtNnptNi02aDZ2LTZoLTZ2NnoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-50"></div>
       <div className="container mx-auto px-4 relative">
-        <motion.h2 ref={ref} initial="hidden" animate={controls} variants={titleVariants} className="text-3xl md:text-5xl font-bold text-center mb-16 text-primary bg-clip-text">Creator Philosophy</motion.h2>
+        <motion.h2 ref={ref} initial="hidden" animate={controls} variants={titleVariants} className="text-3xl md:text-5xl font-bold text-center mb-16 text-primary bg-clip-text">Athlete Philosophy</motion.h2>
 
         <div className="space-y-2">
           {steps.map((step, index) => <React.Fragment key={step.title}>
