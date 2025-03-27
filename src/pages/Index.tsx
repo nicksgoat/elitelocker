@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Users, Rocket, CalendarDays, TrendingUp, Trophy, Activity } from "lucide-react";
@@ -160,7 +159,7 @@ const Index = () => {
                         The Programs for
                       </h1>
                       
-                      <div className="h-[3em] overflow-hidden mb-8 md:mb-12 px-0">
+                      <div className="h-[4.5em] overflow-hidden mb-8 md:mb-12 px-0">
                         <h2 className="sm:text-4xl md:text-6xl font-bold py-0 my-0 text-4xl">
                           <TypewriterEffect words={typingWords} className="text-primary" />
                         </h2>
@@ -249,7 +248,7 @@ const Index = () => {
                     The Programs for
                   </h1>
                   
-                  <div className="h-[3em] overflow-hidden mb-8 md:mb-12">
+                  <div className="h-[4.5em] overflow-hidden mb-8 md:mb-12">
                     <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold">
                       <TypewriterEffect words={typingWords} className="text-primary" />
                     </h2>
