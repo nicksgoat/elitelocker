@@ -159,7 +159,7 @@ const Index = () => {
 
                 <section className="md:py-20 metal-gradient py-[38px]">
                   <div className="container mx-auto px-4 text-center">
-                    <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-white">Ready to Start Your Journey?</h2>
+                    <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-white">Still second guessing?</h2>
                     <p className="text-lg md:text-xl text-gray-300 mb-6 md:mb-8 max-w-2xl mx-auto font-medium">
                       Join thousands of athletes already training with Elite Locker. Start your transformation today.
                     </p>
