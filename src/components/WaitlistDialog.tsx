@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
@@ -46,8 +45,10 @@ export function WaitlistDialog({
       errors.phone = "Phone number is required";
     }
     
-    if (formData.username?.trim() && usernameStatus !== "available") {
-      errors.username = "Please enter an available username";
+    if (!formData.username?.trim()) {
+      errors.username = "Username is required";
+    } else if (usernameStatus !== "available") {
+      errors.username = "Please choose an available username";
     }
     
     setValidationErrors(errors);
@@ -85,7 +86,6 @@ export function WaitlistDialog({
       username
     });
     
-    // Debounce the availability check
     const timeoutId = setTimeout(() => {
       checkUsernameAvailability(username);
     }, 500);
@@ -96,7 +96,6 @@ export function WaitlistDialog({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Validate form
     if (!validateForm()) {
       toast({
         title: "Error",
@@ -109,7 +108,6 @@ export function WaitlistDialog({
     try {
       setIsSubmitting(true);
       
-      // Check if email already exists in waitlist
       const { data: existingEmails, error: checkError } = await supabase
         .from('waitlist')
         .select('email')
@@ -130,13 +128,12 @@ export function WaitlistDialog({
         return;
       }
 
-      // Insert into waitlist table
       const { error: insertError } = await supabase
         .from('waitlist')
         .insert([
           { 
             email: formData.email,
-            username: formData.username || null,
+            username: formData.username,
             metadata: {
               phone: formData.phone,
               role: formData.role
@@ -156,7 +153,6 @@ export function WaitlistDialog({
         description: "You've been added to the waitlist."
       });
       
-      // Reset form and close dialog
       setFormData({
         name: "",
         email: "",
@@ -177,7 +173,6 @@ export function WaitlistDialog({
     }
   };
 
-  // Render username availability indicator
   const renderUsernameStatus = () => {
     if (usernameStatus === "empty" || !formData.username) {
       return null;
@@ -284,7 +279,7 @@ export function WaitlistDialog({
           </div>
           <div>
             <Label htmlFor="username" className="block text-sm font-medium mb-1">
-              Reserve username <span className="text-gray-500">(Optional)</span>
+              Username <span className="text-red-500">*</span>
             </Label>
             <div className="flex items-center">
               <Input 
@@ -295,6 +290,7 @@ export function WaitlistDialog({
                 onChange={handleUsernameChange}
                 className={`text-black bg-zinc-50 ${validationErrors.username ? 'border-red-500' : ''}`}
                 disabled={isSubmitting}
+                required
               />
               {usernameStatus === "checking" && (
                 <Loader2 className="h-4 w-4 animate-spin text-gray-500 ml-2" />
@@ -304,7 +300,7 @@ export function WaitlistDialog({
             {validationErrors.username && (
               <p className="text-red-500 text-xs mt-1">{validationErrors.username}</p>
             )}
-            <p className="text-xs text-gray-500 mt-1">Reserve your username now to claim it when we launch!</p>
+            <p className="text-xs text-gray-500 mt-1">Your username will be used to identify you on the platform.</p>
           </div>
           <div>
             <Label htmlFor="role" className="block text-sm font-medium mb-1">
