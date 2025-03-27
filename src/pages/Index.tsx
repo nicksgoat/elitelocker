@@ -9,9 +9,9 @@ import { AppHeader } from "@/components/AppHeader";
 import { AppFooter } from "@/components/AppFooter";
 import { StickyMobileHeader } from "@/components/StickyMobileHeader";
 import { Tabs, TabsContent } from "@/components/ui/tabs";
-import { FunnelDiagram } from "@/components/FunnelDiagram";
 import { TabInterface } from "@/components/TabInterface";
 import { AthleteSection } from "@/components/AthleteSection";
+import { CreatorFeatureCards } from "@/components/CreatorFeatureCards";
 
 const Index = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -85,7 +85,7 @@ const Index = () => {
 
   const creatorContent = (
     <>
-      <FunnelDiagram />
+      <CreatorFeatureCards />
 
       <section id="features" className="md:py-20 bg-secondary py-[39px]">
         <div className="container mx-auto px-4">
