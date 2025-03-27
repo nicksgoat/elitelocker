@@ -158,7 +158,7 @@ const Index = () => {
                         The Programs for
                       </h1>
                       
-                      <div className="h-[4em] overflow-hidden mb-8 md:mb-12 px-0">
+                      <div className="h-[6em] overflow-hidden mb-8 md:mb-12 px-0">
                         <h2 className="sm:text-4xl md:text-6xl font-bold py-0 my-0 text-4xl">
                           <TypewriterEffect words={typingWords} className="text-primary" multiLine={true} />
                         </h2>
@@ -247,7 +247,7 @@ const Index = () => {
                     The Programs for
                   </h1>
                   
-                  <div className="h-[4em] overflow-hidden mb-8 md:mb-12">
+                  <div className="h-[6em] overflow-hidden mb-8 md:mb-12">
                     <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold">
                       <TypewriterEffect words={typingWords} className="text-primary" multiLine={true} />
                     </h2>
