@@ -161,7 +161,7 @@ const Index = () => {
                   duration: 0.6
                 }}>
                       <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 md:mb-6">
-                        Transform Your
+                        The Programs for
                         <span className="text-primary"> Performance</span>
                       </h1>
                       
@@ -245,7 +245,7 @@ const Index = () => {
               duration: 0.6
             }}>
                   <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 md:mb-6">
-                    Transform Your
+                    The Programs for
                     <span className="text-primary"> Performance</span>
                   </h1>
                   
