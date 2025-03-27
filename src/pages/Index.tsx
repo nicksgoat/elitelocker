@@ -70,7 +70,14 @@ const Index = () => {
     category: "Nutrition"
   }];
 
-  const typingWords = ["Performance", "Success", "Fitness", "Results"];
+  const typingWords = [
+    "PROVING YOURSELF",
+    "GETTING THE OFFER",
+    "SIGNING THE CONTRACT",
+    "PROVIDING FOR YOUR FAMILY",
+    "BEING FIRST STRING",
+    "GETTING THE SPONSORSHIP"
+  ];
 
   const openDialog = () => {
     setDialogTitle("Join the Waitlist");
