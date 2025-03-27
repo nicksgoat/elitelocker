@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Users, Rocket, CalendarDays, TrendingUp, Trophy, Activity } from "lucide-react";
@@ -6,7 +7,6 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { ExerciseShowcase } from "@/components/ExerciseShowcase";
 import { AppHeader } from "@/components/AppHeader";
 import { AppFooter } from "@/components/AppFooter";
-import { StickyMobileHeader } from "@/components/StickyMobileHeader";
 import { Tabs, TabsContent } from "@/components/ui/tabs";
 import { FunnelDiagram } from "@/components/FunnelDiagram";
 import { TabInterface } from "@/components/TabInterface";
@@ -170,9 +170,12 @@ const Index = () => {
                         The Programs for
                       </h1>
                       
-                      <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6 md:mb-8">
-                        <TypewriterEffect words={typingWords} className="text-primary" />
-                      </h2>
+                      {/* Fixed-height container to prevent layout shifts */}
+                      <div className="h-[1.5em] overflow-hidden">
+                        <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6 md:mb-8">
+                          <TypewriterEffect words={typingWords} className="text-primary" />
+                        </h2>
+                      </div>
                       
                       <button onClick={openDialog} className="metal-gradient text-white px-6 py-3 md:px-8 md:py-4 rounded-md text-base md:text-lg font-bold hover:opacity-90 transition-opacity inline-flex items-center group">
                         Join Waitlist
@@ -245,21 +248,24 @@ const Index = () => {
               
               <div className="container mx-auto text-center relative z-20">
                 <motion.div initial={{
-              opacity: 0,
-              y: 20
-            }} animate={{
-              opacity: 1,
-              y: 0
-            }} transition={{
-              duration: 0.6
-            }}>
+                  opacity: 0,
+                  y: 20
+                }} animate={{
+                  opacity: 1,
+                  y: 0
+                }} transition={{
+                  duration: 0.6
+                }}>
                   <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 md:mb-6">
                     The Programs for
                   </h1>
                   
-                  <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6 md:mb-8">
-                    <TypewriterEffect words={typingWords} className="text-primary" />
-                  </h2>
+                  {/* Fixed-height container to prevent layout shifts */}
+                  <div className="h-[1.5em] overflow-hidden">
+                    <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6 md:mb-8">
+                      <TypewriterEffect words={typingWords} className="text-primary" />
+                    </h2>
+                  </div>
                   
                   <button onClick={openDialog} className="metal-gradient text-white px-6 py-3 md:px-8 md:py-4 rounded-md text-base md:text-lg font-bold hover:opacity-90 transition-opacity inline-flex items-center group">
                     Join Waitlist
