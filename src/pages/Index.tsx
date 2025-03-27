@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Users, Rocket, CalendarDays, TrendingUp, Trophy, Activity } from "lucide-react";
 import { WaitlistDialog } from "@/components/WaitlistDialog";
@@ -140,10 +140,6 @@ const Index = () => {
       <AppHeader openDialog={openDialog} openComingSoonDialog={openComingSoonDialog} />
       
       <main className="pt-16">
-        {isMobile && <div className="sticky top-14 z-10 w-full">
-            <StickyMobileHeader tabs={mobileTabs} defaultTab={activeTab} onTabChange={setActiveTab} />
-          </div>}
-        
         {isMobile ? <div className="my-0 mx-0 px-0">
             <Tabs value={activeTab}>
               <TabsContent value="featured" className="mt-0">
@@ -162,18 +158,21 @@ const Index = () => {
                   
                   <div className="container mx-auto text-center relative z-20">
                     <motion.div initial={{
-                  opacity: 0,
-                  y: 20
-                }} animate={{
-                  opacity: 1,
-                  y: 0
-                }} transition={{
-                  duration: 0.6
-                }}>
+                      opacity: 0,
+                      y: 20
+                    }} animate={{
+                      opacity: 1,
+                      y: 0
+                    }} transition={{
+                      duration: 0.6
+                    }}>
                       <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 md:mb-6">
                         The Programs for
-                        <span className="text-primary"> <TypewriterEffect words={typingWords} /></span>
                       </h1>
+                      
+                      <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6 md:mb-8">
+                        <TypewriterEffect words={typingWords} className="text-primary" />
+                      </h2>
                       
                       <button onClick={openDialog} className="metal-gradient text-white px-6 py-3 md:px-8 md:py-4 rounded-md text-base md:text-lg font-bold hover:opacity-90 transition-opacity inline-flex items-center group">
                         Join Waitlist
@@ -256,8 +255,11 @@ const Index = () => {
             }}>
                   <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 md:mb-6">
                     The Programs for
-                    <span className="text-primary"> <TypewriterEffect words={typingWords} /></span>
                   </h1>
+                  
+                  <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6 md:mb-8">
+                    <TypewriterEffect words={typingWords} className="text-primary" />
+                  </h2>
                   
                   <button onClick={openDialog} className="metal-gradient text-white px-6 py-3 md:px-8 md:py-4 rounded-md text-base md:text-lg font-bold hover:opacity-90 transition-opacity inline-flex items-center group">
                     Join Waitlist
