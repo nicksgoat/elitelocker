@@ -1,46 +1,48 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Medal, Activity, Repeat, Target, Users, TrendingUp, Trophy, CalendarDays, Rocket } from "lucide-react";
+import { BarChart3, LineChart, BookOpen, Rocket, Users } from "lucide-react";
 import { FunnelDiagram } from "@/components/FunnelDiagram";
 import { FeatureCard } from "@/components/FeatureCard";
 
 export const AthleteSection: React.FC = () => {
   const athleteFeatures = [{
-    icon: Activity,
-    title: "Elite Training Programs",
-    description: "Access professional training programs designed by expert coaches to reach your goals faster.",
+    icon: BarChart3,
+    title: "Track Your Journey",
+    description: "Effortlessly log workouts and nutrition with our intuitive tracking tools.",
     color: "purple",
-    bullets: ["Professional Programs", "Expert Coaching", "Goal-Based Training", "Progressive Overload"]
+    bullets: ["Workout Tracker", "Meal Planner", "Sleep Monitor", "Recovery Metrics"]
+  }, {
+    icon: LineChart,
+    title: "Measure Your Progress",
+    description: "See your improvement with detailed stats and community leaderboards.",
+    color: "aqua",
+    bullets: ["Performance Analytics", "Community Leaderboards", "Progress Visualization", "Benchmark Comparisons"]
+  }, {
+    icon: BookOpen,
+    title: "Learn From The Best",
+    description: "Access an extensive database of exercises and programs from top coaches.",
+    color: "coral",
+    bullets: ["Exercise Library", "Expert Programs", "Technique Guides", "Coach Connection"]
   }, {
     icon: Rocket,
-    title: "Performance Tracking",
-    description: "Monitor your progress with advanced analytics and personalized insights.",
-    color: "aqua",
-    bullets: ["Progress Analytics", "Performance Metrics", "Personalized Reports", "Goal Tracking"]
-  }, {
-    icon: CalendarDays,
-    title: "Consistency Rewards",
-    description: "Earn rewards and recognition for consistent training and meeting milestones.",
-    color: "coral",
-    bullets: ["Achievement System", "Milestone Rewards", "Consistency Streaks", "Training Points"]
-  }, {
-    icon: TrendingUp,
-    title: "Personalized Goals",
-    description: "Set and track custom goals tailored to your specific fitness journey.",
+    title: "Unlock Your Potential",
+    description: "Receive personalized insights to continuously improve your performance.",
     color: "indigo",
-    bullets: ["Custom Goal Setting", "Progress Visualization", "Adaptive Challenges", "Success Metrics"]
+    bullets: ["AI-Powered Insights", "Personalized Feedback", "Goal Setting", "Performance Optimization"]
   }, {
-    icon: Trophy,
-    title: "Community Support",
+    icon: Users,
+    title: "Join The Community",
     description: "Connect with like-minded athletes and support each other's progress.",
     color: "gold",
-    bullets: ["Athlete Community", "Workout Partners", "Group Challenges", "Social Motivation"]
+    bullets: ["Athlete Network", "Community Challenges", "Group Workouts", "Team Support"]
   }];
 
   return (
     <>
-      <FunnelDiagram />
+      <div data-section="athlete" className="athlete-section">
+        <FunnelDiagram />
+      </div>
 
       <section id="features" className="md:py-20 bg-secondary py-[39px]">
         <div className="container mx-auto px-4">

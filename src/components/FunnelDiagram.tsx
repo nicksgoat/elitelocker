@@ -1,7 +1,19 @@
+
 import React, { useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Medal, Wrench, CircleDollarSign, TrendingUp, HandHelping } from "lucide-react";
+import { 
+  Medal, 
+  Wrench, 
+  CircleDollarSign, 
+  TrendingUp, 
+  HandHelping,
+  BarChart3, 
+  LineChart, 
+  BookOpen, 
+  Rocket
+} from "lucide-react";
+
 interface FunnelStepProps {
   title: string;
   icon: React.ReactNode;
@@ -10,6 +22,7 @@ interface FunnelStepProps {
   delay: number;
   index: number;
 }
+
 const FunnelStep: React.FC<FunnelStepProps> = ({
   title,
   icon,
@@ -23,11 +36,13 @@ const FunnelStep: React.FC<FunnelStepProps> = ({
     triggerOnce: true,
     threshold: 0.2
   });
+
   useEffect(() => {
     if (inView) {
       controls.start("visible");
     }
   }, [controls, inView]);
+
   const variants = {
     hidden: {
       opacity: 0,
@@ -45,6 +60,7 @@ const FunnelStep: React.FC<FunnelStepProps> = ({
       }
     }
   };
+
   return <motion.div ref={ref} initial="hidden" animate={controls} variants={variants} className="flex flex-col items-center text-center max-w-md mx-auto relative z-10 bg-black/20 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white/5">
       <div className="bg-secondary/80 rounded-full p-4 mb-4 shadow-lg transform hover:scale-105 transition-transform duration-300">
         {icon}
@@ -70,6 +86,7 @@ const FunnelStep: React.FC<FunnelStepProps> = ({
       <p className="text-sm italic text-gray-400 mt-1">"{tagline}"</p>
     </motion.div>;
 };
+
 const ArrowDown = ({
   delay
 }: {
@@ -80,11 +97,13 @@ const ArrowDown = ({
     triggerOnce: true,
     threshold: 0.2
   });
+
   useEffect(() => {
     if (inView) {
       controls.start("visible");
     }
   }, [controls, inView]);
+
   const variants = {
     hidden: {
       opacity: 0,
@@ -100,6 +119,7 @@ const ArrowDown = ({
       }
     }
   };
+
   return <div className="my-4 flex justify-center">
       <motion.div ref={ref} initial="hidden" animate={controls} variants={variants} className="animate-bounce">
         <svg width="24" height="36" viewBox="0 0 24 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -108,17 +128,20 @@ const ArrowDown = ({
       </motion.div>
     </div>;
 };
+
 export const FunnelDiagram: React.FC = () => {
   const controls = useAnimation();
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1
   });
+
   useEffect(() => {
     if (inView) {
       controls.start("visible");
     }
   }, [controls, inView]);
+
   const titleVariants = {
     hidden: {
       opacity: 0,
@@ -133,7 +156,9 @@ export const FunnelDiagram: React.FC = () => {
       }
     }
   };
-  const steps = [{
+
+  // Define steps for creator and athlete journeys
+  const creatorSteps = [{
     title: "Inspire",
     icon: <Medal className="w-12 h-12 text-primary" />,
     description: ["Social Feed & Leaderboards", "Showcase creator success", "Highlight monetization potential"],
@@ -164,10 +189,47 @@ export const FunnelDiagram: React.FC = () => {
     tagline: "Retention is revenue—use leaderboards and community events to sustain income.",
     delay: 0.5
   }];
+
+  const athleteSteps = [{
+    title: "Track",
+    icon: <BarChart3 className="w-12 h-12 text-primary" />,
+    description: ["Workout Tracker & Meal Planner", "Effortlessly log routines and nutrition", "Personalized tracking for peak performance"],
+    tagline: "Track every rep, meal, and milestone on your path to greatness.",
+    delay: 0.1
+  }, {
+    title: "Progress/Evaluate",
+    icon: <LineChart className="w-12 h-12 text-primary" />,
+    description: ["Workout Stats & Leaderboards", "Compete and compare within communities", "Evaluate progress clearly"],
+    tagline: "Measure progress, compete, and thrive in a community that pushes your limits.",
+    delay: 0.2
+  }, {
+    title: "Learn",
+    icon: <BookOpen className="w-12 h-12 text-primary" />,
+    description: ["Exercise Database & Structured Programs", "Direct access to coaches and athletes", "Continual skill and knowledge development"],
+    tagline: "Learn directly from top coaches and athletes to elevate your game.",
+    delay: 0.3
+  }, {
+    title: "Improve",
+    icon: <Rocket className="w-12 h-12 text-primary" />,
+    description: ["Targeted insights & personalized feedback", "Consistent performance improvement", "Ongoing motivation and guidance"],
+    tagline: "Unlock continuous improvement with targeted feedback to achieve your personal best.",
+    delay: 0.4
+  }];
+
+  // Check if we're in the athlete section
+  const isAthletePage = window.location.href.includes('athlete') || 
+    document.querySelector('.athlete-section') !== null ||
+    document.querySelector('[data-section="athlete"]') !== null;
+
+  // Use athlete steps if we're in athlete section, otherwise use creator steps
+  const steps = isAthletePage ? athleteSteps : creatorSteps;
+
   return <section className="py-16 md:py-24 bg-gradient-to-b from-black to-secondary/30 relative overflow-hidden">
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMyMjIiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djZoNnYtNmgtNnptNi02aDZ2LTZoLTZ2NnoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-50"></div>
       <div className="container mx-auto px-4 relative">
-        <motion.h2 ref={ref} initial="hidden" animate={controls} variants={titleVariants} className="text-3xl md:text-5xl font-bold text-center mb-16 text-primary bg-clip-text">Athlete Philosophy</motion.h2>
+        <motion.h2 ref={ref} initial="hidden" animate={controls} variants={titleVariants} className="text-3xl md:text-5xl font-bold text-center mb-16 text-primary bg-clip-text">
+          {isAthletePage ? "Athlete Philosophy" : "Creator Philosophy"}
+        </motion.h2>
 
         <div className="space-y-2">
           {steps.map((step, index) => <React.Fragment key={step.title}>
