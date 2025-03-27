@@ -155,7 +155,10 @@ const Index = () => {
               </TabsContent>
 
               <TabsContent value="programs" className="mt-0">
-                {/* Programs content is now merged with featured tab */}
+                <div className="container mx-auto px-4 py-16">
+                  <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 text-primary">Upcoming Programs</h2>
+                  <p className="text-center text-gray-400">Stay tuned for more training programs!</p>
+                </div>
               </TabsContent>
             </Tabs>
           </div>
