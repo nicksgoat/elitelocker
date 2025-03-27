@@ -12,48 +12,46 @@ import { FunnelDiagram } from "@/components/FunnelDiagram";
 import { TabInterface } from "@/components/TabInterface";
 import { AthleteSection } from "@/components/AthleteSection";
 import { FeatureCard } from "@/components/FeatureCard";
+
 const Index = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [dialogTitle, setDialogTitle] = useState("Join the Waitlist");
   const isMobile = useIsMobile();
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [activeTab, setActiveTab] = useState("featured");
+
   const creatorFeatures = [{
     icon: Activity,
     title: "See What's Possible",
     description: "Discover exactly how top creators monetize workouts.",
     color: "purple",
-    image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&w=800&q=80",
     bullets: ["Social Feed", "Success Stories", "Featured Creators", "Leaderboard Rankings"]
   }, {
     icon: Rocket,
     title: "Instantly Create Sellable Programs",
     description: "Turn your logged workouts into profitable programs.",
     color: "aqua",
-    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80",
     bullets: ["Workout Tracker", "Program Creator", "Drag & Drop Interface", "Spreadsheet-Style Builder"]
   }, {
     icon: CalendarDays,
     title: "Monetize Your Community",
     description: "Host sessions, build clubs, and engage directly with subscribers.",
     color: "coral",
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80",
     bullets: ["Clubs & Sessions", "Integrated Calendar", "Direct Messaging", "Subscription Tools"]
   }, {
     icon: TrendingUp,
     title: "Scale Smarter, Not Harder",
     description: "Generate recurring income effortlessly.",
     color: "indigo",
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80",
     bullets: ["Memberships & Subscriptions", "Revenue Dashboard", "Member Analytics", "Recurring Revenue Trends"]
   }, {
     icon: Trophy,
     title: "Retain and Grow Your Audience",
     description: "Boost engagement with competition and community events.",
     color: "gold",
-    image: "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?auto=format&fit=crop&w=800&q=80",
     bullets: ["Leaderboards", "Community Challenges", "Achievement Badges", "Engagement Analytics"]
   }];
+
   const courses = [{
     title: "Strength Training",
     description: "Master fundamental lifting techniques",
@@ -70,14 +68,17 @@ const Index = () => {
     image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=800&q=80",
     category: "Nutrition"
   }];
+
   const openDialog = () => {
     setDialogTitle("Join the Waitlist");
     setIsDialogOpen(true);
   };
+
   const openComingSoonDialog = () => {
     setDialogTitle("Coming soon...");
     setIsDialogOpen(true);
   };
+
   useEffect(() => {
     const video = document.getElementById(isMobile ? "mobile-video" : "desktop-video") as HTMLVideoElement;
     if (video) {
@@ -86,7 +87,9 @@ const Index = () => {
       return () => video.removeEventListener('loadeddata', handleVideoLoaded);
     }
   }, [isMobile]);
+
   const videoUrl = "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/videos/C6466_Proxy.mp4";
+
   const mobileTabs = [{
     value: "featured",
     label: "Featured"
@@ -97,6 +100,7 @@ const Index = () => {
     value: "programs",
     label: "Programs"
   }];
+
   const creatorContent = <>
       <FunnelDiagram />
 
@@ -109,6 +113,7 @@ const Index = () => {
         </div>
       </section>
     </>;
+
   return <div className="min-h-screen w-full overflow-x-hidden bg-background pb-16">
       <WaitlistDialog isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)} title={dialogTitle} />
       
@@ -287,4 +292,5 @@ const Index = () => {
       <AppFooter openComingSoonDialog={openComingSoonDialog} />
     </div>;
 };
+
 export default Index;
