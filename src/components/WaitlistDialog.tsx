@@ -5,7 +5,8 @@ import { useToast } from "@/hooks/use-toast";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
+import { Loader2, Check, AlertCircle } from "lucide-react";
+import { Label } from "@/components/ui/label";
 
 export function WaitlistDialog({
   isOpen,
@@ -20,18 +21,86 @@ export function WaitlistDialog({
     name: "",
     email: "",
     phone: "",
-    role: ""
+    role: "",
+    username: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [usernameStatus, setUsernameStatus] = useState<"available" | "unavailable" | "checking" | "empty" | "error">("empty");
+  const [validationErrors, setValidationErrors] = useState<{[key: string]: string}>({});
   const { toast } = useToast();
+
+  const validateForm = () => {
+    const errors: {[key: string]: string} = {};
+    
+    if (!formData.name?.trim()) {
+      errors.name = "Name is required";
+    }
+    
+    if (!formData.email?.trim()) {
+      errors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      errors.email = "Please enter a valid email address";
+    }
+    
+    if (!formData.phone?.trim()) {
+      errors.phone = "Phone number is required";
+    }
+    
+    if (formData.username?.trim() && usernameStatus !== "available") {
+      errors.username = "Please enter an available username";
+    }
+    
+    setValidationErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
+  const checkUsernameAvailability = async (username: string) => {
+    if (!username.trim()) {
+      setUsernameStatus("empty");
+      return;
+    }
+    
+    setUsernameStatus("checking");
+    
+    try {
+      const { data, error } = await supabase.rpc('is_username_available', { username });
+      
+      if (error) {
+        console.error("Error checking username availability:", error);
+        setUsernameStatus("error");
+        return;
+      }
+      
+      setUsernameStatus(data ? "available" : "unavailable");
+    } catch (error) {
+      console.error("Exception checking username availability:", error);
+      setUsernameStatus("error");
+    }
+  };
+
+  const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const username = e.target.value.trim();
+    setFormData({
+      ...formData,
+      username
+    });
+    
+    // Debounce the availability check
+    const timeoutId = setTimeout(() => {
+      checkUsernameAvailability(username);
+    }, 500);
+    
+    return () => clearTimeout(timeoutId);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.name || !formData.email) {
+    // Validate form
+    if (!validateForm()) {
       toast({
         title: "Error",
-        description: "Please fill in all required fields",
+        description: "Please fix the errors in the form",
         variant: "destructive"
       });
       return;
@@ -67,7 +136,7 @@ export function WaitlistDialog({
         .insert([
           { 
             email: formData.email,
-            username: formData.name,
+            username: formData.username || null,
             metadata: {
               phone: formData.phone,
               role: formData.role
@@ -92,7 +161,8 @@ export function WaitlistDialog({
         name: "",
         email: "",
         phone: "",
-        role: ""
+        role: "",
+        username: ""
       });
       onClose();
     } catch (error) {
@@ -107,6 +177,37 @@ export function WaitlistDialog({
     }
   };
 
+  // Render username availability indicator
+  const renderUsernameStatus = () => {
+    if (usernameStatus === "empty" || !formData.username) {
+      return null;
+    }
+    
+    if (usernameStatus === "checking") {
+      return <Loader2 className="h-4 w-4 animate-spin text-yellow-500 ml-2" />;
+    }
+    
+    if (usernameStatus === "available") {
+      return (
+        <div className="flex items-center text-green-500 text-xs mt-1">
+          <Check className="h-3 w-3 mr-1" />
+          Username available
+        </div>
+      );
+    }
+    
+    if (usernameStatus === "unavailable") {
+      return (
+        <div className="flex items-center text-red-500 text-xs mt-1">
+          <AlertCircle className="h-3 w-3 mr-1" />
+          Username already taken
+        </div>
+      );
+    }
+
+    return null;
+  };
+
   return <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
@@ -119,9 +220,9 @@ export function WaitlistDialog({
         </p>
         <form onSubmit={handleSubmit} className="space-y-4 mt-4">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium mb-1">
-              Name
-            </label>
+            <Label htmlFor="name" className="block text-sm font-medium mb-1">
+              Name <span className="text-red-500">*</span>
+            </Label>
             <Input 
               id="name" 
               type="text" 
@@ -132,14 +233,17 @@ export function WaitlistDialog({
                 name: e.target.value
               })} 
               required 
-              className="text-black bg-gray-50" 
+              className={`text-black bg-gray-50 ${validationErrors.name ? 'border-red-500' : ''}`}
               disabled={isSubmitting}
             />
+            {validationErrors.name && (
+              <p className="text-red-500 text-xs mt-1">{validationErrors.name}</p>
+            )}
           </div>
           <div>
-            <label htmlFor="email" className="block text-sm font-medium mb-1">
-              Email
-            </label>
+            <Label htmlFor="email" className="block text-sm font-medium mb-1">
+              Email <span className="text-red-500">*</span>
+            </Label>
             <Input 
               id="email" 
               type="email" 
@@ -150,14 +254,17 @@ export function WaitlistDialog({
                 email: e.target.value
               })} 
               required 
-              className="text-black bg-gray-50"
+              className={`text-black bg-gray-50 ${validationErrors.email ? 'border-red-500' : ''}`}
               disabled={isSubmitting}
             />
+            {validationErrors.email && (
+              <p className="text-red-500 text-xs mt-1">{validationErrors.email}</p>
+            )}
           </div>
           <div>
-            <label htmlFor="phone" className="block text-sm font-medium mb-1">
-              Phone number <span className="text-gray-500">(Optional for Launch Updates)</span>
-            </label>
+            <Label htmlFor="phone" className="block text-sm font-medium mb-1">
+              Phone number <span className="text-red-500">*</span>
+            </Label>
             <Input 
               id="phone" 
               type="tel" 
@@ -167,14 +274,42 @@ export function WaitlistDialog({
                 ...formData,
                 phone: e.target.value
               })} 
-              className="text-black bg-zinc-50"
+              required
+              className={`text-black bg-zinc-50 ${validationErrors.phone ? 'border-red-500' : ''}`}
               disabled={isSubmitting}
             />
+            {validationErrors.phone && (
+              <p className="text-red-500 text-xs mt-1">{validationErrors.phone}</p>
+            )}
           </div>
           <div>
-            <label htmlFor="role" className="block text-sm font-medium mb-1">
+            <Label htmlFor="username" className="block text-sm font-medium mb-1">
+              Reserve username <span className="text-gray-500">(Optional)</span>
+            </Label>
+            <div className="flex items-center">
+              <Input 
+                id="username" 
+                type="text" 
+                placeholder="Choose a username" 
+                value={formData.username} 
+                onChange={handleUsernameChange}
+                className={`text-black bg-zinc-50 ${validationErrors.username ? 'border-red-500' : ''}`}
+                disabled={isSubmitting}
+              />
+              {usernameStatus === "checking" && (
+                <Loader2 className="h-4 w-4 animate-spin text-gray-500 ml-2" />
+              )}
+            </div>
+            {renderUsernameStatus()}
+            {validationErrors.username && (
+              <p className="text-red-500 text-xs mt-1">{validationErrors.username}</p>
+            )}
+            <p className="text-xs text-gray-500 mt-1">Reserve your username now to claim it when we launch!</p>
+          </div>
+          <div>
+            <Label htmlFor="role" className="block text-sm font-medium mb-1">
               Your role <span className="text-gray-500">(Optional)</span>
-            </label>
+            </Label>
             <select 
               id="role" 
               className="w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary text-black bg-white" 
