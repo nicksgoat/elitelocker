@@ -1,8 +1,8 @@
 
 import { 
   Activity, 
-  PenTool, 
   Users, 
+  PenTool, 
   TrendingUp, 
   Award 
 } from "lucide-react";
@@ -46,7 +46,7 @@ export const CreatorFeatureCards = () => {
       title: "Retain and Grow Your Audience",
       description: "Boost engagement with competition and community events.",
       icon: Award,
-      color: "orange",
+      color: "gold",
       image: "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?auto=format&fit=crop&w=800&q=80",
       delay: 0.5
     }
@@ -59,7 +59,7 @@ export const CreatorFeatureCards = () => {
           Elite Locker Creator Path
         </h2>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
-          {features.map((feature, index) => (
+          {features.map((feature) => (
             <FeatureCard 
               key={feature.title}
               title={feature.title}
