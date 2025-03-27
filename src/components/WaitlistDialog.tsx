@@ -41,10 +41,15 @@ export function WaitlistDialog({
       setIsSubmitting(true);
       
       // Check if email already exists in waitlist
-      const { data: existingEmails } = await supabase
+      const { data: existingEmails, error: checkError } = await supabase
         .from('waitlist')
         .select('email')
         .eq('email', formData.email);
+        
+      if (checkError) {
+        console.error("Error checking for existing email:", checkError);
+        throw checkError;
+      }
         
       if (existingEmails && existingEmails.length > 0) {
         toast({
@@ -57,7 +62,7 @@ export function WaitlistDialog({
       }
 
       // Insert into waitlist table
-      const { error } = await supabase
+      const { error: insertError } = await supabase
         .from('waitlist')
         .insert([
           { 
@@ -70,10 +75,13 @@ export function WaitlistDialog({
           }
         ]);
 
-      if (error) {
-        throw error;
+      if (insertError) {
+        console.error("Error inserting to waitlist:", insertError);
+        throw insertError;
       }
 
+      console.log("Successfully added to waitlist:", formData.email);
+      
       toast({
         title: "Success!",
         description: "You've been added to the waitlist."
