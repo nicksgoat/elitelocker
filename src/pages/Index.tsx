@@ -69,7 +69,13 @@ const Index = () => {
     category: "Nutrition"
   }];
 
-  const typingWords = ["PROVING YOURSELF", "GETTING THE OFFER", "SIGNING THE CONTRACT", "PROVIDING FOR YOUR FAMILY", "BEING FIRST STRING", "GETTING THE SPONSORSHIP"];
+  const typingWords = [
+    "PROVING YOURSELF\nON THE FIELD",
+    "GETTING THE OFFER\nSIGNING THE CONTRACT",
+    "PROVIDING FOR\nYOUR FAMILY",
+    "BEING FIRST STRING\nMAKING THE TEAM",
+    "GETTING THE SPONSORSHIP\nBUILDING YOUR BRAND"
+  ];
 
   const openDialog = () => {
     setDialogTitle("Join the Waitlist");
@@ -152,13 +158,13 @@ const Index = () => {
                         The Programs for
                       </h1>
                       
-                      <div className="h-[2em] overflow-hidden mb-8 md:mb-12 px-0">
+                      <div className="h-[4em] overflow-hidden mb-8 md:mb-12 px-0">
                         <h2 className="sm:text-4xl md:text-6xl font-bold py-0 my-0 text-4xl">
-                          <TypewriterEffect words={typingWords} className="text-primary" />
+                          <TypewriterEffect words={typingWords} className="text-primary" multiLine={true} />
                         </h2>
                       </div>
                       
-                      <button onClick={openDialog} className="metal-gradient text-white px-6 py-3 md:px-8 md:py-4 rounded-md text-base md:text-lg font-bold hover:opacity-90 transition-opacity inline-flex items-center group mt-4 md:mt-6">
+                      <button onClick={openDialog} className="metal-gradient text-white px-6 py-3 md:px-8 md:py-4 rounded-md text-base md:text-lg font-bold hover:opacity-90 transition-opacity inline-flex items-center group mt-12 md:mt-16">
                         Join Waitlist
                         <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
                       </button>
@@ -241,13 +247,13 @@ const Index = () => {
                     The Programs for
                   </h1>
                   
-                  <div className="h-[2em] overflow-hidden mb-8 md:mb-12">
+                  <div className="h-[4em] overflow-hidden mb-8 md:mb-12">
                     <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold">
-                      <TypewriterEffect words={typingWords} className="text-primary" />
+                      <TypewriterEffect words={typingWords} className="text-primary" multiLine={true} />
                     </h2>
                   </div>
                   
-                  <button onClick={openDialog} className="metal-gradient text-white px-6 py-3 md:px-8 md:py-4 rounded-md text-base md:text-lg font-bold hover:opacity-90 transition-opacity inline-flex items-center group mt-4 md:mt-6">
+                  <button onClick={openDialog} className="metal-gradient text-white px-6 py-3 md:px-8 md:py-4 rounded-md text-base md:text-lg font-bold hover:opacity-90 transition-opacity inline-flex items-center group mt-12 md:mt-16">
                     Join Waitlist
                     <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
                   </button>

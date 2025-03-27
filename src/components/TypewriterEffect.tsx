@@ -7,6 +7,7 @@ interface TypewriterEffectProps {
   deletingSpeed?: number;
   delayBetweenWords?: number;
   className?: string;
+  multiLine?: boolean;
 }
 
 export const TypewriterEffect = ({
@@ -15,6 +16,7 @@ export const TypewriterEffect = ({
   deletingSpeed = 50,
   delayBetweenWords = 1000,
   className = "",
+  multiLine = false,
 }: TypewriterEffectProps) => {
   const [text, setText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
@@ -55,6 +57,14 @@ export const TypewriterEffect = ({
     timer = window.setTimeout(tick, delta);
     return () => clearTimeout(timer);
   }, [words, wordIndex, isDeleting, text, delta, typingSpeed, deletingSpeed, delayBetweenWords]);
+
+  if (multiLine) {
+    const formattedText = text.split('\n').map((line, i) => (
+      <div key={i} className="line">{line}</div>
+    ));
+    
+    return <span className={className}>{formattedText}</span>;
+  }
 
   return <span className={className}>{text}</span>;
 };
