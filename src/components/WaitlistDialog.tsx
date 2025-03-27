@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
@@ -35,12 +36,6 @@ export function WaitlistDialog({
       errors.name = "Name is required";
     }
     
-    if (!formData.email?.trim()) {
-      errors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      errors.email = "Please enter a valid email address";
-    }
-    
     if (!formData.phone?.trim()) {
       errors.phone = "Phone number is required";
     }
@@ -49,6 +44,11 @@ export function WaitlistDialog({
       errors.username = "Username is required";
     } else if (usernameStatus !== "available") {
       errors.username = "Please choose an available username";
+    }
+    
+    // Email is now optional, but validate its format if provided
+    if (formData.email?.trim() && !/\S+@\S+\.\S+/.test(formData.email)) {
+      errors.email = "Please enter a valid email address";
     }
     
     setValidationErrors(errors);
@@ -108,31 +108,34 @@ export function WaitlistDialog({
     try {
       setIsSubmitting(true);
       
-      const { data: existingEmails, error: checkError } = await supabase
-        .from('waitlist')
-        .select('email')
-        .eq('email', formData.email);
-        
-      if (checkError) {
-        console.error("Error checking for existing email:", checkError);
-        throw checkError;
-      }
-        
-      if (existingEmails && existingEmails.length > 0) {
-        toast({
-          title: "Already registered",
-          description: "This email is already on our waitlist.",
-          variant: "default"
-        });
-        setIsSubmitting(false);
-        return;
+      // Check for existing email only if email is provided
+      if (formData.email?.trim()) {
+        const { data: existingEmails, error: checkError } = await supabase
+          .from('waitlist')
+          .select('email')
+          .eq('email', formData.email);
+          
+        if (checkError) {
+          console.error("Error checking for existing email:", checkError);
+          throw checkError;
+        }
+          
+        if (existingEmails && existingEmails.length > 0) {
+          toast({
+            title: "Already registered",
+            description: "This email is already on our waitlist.",
+            variant: "default"
+          });
+          setIsSubmitting(false);
+          return;
+        }
       }
 
       const { error: insertError } = await supabase
         .from('waitlist')
         .insert([
           { 
-            email: formData.email,
+            email: formData.email || null, // Allow null email
             username: formData.username,
             metadata: {
               phone: formData.phone,
@@ -146,7 +149,7 @@ export function WaitlistDialog({
         throw insertError;
       }
 
-      console.log("Successfully added to waitlist:", formData.email);
+      console.log("Successfully added to waitlist:", formData.username);
       
       toast({
         title: "Success!",
@@ -237,7 +240,7 @@ export function WaitlistDialog({
           </div>
           <div>
             <Label htmlFor="email" className="block text-sm font-medium mb-1">
-              Email <span className="text-red-500">*</span>
+              Email <span className="text-gray-500">(Optional)</span>
             </Label>
             <Input 
               id="email" 
@@ -248,7 +251,6 @@ export function WaitlistDialog({
                 ...formData,
                 email: e.target.value
               })} 
-              required 
               className={`text-black bg-gray-50 ${validationErrors.email ? 'border-red-500' : ''}`}
               disabled={isSubmitting}
             />
