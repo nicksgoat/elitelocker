@@ -61,7 +61,7 @@ const ArrowDown = () => (
 export const FunnelDiagram: React.FC = () => {
   const steps = [
     {
-      title: "Inspire 🏅",
+      title: "Inspire",
       icon: <Medal className="w-12 h-12 text-primary" />,
       description: [
         "Social Feed & Leaderboards",
@@ -72,7 +72,7 @@ export const FunnelDiagram: React.FC = () => {
       delay: 0.1
     },
     {
-      title: "Create 🛠️",
+      title: "Create",
       icon: <Wrench className="w-12 h-12 text-primary" />,
       description: [
         "Workout Tracker & Program Creator",
@@ -83,7 +83,7 @@ export const FunnelDiagram: React.FC = () => {
       delay: 0.2
     },
     {
-      title: "Monetize 💸",
+      title: "Monetize",
       icon: <CircleDollarSign className="w-12 h-12 text-primary" />,
       description: [
         "Clubs, Sessions & Messaging",
@@ -94,7 +94,7 @@ export const FunnelDiagram: React.FC = () => {
       delay: 0.3
     },
     {
-      title: "Scale 📈",
+      title: "Scale",
       icon: <TrendingUp className="w-12 h-12 text-primary" />,
       description: [
         "Memberships & Subscriptions",
@@ -105,7 +105,7 @@ export const FunnelDiagram: React.FC = () => {
       delay: 0.4
     },
     {
-      title: "Sustain ♻️",
+      title: "Sustain",
       icon: <HandHelping className="w-12 h-12 text-primary" />,
       description: [
         "Leaderboards, Community Engagement",
