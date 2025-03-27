@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle, Globe, Users, Zap } from "lucide-react";
@@ -117,9 +118,49 @@ const Index = () => {
       <main className="pt-16">
         {isMobile && (
           <div className="sticky top-14 z-10 w-full">
-            <StickyMobileHeader tabs={mobileTabs} defaultTab="featured" onTabChange={setActiveTab} />
+            <StickyMobileHeader tabs={mobileTabs} defaultTab={activeTab} onTabChange={setActiveTab} />
           </div>
         )}
+        
+        {isMobile ? (
+          <div className="pb-16 my-0 mx-0 px-0">
+            <Tabs value={activeTab}>
+              <TabsContent value="featured" className="mt-0">
+                {/* Featured content */}
+              </TabsContent>
+
+              <TabsContent value="exercises" className="mt-0">
+                <ExerciseShowcase />
+              </TabsContent>
+
+              <TabsContent value="programs" className="mt-0">
+                <section id="courses" className="py-16 md:py-20">
+                  <div className="container mx-auto px-4">
+                    <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 text-primary">Featured Programs</h2>
+                    <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+                      {courses.map((course, index) => <motion.div key={course.title} initial={{
+                    opacity: 0,
+                    scale: 0.95
+                  }} animate={{
+                    opacity: 1,
+                    scale: 1
+                  }} transition={{
+                    delay: index * 0.2
+                  }} className="glass-card hover-card rounded-lg overflow-hidden">
+                        <img src={course.image} alt={course.title} className="w-full h-40 md:h-48 object-cover" />
+                        <div className="p-4 md:p-6">
+                          <span className="text-xs md:text-sm font-bold text-primary">{course.category}</span>
+                          <h3 className="text-lg md:text-xl font-bold mt-2 mb-2 md:mb-3 text-white">{course.title}</h3>
+                          <p className="text-sm md:text-base text-gray-400 mb-4">{course.description}</p>
+                        </div>
+                      </motion.div>)}
+                    </div>
+                  </div>
+                </section>
+              </TabsContent>
+            </Tabs>
+          </div>
+        ) : null}
         
         <section className="relative pt-12 md:pt-16 pb-16 md:pb-20 px-4 min-h-[80vh] flex items-center">
           <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
@@ -162,44 +203,7 @@ const Index = () => {
           athleteContent={<AthleteSection />} 
         />
 
-        {isMobile ? (
-          <div className="pb-16 my-0 mx-0 px-0">
-            <Tabs value={activeTab}>
-              <TabsContent value="featured" className="mt-0">
-              </TabsContent>
-
-              <TabsContent value="exercises" className="mt-0">
-                <ExerciseShowcase />
-              </TabsContent>
-
-              <TabsContent value="programs" className="mt-0">
-                <section id="courses" className="py-16 md:py-20">
-                  <div className="container mx-auto px-4">
-                    <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 text-primary">Featured Programs</h2>
-                    <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
-                      {courses.map((course, index) => <motion.div key={course.title} initial={{
-                    opacity: 0,
-                    scale: 0.95
-                  }} animate={{
-                    opacity: 1,
-                    scale: 1
-                  }} transition={{
-                    delay: index * 0.2
-                  }} className="glass-card hover-card rounded-lg overflow-hidden">
-                        <img src={course.image} alt={course.title} className="w-full h-40 md:h-48 object-cover" />
-                        <div className="p-4 md:p-6">
-                          <span className="text-xs md:text-sm font-bold text-primary">{course.category}</span>
-                          <h3 className="text-lg md:text-xl font-bold mt-2 mb-2 md:mb-3 text-white">{course.title}</h3>
-                          <p className="text-sm md:text-base text-gray-400 mb-4">{course.description}</p>
-                        </div>
-                      </motion.div>)}
-                    </div>
-                  </div>
-                </section>
-              </TabsContent>
-            </Tabs>
-          </div>
-        ) : (
+        {!isMobile && (
           <>
             <ExerciseShowcase />
 
