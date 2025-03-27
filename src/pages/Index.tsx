@@ -8,12 +8,15 @@ import { AppHeader } from "@/components/AppHeader";
 import { AppFooter } from "@/components/AppFooter";
 import { StickyMobileHeader } from "@/components/StickyMobileHeader";
 import { Tabs, TabsContent } from "@/components/ui/tabs";
+import { FunnelDiagram } from "@/components/FunnelDiagram";
+
 const Index = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [dialogTitle, setDialogTitle] = useState("Join the Waitlist");
   const isMobile = useIsMobile();
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [activeTab, setActiveTab] = useState("featured");
+  
   const features = [{
     icon: Globe,
     title: "Elite Training",
@@ -27,6 +30,7 @@ const Index = () => {
     title: "Performance Tracking",
     description: "Monitor and improve your progress"
   }];
+  
   const courses = [{
     title: "Strength Training",
     description: "Master fundamental lifting techniques",
@@ -43,14 +47,17 @@ const Index = () => {
     image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=800&q=80",
     category: "Nutrition"
   }];
+  
   const openDialog = () => {
     setDialogTitle("Join the Waitlist");
     setIsDialogOpen(true);
   };
+  
   const openComingSoonDialog = () => {
     setDialogTitle("Coming soon...");
     setIsDialogOpen(true);
   };
+  
   useEffect(() => {
     const video = document.getElementById(isMobile ? "mobile-video" : "desktop-video") as HTMLVideoElement;
     if (video) {
@@ -59,7 +66,9 @@ const Index = () => {
       return () => video.removeEventListener('loadeddata', handleVideoLoaded);
     }
   }, [isMobile]);
+  
   const videoUrl = "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/videos/C6466_Proxy.mp4";
+  
   const mobileTabs = [{
     value: "featured",
     label: "Featured"
@@ -70,6 +79,7 @@ const Index = () => {
     value: "programs",
     label: "Programs"
   }];
+  
   return <div className="min-h-screen w-full overflow-x-hidden bg-background pb-16">
       <WaitlistDialog isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)} title={dialogTitle} />
       
@@ -116,6 +126,8 @@ const Index = () => {
                         </motion.div>
                       </div>
                     </section>
+
+                    <FunnelDiagram />
 
                     <section id="features" className="md:py-20 bg-secondary py-[39px]">
                       <div className="container mx-auto px-4">
@@ -207,6 +219,8 @@ const Index = () => {
                 </motion.div>
               </div>
             </section>
+
+            <FunnelDiagram />
 
             <section id="features" className="py-16 md:py-20 bg-secondary">
               <div className="container mx-auto px-4">
