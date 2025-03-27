@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Users, Rocket, CalendarDays, TrendingUp, Trophy, Activity } from "lucide-react";
@@ -13,14 +12,12 @@ import { TabInterface } from "@/components/TabInterface";
 import { AthleteSection } from "@/components/AthleteSection";
 import { FeatureCard } from "@/components/FeatureCard";
 import { TypewriterEffect } from "@/components/TypewriterEffect";
-
 const Index = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [dialogTitle, setDialogTitle] = useState("Join the Waitlist");
   const isMobile = useIsMobile();
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [activeTab, setActiveTab] = useState("featured");
-
   const creatorFeatures = [{
     icon: Activity,
     title: "See What's Possible",
@@ -52,7 +49,6 @@ const Index = () => {
     color: "gold",
     bullets: ["Leaderboards", "Community Challenges", "Achievement Badges", "Engagement Analytics"]
   }];
-
   const courses = [{
     title: "Strength Training",
     description: "Master fundamental lifting techniques",
@@ -69,26 +65,15 @@ const Index = () => {
     image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=800&q=80",
     category: "Nutrition"
   }];
-
-  const typingWords = [
-    "PROVING YOURSELF",
-    "GETTING THE OFFER",
-    "SIGNING THE CONTRACT",
-    "PROVIDING FOR YOUR FAMILY",
-    "BEING FIRST STRING",
-    "GETTING THE SPONSORSHIP"
-  ];
-
+  const typingWords = ["PROVING YOURSELF", "GETTING THE OFFER", "SIGNING THE CONTRACT", "PROVIDING FOR YOUR FAMILY", "BEING FIRST STRING", "GETTING THE SPONSORSHIP"];
   const openDialog = () => {
     setDialogTitle("Join the Waitlist");
     setIsDialogOpen(true);
   };
-
   const openComingSoonDialog = () => {
     setDialogTitle("Coming soon...");
     setIsDialogOpen(true);
   };
-
   useEffect(() => {
     const video = document.getElementById(isMobile ? "mobile-video" : "desktop-video") as HTMLVideoElement;
     if (video) {
@@ -97,9 +82,7 @@ const Index = () => {
       return () => video.removeEventListener('loadeddata', handleVideoLoaded);
     }
   }, [isMobile]);
-
   const videoUrl = "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/videos/C6466_Proxy.mp4";
-
   const mobileTabs = [{
     value: "featured",
     label: "Featured"
@@ -110,7 +93,6 @@ const Index = () => {
     value: "programs",
     label: "Programs"
   }];
-
   const creatorContent = <>
       <FunnelDiagram />
 
@@ -118,22 +100,11 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 text-primary">Creator Features</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {creatorFeatures.map((feature, index) => (
-              <FeatureCard 
-                key={feature.title} 
-                title={feature.title} 
-                description={feature.description} 
-                icon={feature.icon} 
-                color={feature.color}
-                delay={index * 0.2} 
-                bullets={feature.bullets} 
-              />
-            ))}
+            {creatorFeatures.map((feature, index) => <FeatureCard key={feature.title} title={feature.title} description={feature.description} icon={feature.icon} color={feature.color} delay={index * 0.2} bullets={feature.bullets} />)}
           </div>
         </div>
       </section>
     </>;
-
   return <div className="min-h-screen w-full overflow-x-hidden bg-background pb-16">
       <WaitlistDialog isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)} title={dialogTitle} />
       
@@ -158,21 +129,21 @@ const Index = () => {
                   
                   <div className="container mx-auto text-center relative z-20 flex flex-col justify-center items-center">
                     <motion.div initial={{
-                      opacity: 0,
-                      y: 20
-                    }} animate={{
-                      opacity: 1,
-                      y: 0
-                    }} transition={{
-                      duration: 0.6
-                    }} className="text-center">
+                  opacity: 0,
+                  y: 20
+                }} animate={{
+                  opacity: 1,
+                  y: 0
+                }} transition={{
+                  duration: 0.6
+                }} className="text-center">
                       <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 md:mb-6">
                         The Programs for
                       </h1>
                       
                       {/* Fixed-height container to prevent layout shifts */}
-                      <div className="h-[1.5em] overflow-hidden mb-8 md:mb-12">
-                        <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold">
+                      <div className="h-[1.5em] overflow-hidden mb-8 md:mb-12 px-0">
+                        <h2 className="sm:text-4xl md:text-6xl font-bold py-0 my-0 text-4xl">
                           <TypewriterEffect words={typingWords} className="text-primary" />
                         </h2>
                       </div>
@@ -248,14 +219,14 @@ const Index = () => {
               
               <div className="container mx-auto text-center relative z-20 flex flex-col justify-center items-center">
                 <motion.div initial={{
-                  opacity: 0,
-                  y: 20
-                }} animate={{
-                  opacity: 1,
-                  y: 0
-                }} transition={{
-                  duration: 0.6
-                }} className="text-center">
+              opacity: 0,
+              y: 20
+            }} animate={{
+              opacity: 1,
+              y: 0
+            }} transition={{
+              duration: 0.6
+            }} className="text-center">
                   <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 md:mb-6">
                     The Programs for
                   </h1>
@@ -320,6 +291,4 @@ const Index = () => {
       <AppFooter openComingSoonDialog={openComingSoonDialog} />
     </div>;
 };
-
 export default Index;
-
