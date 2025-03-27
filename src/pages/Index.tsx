@@ -156,7 +156,7 @@ const Index = () => {
                     <div className="absolute inset-0 bg-black/50 z-10"></div>
                   </div>
                   
-                  <div className="container mx-auto text-center relative z-20">
+                  <div className="container mx-auto text-center relative z-20 flex flex-col justify-center items-center">
                     <motion.div initial={{
                       opacity: 0,
                       y: 20
@@ -165,19 +165,19 @@ const Index = () => {
                       y: 0
                     }} transition={{
                       duration: 0.6
-                    }}>
+                    }} className="text-center">
                       <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 md:mb-6">
                         The Programs for
                       </h1>
                       
                       {/* Fixed-height container to prevent layout shifts */}
-                      <div className="h-[1.5em] overflow-hidden">
-                        <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6 md:mb-8">
+                      <div className="h-[1.5em] overflow-hidden mb-8 md:mb-12">
+                        <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold">
                           <TypewriterEffect words={typingWords} className="text-primary" />
                         </h2>
                       </div>
                       
-                      <button onClick={openDialog} className="metal-gradient text-white px-6 py-3 md:px-8 md:py-4 rounded-md text-base md:text-lg font-bold hover:opacity-90 transition-opacity inline-flex items-center group">
+                      <button onClick={openDialog} className="metal-gradient text-white px-6 py-3 md:px-8 md:py-4 rounded-md text-base md:text-lg font-bold hover:opacity-90 transition-opacity inline-flex items-center group mt-4 md:mt-6">
                         Join Waitlist
                         <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
                       </button>
@@ -246,7 +246,7 @@ const Index = () => {
                 <div className="absolute inset-0 bg-black/50 z-10"></div>
               </div>
               
-              <div className="container mx-auto text-center relative z-20">
+              <div className="container mx-auto text-center relative z-20 flex flex-col justify-center items-center">
                 <motion.div initial={{
                   opacity: 0,
                   y: 20
@@ -255,19 +255,19 @@ const Index = () => {
                   y: 0
                 }} transition={{
                   duration: 0.6
-                }}>
+                }} className="text-center">
                   <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 md:mb-6">
                     The Programs for
                   </h1>
                   
                   {/* Fixed-height container to prevent layout shifts */}
-                  <div className="h-[1.5em] overflow-hidden">
-                    <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6 md:mb-8">
+                  <div className="h-[1.5em] overflow-hidden mb-8 md:mb-12">
+                    <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold">
                       <TypewriterEffect words={typingWords} className="text-primary" />
                     </h2>
                   </div>
                   
-                  <button onClick={openDialog} className="metal-gradient text-white px-6 py-3 md:px-8 md:py-4 rounded-md text-base md:text-lg font-bold hover:opacity-90 transition-opacity inline-flex items-center group">
+                  <button onClick={openDialog} className="metal-gradient text-white px-6 py-3 md:px-8 md:py-4 rounded-md text-base md:text-lg font-bold hover:opacity-90 transition-opacity inline-flex items-center group mt-4 md:mt-6">
                     Join Waitlist
                     <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
                   </button>
@@ -322,3 +322,4 @@ const Index = () => {
 };
 
 export default Index;
+
