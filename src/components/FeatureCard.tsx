@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { LucideIcon } from "lucide-react";
@@ -117,17 +116,21 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
             </ul>
           )}
           
-          {image && (
-            <div className="mt-2">
-              <div className="relative h-40 w-full overflow-hidden rounded-md border border-white/5">
+          <div className="mt-2">
+            <div className="relative h-40 w-full overflow-hidden rounded-md border border-white/5">
+              {image ? (
                 <img 
                   src={image} 
                   alt={title} 
                   className="h-full w-full object-cover object-center transition-transform duration-300 hover:scale-105"
                 />
-              </div>
+              ) : (
+                <div className="absolute inset-0 flex items-center justify-center bg-black/60 text-white font-bold text-xl">
+                  Coming Soon
+                </div>
+              )}
             </div>
-          )}
+          </div>
         </CardContent>
         
         {color && (
