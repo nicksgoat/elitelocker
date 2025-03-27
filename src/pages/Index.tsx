@@ -108,7 +108,7 @@ const Index = () => {
                             Transform Your
                             <span className="text-primary"> Performance</span>
                           </h1>
-                          <p className="text-lg md:text-xl text-gray-400 mb-6 md:mb-8 max-w-2xl mx-auto px-4 font-medium">delete</p>
+                          
                           <button onClick={openDialog} className="metal-gradient text-white px-6 py-3 md:px-8 md:py-4 rounded-md text-base md:text-lg font-bold hover:opacity-90 transition-opacity inline-flex items-center group">
                             Join Waitlist
                             <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
