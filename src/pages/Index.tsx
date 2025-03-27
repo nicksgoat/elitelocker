@@ -9,6 +9,8 @@ import { AppFooter } from "@/components/AppFooter";
 import { StickyMobileHeader } from "@/components/StickyMobileHeader";
 import { Tabs, TabsContent } from "@/components/ui/tabs";
 import { FunnelDiagram } from "@/components/FunnelDiagram";
+import { TabInterface } from "@/components/TabInterface";
+import { AthleteSection } from "@/components/AthleteSection";
 
 const Index = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -79,6 +81,34 @@ const Index = () => {
     value: "programs",
     label: "Programs"
   }];
+
+  // Content for the Creator tab
+  const creatorContent = (
+    <>
+      <FunnelDiagram />
+
+      <section id="features" className="md:py-20 bg-secondary py-[39px]">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 text-primary">Why Choose Elite Locker</h2>
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+            {features.map((feature, index) => <motion.div key={feature.title} initial={{
+          opacity: 0,
+          y: 20
+        }} animate={{
+          opacity: 1,
+          y: 0
+        }} transition={{
+          delay: index * 0.2
+        }} className="glass-card hover-card p-6 md:p-8 rounded-lg">
+              <feature.icon className="w-10 h-10 md:w-12 md:h-12 text-primary mb-4 md:mb-6" />
+              <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4 text-white">{feature.title}</h3>
+              <p className="text-sm md:text-base text-gray-400">{feature.description}</p>
+            </motion.div>)}
+          </div>
+        </div>
+      </section>
+    </>
+  );
   
   return <div className="min-h-screen w-full overflow-x-hidden bg-background pb-16">
       <WaitlistDialog isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)} title={dialogTitle} />
@@ -86,69 +116,54 @@ const Index = () => {
       <AppHeader openDialog={openDialog} openComingSoonDialog={openComingSoonDialog} />
       
       <main className="pt-16">
-        {isMobile ? <div className="pb-16 my-0 mx-0 px-0">
+        {/* Hero Section */}
+        <section className="relative pt-12 md:pt-16 pb-16 md:pb-20 px-4 min-h-[80vh] flex items-center">
+          <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
+            {!videoLoaded && <div className="absolute inset-0 bg-black/70 flex items-center justify-center">
+                <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+              </div>}
+            
+            <video id={isMobile ? "mobile-video" : "desktop-video"} autoPlay muted loop playsInline className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`} src={videoUrl}>
+              Your browser does not support the video tag.
+            </video>
+            
+            <div className="absolute inset-0 bg-black/50 z-10"></div>
+          </div>
+          
+          <div className="container mx-auto text-center relative z-20">
+            <motion.div initial={{
+          opacity: 0,
+          y: 20
+        }} animate={{
+          opacity: 1,
+          y: 0
+        }} transition={{
+          duration: 0.6
+        }}>
+              <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 md:mb-6">
+                Transform Your
+                <span className="text-primary"> Performance</span>
+              </h1>
+              
+              <button onClick={openDialog} className="metal-gradient text-white px-6 py-3 md:px-8 md:py-4 rounded-md text-base md:text-lg font-bold hover:opacity-90 transition-opacity inline-flex items-center group">
+                Join Waitlist
+                <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Mobile View */}
+        {isMobile ? (
+          <div className="pb-16 my-0 mx-0 px-0">
             <div className="sticky top-14 z-10 w-full">
               <StickyMobileHeader tabs={mobileTabs} defaultTab="featured" onTabChange={setActiveTab}>
                 <Tabs value={activeTab}>
                   <TabsContent value="featured" className="mt-0">
-                    <section className="relative pt-12 md:pt-16 pb-16 md:pb-20 px-4 min-h-[80vh] flex items-center">
-                      <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
-                        {!videoLoaded && <div className="absolute inset-0 bg-black/70 flex items-center justify-center">
-                            <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
-                          </div>}
-                        
-                        <video id={isMobile ? "mobile-video" : "desktop-video"} autoPlay muted loop playsInline className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`} src={videoUrl}>
-                          Your browser does not support the video tag.
-                        </video>
-                        
-                        <div className="absolute inset-0 bg-black/50 z-10 my-0"></div>
-                      </div>
-                      
-                      <div className="container mx-auto text-center relative z-20">
-                        <motion.div initial={{
-                      opacity: 0,
-                      y: 20
-                    }} animate={{
-                      opacity: 1,
-                      y: 0
-                    }} transition={{
-                      duration: 0.6
-                    }}>
-                          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 md:mb-6">
-                            Transform Your
-                            <span className="text-primary"> Performance</span>
-                          </h1>
-                          
-                          <button onClick={openDialog} className="metal-gradient text-white px-6 py-3 md:px-8 md:py-4 rounded-md text-base md:text-lg font-bold hover:opacity-90 transition-opacity inline-flex items-center group">
-                            Join Waitlist
-                            <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
-                          </button>
-                        </motion.div>
-                      </div>
-                    </section>
-
-                    <FunnelDiagram />
-
-                    <section id="features" className="md:py-20 bg-secondary py-[39px]">
-                      <div className="container mx-auto px-4">
-                        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 text-primary">Why Choose Elite Locker</h2>
-                        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
-                          {features.map((feature, index) => <motion.div key={feature.title} initial={{
-                        opacity: 0,
-                        y: 20
-                      }} animate={{
-                        opacity: 1,
-                        y: 0
-                      }} transition={{
-                        delay: index * 0.2
-                      }} className="glass-card hover-card p-6 md:p-8 rounded-lg">
-                            <feature.icon className="w-10 h-10 md:w-12 md:h-12 text-primary mb-4 md:mb-6" />
-                            <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4 text-white">{feature.title}</h3>
-                            <p className="text-sm md:text-base text-gray-400">{feature.description}</p>
-                          </motion.div>)}
-                        </div>
-                      </div>
-                    </section>
+                    <TabInterface 
+                      creatorContent={creatorContent} 
+                      athleteContent={<AthleteSection />} 
+                    />
                   </TabsContent>
     
                   <TabsContent value="exercises" className="mt-0">
@@ -183,65 +198,14 @@ const Index = () => {
                 </Tabs>
               </StickyMobileHeader>
             </div>
-          </div> : <>
-            <section className="relative pt-12 md:pt-16 pb-16 md:pb-20 px-4 min-h-[80vh] flex items-center">
-              <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
-                {!videoLoaded && <div className="absolute inset-0 bg-black/70 flex items-center justify-center">
-                    <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
-                  </div>}
-                
-                <video id={isMobile ? "mobile-video" : "desktop-video"} autoPlay muted loop playsInline className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`} src={videoUrl}>
-                  Your browser does not support the video tag.
-                </video>
-                
-                <div className="absolute inset-0 bg-black/50 z-10"></div>
-              </div>
-              
-              <div className="container mx-auto text-center relative z-20">
-                <motion.div initial={{
-              opacity: 0,
-              y: 20
-            }} animate={{
-              opacity: 1,
-              y: 0
-            }} transition={{
-              duration: 0.6
-            }}>
-                  <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 md:mb-6">
-                    Transform Your
-                    <span className="text-primary"> Performance</span>
-                  </h1>
-                  
-                  <button onClick={openDialog} className="metal-gradient text-white px-6 py-3 md:px-8 md:py-4 rounded-md text-base md:text-lg font-bold hover:opacity-90 transition-opacity inline-flex items-center group">
-                    Join Waitlist
-                    <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
-                  </button>
-                </motion.div>
-              </div>
-            </section>
-
-            <FunnelDiagram />
-
-            <section id="features" className="py-16 md:py-20 bg-secondary">
-              <div className="container mx-auto px-4">
-                <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 text-primary">Why Choose Elite Locker</h2>
-                <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
-                  {features.map((feature, index) => <motion.div key={feature.title} initial={{
-                opacity: 0,
-                y: 20
-              }} animate={{
-                opacity: 1,
-                y: 0
-              }} transition={{
-                delay: index * 0.2
-              }} className="glass-card hover-card p-6 md:p-8 rounded-lg">
-                      <feature.icon className="w-10 h-10 md:w-12 md:h-12 text-primary mb-4 md:mb-6" />
-                      <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4 text-white">{feature.title}</h3>
-                      <p className="text-sm md:text-base text-gray-400">{feature.description}</p>
-                    </motion.div>)}
-                </div>
-              </div>
-            </section>
+          </div>
+        ) : (
+          <>
+            {/* Desktop View */}
+            <TabInterface 
+              creatorContent={creatorContent} 
+              athleteContent={<AthleteSection />} 
+            />
 
             <ExerciseShowcase />
 
@@ -268,7 +232,8 @@ const Index = () => {
                 </div>
               </div>
             </section>
-          </>}
+          </>
+        )}
 
         <section className="md:py-20 metal-gradient py-[38px]">
           <div className="container mx-auto px-4 text-center">
