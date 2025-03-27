@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle, Globe, Users, Zap } from "lucide-react";
@@ -125,6 +126,65 @@ const Index = () => {
           <div className="my-0 mx-0 px-0">
             <Tabs value={activeTab}>
               <TabsContent value="featured" className="mt-0">
+                <section className="relative pt-12 md:pt-16 pb-16 md:pb-20 px-4 min-h-[80vh] flex items-center">
+                  <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
+                    {!videoLoaded && <div className="absolute inset-0 bg-black/70 flex items-center justify-center">
+                        <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+                      </div>}
+                    
+                    <video id={isMobile ? "mobile-video" : "desktop-video"} autoPlay muted loop playsInline className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`} src={videoUrl}>
+                      Your browser does not support the video tag.
+                    </video>
+                    
+                    <div className="absolute inset-0 bg-black/50 z-10"></div>
+                  </div>
+                  
+                  <div className="container mx-auto text-center relative z-20">
+                    <motion.div initial={{
+                  opacity: 0,
+                  y: 20
+                }} animate={{
+                  opacity: 1,
+                  y: 0
+                }} transition={{
+                  duration: 0.6
+                }}>
+                      <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 md:mb-6">
+                        Transform Your
+                        <span className="text-primary"> Performance</span>
+                      </h1>
+                      
+                      <button onClick={openDialog} className="metal-gradient text-white px-6 py-3 md:px-8 md:py-4 rounded-md text-base md:text-lg font-bold hover:opacity-90 transition-opacity inline-flex items-center group">
+                        Join Waitlist
+                        <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
+                      </button>
+                    </motion.div>
+                  </div>
+                </section>
+
+                <TabInterface 
+                  creatorContent={creatorContent} 
+                  athleteContent={<AthleteSection />} 
+                />
+
+                <section className="md:py-20 metal-gradient py-[38px]">
+                  <div className="container mx-auto px-4 text-center">
+                    <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-white">Ready to Start Your Journey?</h2>
+                    <p className="text-lg md:text-xl text-gray-300 mb-6 md:mb-8 max-w-2xl mx-auto font-medium">
+                      Join thousands of athletes already training with Elite Locker. Start your transformation today.
+                    </p>
+                    <button onClick={openDialog} className="bg-white text-gray-900 px-6 py-3 md:px-8 md:py-4 rounded-md text-base md:text-lg font-bold hover:bg-gray-100 transition-colors">
+                      Join Waitlist
+                    </button>
+                  </div>
+                </section>
+              </TabsContent>
+
+              <TabsContent value="exercises" className="mt-0">
+                <ExerciseShowcase />
+              </TabsContent>
+
+              <TabsContent value="programs" className="mt-0">
                 <section id="courses" className="py-16 md:py-20">
                   <div className="container mx-auto px-4">
                     <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 text-primary">Featured Programs</h2>
@@ -149,61 +209,53 @@ const Index = () => {
                   </div>
                 </section>
               </TabsContent>
-
-              <TabsContent value="exercises" className="mt-0">
-                <ExerciseShowcase />
-              </TabsContent>
-
-              <TabsContent value="programs" className="mt-0">
-                {/* Programs content is now merged with featured tab */}
-              </TabsContent>
             </Tabs>
           </div>
         ) : null}
         
-        <section className="relative pt-12 md:pt-16 pb-16 md:pb-20 px-4 min-h-[80vh] flex items-center">
-          <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
-            {!videoLoaded && <div className="absolute inset-0 bg-black/70 flex items-center justify-center">
-                <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
-              </div>}
-            
-            <video id={isMobile ? "mobile-video" : "desktop-video"} autoPlay muted loop playsInline className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`} src={videoUrl}>
-              Your browser does not support the video tag.
-            </video>
-            
-            <div className="absolute inset-0 bg-black/50 z-10"></div>
-          </div>
-          
-          <div className="container mx-auto text-center relative z-20">
-            <motion.div initial={{
-          opacity: 0,
-          y: 20
-        }} animate={{
-          opacity: 1,
-          y: 0
-        }} transition={{
-          duration: 0.6
-        }}>
-              <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 md:mb-6">
-                Transform Your
-                <span className="text-primary"> Performance</span>
-              </h1>
-              
-              <button onClick={openDialog} className="metal-gradient text-white px-6 py-3 md:px-8 md:py-4 rounded-md text-base md:text-lg font-bold hover:opacity-90 transition-opacity inline-flex items-center group">
-                Join Waitlist
-                <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
-            </motion.div>
-          </div>
-        </section>
-
-        <TabInterface 
-          creatorContent={creatorContent} 
-          athleteContent={<AthleteSection />} 
-        />
-
         {!isMobile && (
           <>
+            <section className="relative pt-12 md:pt-16 pb-16 md:pb-20 px-4 min-h-[80vh] flex items-center">
+              <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
+                {!videoLoaded && <div className="absolute inset-0 bg-black/70 flex items-center justify-center">
+                    <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+                  </div>}
+                
+                <video id={isMobile ? "mobile-video" : "desktop-video"} autoPlay muted loop playsInline className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`} src={videoUrl}>
+                  Your browser does not support the video tag.
+                </video>
+                
+                <div className="absolute inset-0 bg-black/50 z-10"></div>
+              </div>
+              
+              <div className="container mx-auto text-center relative z-20">
+                <motion.div initial={{
+              opacity: 0,
+              y: 20
+            }} animate={{
+              opacity: 1,
+              y: 0
+            }} transition={{
+              duration: 0.6
+            }}>
+                  <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 md:mb-6">
+                    Transform Your
+                    <span className="text-primary"> Performance</span>
+                  </h1>
+                  
+                  <button onClick={openDialog} className="metal-gradient text-white px-6 py-3 md:px-8 md:py-4 rounded-md text-base md:text-lg font-bold hover:opacity-90 transition-opacity inline-flex items-center group">
+                    Join Waitlist
+                    <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </motion.div>
+              </div>
+            </section>
+
+            <TabInterface 
+              creatorContent={creatorContent} 
+              athleteContent={<AthleteSection />} 
+            />
+
             <ExerciseShowcase />
 
             <section id="courses" className="py-16 md:py-20">
@@ -229,20 +281,20 @@ const Index = () => {
                 </div>
               </div>
             </section>
+
+            <section className="md:py-20 metal-gradient py-[38px]">
+              <div className="container mx-auto px-4 text-center">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-white">Ready to Start Your Journey?</h2>
+                <p className="text-lg md:text-xl text-gray-300 mb-6 md:mb-8 max-w-2xl mx-auto font-medium">
+                  Join thousands of athletes already training with Elite Locker. Start your transformation today.
+                </p>
+                <button onClick={openDialog} className="bg-white text-gray-900 px-6 py-3 md:px-8 md:py-4 rounded-md text-base md:text-lg font-bold hover:bg-gray-100 transition-colors">
+                  Join Waitlist
+                </button>
+              </div>
+            </section>
           </>
         )}
-
-        <section className="md:py-20 metal-gradient py-[38px]">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-white">Ready to Start Your Journey?</h2>
-            <p className="text-lg md:text-xl text-gray-300 mb-6 md:mb-8 max-w-2xl mx-auto font-medium">
-              Join thousands of athletes already training with Elite Locker. Start your transformation today.
-            </p>
-            <button onClick={openDialog} className="bg-white text-gray-900 px-6 py-3 md:px-8 md:py-4 rounded-md text-base md:text-lg font-bold hover:bg-gray-100 transition-colors">
-              Join Waitlist
-            </button>
-          </div>
-        </section>
       </main>
       
       <AppFooter openComingSoonDialog={openComingSoonDialog} />
