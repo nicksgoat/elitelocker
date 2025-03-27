@@ -12,12 +12,14 @@ import { TabInterface } from "@/components/TabInterface";
 import { AthleteSection } from "@/components/AthleteSection";
 import { FeatureCard } from "@/components/FeatureCard";
 import { TypewriterEffect } from "@/components/TypewriterEffect";
+
 const Index = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [dialogTitle, setDialogTitle] = useState("Join the Waitlist");
   const isMobile = useIsMobile();
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [activeTab, setActiveTab] = useState("featured");
+
   const creatorFeatures = [{
     icon: Activity,
     title: "See What's Possible",
@@ -49,6 +51,7 @@ const Index = () => {
     color: "gold",
     bullets: ["Leaderboards", "Community Challenges", "Achievement Badges", "Engagement Analytics"]
   }];
+
   const courses = [{
     title: "Strength Training",
     description: "Master fundamental lifting techniques",
@@ -65,15 +68,19 @@ const Index = () => {
     image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=800&q=80",
     category: "Nutrition"
   }];
+
   const typingWords = ["PROVING YOURSELF", "GETTING THE OFFER", "SIGNING THE CONTRACT", "PROVIDING FOR YOUR FAMILY", "BEING FIRST STRING", "GETTING THE SPONSORSHIP"];
+
   const openDialog = () => {
     setDialogTitle("Join the Waitlist");
     setIsDialogOpen(true);
   };
+
   const openComingSoonDialog = () => {
     setDialogTitle("Coming soon...");
     setIsDialogOpen(true);
   };
+
   useEffect(() => {
     const video = document.getElementById(isMobile ? "mobile-video" : "desktop-video") as HTMLVideoElement;
     if (video) {
@@ -82,7 +89,9 @@ const Index = () => {
       return () => video.removeEventListener('loadeddata', handleVideoLoaded);
     }
   }, [isMobile]);
+
   const videoUrl = "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/videos/C6466_Proxy.mp4";
+
   const mobileTabs = [{
     value: "featured",
     label: "Featured"
@@ -93,6 +102,7 @@ const Index = () => {
     value: "programs",
     label: "Programs"
   }];
+
   const creatorContent = <>
       <FunnelDiagram />
 
@@ -105,6 +115,7 @@ const Index = () => {
         </div>
       </section>
     </>;
+
   return <div className="min-h-screen w-full overflow-x-hidden bg-background pb-16">
       <WaitlistDialog isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)} title={dialogTitle} />
       
@@ -141,8 +152,7 @@ const Index = () => {
                         The Programs for
                       </h1>
                       
-                      {/* Fixed-height container to prevent layout shifts */}
-                      <div className="h-[1.5em] overflow-hidden mb-8 md:mb-12 px-0">
+                      <div className="h-[2em] overflow-hidden mb-8 md:mb-12 px-0">
                         <h2 className="sm:text-4xl md:text-6xl font-bold py-0 my-0 text-4xl">
                           <TypewriterEffect words={typingWords} className="text-primary" />
                         </h2>
@@ -231,8 +241,7 @@ const Index = () => {
                     The Programs for
                   </h1>
                   
-                  {/* Fixed-height container to prevent layout shifts */}
-                  <div className="h-[1.5em] overflow-hidden mb-8 md:mb-12">
+                  <div className="h-[2em] overflow-hidden mb-8 md:mb-12">
                     <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold">
                       <TypewriterEffect words={typingWords} className="text-primary" />
                     </h2>
@@ -291,4 +300,5 @@ const Index = () => {
       <AppFooter openComingSoonDialog={openComingSoonDialog} />
     </div>;
 };
+
 export default Index;
