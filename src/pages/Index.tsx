@@ -12,6 +12,7 @@ import { FunnelDiagram } from "@/components/FunnelDiagram";
 import { TabInterface } from "@/components/TabInterface";
 import { AthleteSection } from "@/components/AthleteSection";
 import { FeatureCard } from "@/components/FeatureCard";
+import { TypewriterEffect } from "@/components/TypewriterEffect";
 
 const Index = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -68,6 +69,8 @@ const Index = () => {
     image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=800&q=80",
     category: "Nutrition"
   }];
+
+  const typingWords = ["Performance", "Success", "Fitness", "Results"];
 
   const openDialog = () => {
     setDialogTitle("Join the Waitlist");
@@ -162,7 +165,7 @@ const Index = () => {
                 }}>
                       <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 md:mb-6">
                         The Programs for
-                        <span className="text-primary"> Performance</span>
+                        <span className="text-primary"> <TypewriterEffect words={typingWords} /></span>
                       </h1>
                       
                       <button onClick={openDialog} className="metal-gradient text-white px-6 py-3 md:px-8 md:py-4 rounded-md text-base md:text-lg font-bold hover:opacity-90 transition-opacity inline-flex items-center group">
@@ -246,7 +249,7 @@ const Index = () => {
             }}>
                   <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 md:mb-6">
                     The Programs for
-                    <span className="text-primary"> Performance</span>
+                    <span className="text-primary"> <TypewriterEffect words={typingWords} /></span>
                   </h1>
                   
                   <button onClick={openDialog} className="metal-gradient text-white px-6 py-3 md:px-8 md:py-4 rounded-md text-base md:text-lg font-bold hover:opacity-90 transition-opacity inline-flex items-center group">
