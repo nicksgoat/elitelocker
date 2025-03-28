@@ -21,7 +21,7 @@ export const TopNavTabs: React.FC<TopNavTabsProps> = ({
               <Dumbbell className="w-4 h-4" />
               <span className="font-medium">Exercises</span>
             </TabsTrigger>
-            <TabsTrigger value="programs" className="flex items-center gap-2 px-6 py-2 data-[state=active]:bg-primary/20 data-[state=active]:text-primary transition-all duration-200">
+            <TabsTrigger value="programs" className="flex items-center gap-2 px-6 py-2 data-[state=active]:text-primary transition-all duration-200 bg-black">
               <ListOrdered className="w-4 h-4" />
               <span className="font-medium">Programs</span>
             </TabsTrigger>
