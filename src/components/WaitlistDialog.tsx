@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Loader2, Check, AlertCircle } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { RoleSurveyDialog } from "./RoleSurveyDialog";
 
 export function WaitlistDialog({
   isOpen,
@@ -21,13 +22,15 @@ export function WaitlistDialog({
     name: "",
     email: "",
     phone: "",
-    role: "parent", // Changed default role to parent
+    role: "parent",
     username: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [usernameStatus, setUsernameStatus] = useState<"available" | "unavailable" | "checking" | "empty" | "error">("empty");
   const [validationErrors, setValidationErrors] = useState<{[key: string]: string}>({});
-  const { toast } = useToast(); // Properly destructure toast from useToast
+  const { toast } = useToast();
+  const [showSurvey, setShowSurvey] = useState(false);
+  const [waitlistId, setWaitlistId] = useState<string>("");
 
   const validateForm = () => {
     const errors: {[key: string]: string} = {};
@@ -129,18 +132,20 @@ export function WaitlistDialog({
         }
       }
 
-      const { error: insertError } = await supabase
+      const { data: insertedData, error: insertError } = await supabase
         .from('waitlist')
         .insert([
           { 
             email: formData.email || null,
             username: formData.username,
             metadata: {
+              name: formData.name,
               phone: formData.phone,
               role: formData.role
             }
           }
-        ]);
+        ])
+        .select();
 
       if (insertError) {
         console.error("Error inserting to waitlist:", insertError);
@@ -154,14 +159,12 @@ export function WaitlistDialog({
         description: "You've been added to the waitlist."
       });
       
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        role: "parent",
-        username: ""
-      });
-      onClose();
+      if (insertedData && insertedData[0]) {
+        setWaitlistId(insertedData[0].id);
+        setShowSurvey(true);
+      } else {
+        resetForm();
+      }
     } catch (error) {
       console.error("Error saving to waitlist:", error);
       toast({
@@ -169,9 +172,22 @@ export function WaitlistDialog({
         description: "There was a problem adding you to the waitlist. Please try again.",
         variant: "destructive"
       });
-    } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const resetForm = () => {
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      role: "parent",
+      username: ""
+    });
+    setShowSurvey(false);
+    setWaitlistId("");
+    setIsSubmitting(false);
+    onClose();
   };
 
   const renderUsernameStatus = () => {
@@ -204,7 +220,8 @@ export function WaitlistDialog({
     return null;
   };
 
-  return <Dialog open={isOpen} onOpenChange={onClose}>
+  return <>
+    <Dialog open={isOpen && !showSurvey} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle className="text-2xl font-heading font-bold flex items-center gap-2">
@@ -336,5 +353,15 @@ export function WaitlistDialog({
           </Button>
         </form>
       </DialogContent>
-    </Dialog>;
+    </Dialog>
+    
+    {showSurvey && (
+      <RoleSurveyDialog 
+        isOpen={showSurvey}
+        onClose={resetForm}
+        role={formData.role}
+        waitlistId={waitlistId}
+      />
+    )}
+  </>;
 }

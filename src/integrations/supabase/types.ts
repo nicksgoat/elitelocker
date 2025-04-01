@@ -3797,6 +3797,41 @@ export type Database = {
         }
         Relationships: []
       }
+      survey_responses: {
+        Row: {
+          created_at: string
+          id: string
+          responses: Json
+          role: string
+          updated_at: string
+          waitlist_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          responses?: Json
+          role: string
+          updated_at?: string
+          waitlist_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          responses?: Json
+          role?: string
+          updated_at?: string
+          waitlist_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "survey_responses_waitlist_id_fkey"
+            columns: ["waitlist_id"]
+            isOneToOne: false
+            referencedRelation: "waitlist"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       trainer_availability: {
         Row: {
           buffer_minutes: number | null
