@@ -164,15 +164,14 @@ export function RoleSurveyDialog({
     setIsSubmitting(true);
 
     try {
+      // Use a more generic approach that works with our TypeScript definitions
       const { error } = await supabase
-        .from('survey_responses')
-        .insert([
-          { 
-            waitlist_id: waitlistId,
-            role,
-            responses
-          }
-        ]);
+        .from('survey_responses' as any)
+        .insert({
+          waitlist_id: waitlistId,
+          role,
+          responses
+        } as any);
 
       if (error) {
         console.error("Error saving survey responses:", error);
