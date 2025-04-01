@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
@@ -7,8 +6,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Loader2, Check, AlertCircle } from "lucide-react";
 import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export function WaitlistDialog({
   isOpen,
@@ -23,13 +21,12 @@ export function WaitlistDialog({
     name: "",
     email: "",
     phone: "",
-    role: "athlete", // Default role
+    role: "parent", // Changed default role to parent
     username: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [usernameStatus, setUsernameStatus] = useState<"available" | "unavailable" | "checking" | "empty" | "error">("empty");
   const [validationErrors, setValidationErrors] = useState<{[key: string]: string}>({});
-  const { toast } = useToast();
 
   const validateForm = () => {
     const errors: {[key: string]: string} = {};
@@ -48,7 +45,6 @@ export function WaitlistDialog({
       errors.username = "Please choose an available username";
     }
     
-    // Email is now optional, but validate its format if provided
     if (formData.email?.trim() && !/\S+@\S+\.\S+/.test(formData.email)) {
       errors.email = "Please enter a valid email address";
     }
@@ -110,7 +106,6 @@ export function WaitlistDialog({
     try {
       setIsSubmitting(true);
       
-      // Check for existing email only if email is provided
       if (formData.email?.trim()) {
         const { data: existingEmails, error: checkError } = await supabase
           .from('waitlist')
@@ -137,7 +132,7 @@ export function WaitlistDialog({
         .from('waitlist')
         .insert([
           { 
-            email: formData.email || null, // Allow null email
+            email: formData.email || null,
             username: formData.username,
             metadata: {
               phone: formData.phone,
@@ -162,7 +157,7 @@ export function WaitlistDialog({
         name: "",
         email: "",
         phone: "",
-        role: "athlete",
+        role: "parent",
         username: ""
       });
       onClose();
@@ -219,7 +214,6 @@ export function WaitlistDialog({
           Get ahead of the competition. Secure your spot for early access and insider updates!
         </p>
         <form onSubmit={handleSubmit} className="space-y-4 mt-4">
-          {/* Role selector tabs - moved to the top */}
           <div>
             <Label className="block text-sm font-medium mb-2">
               Your role
@@ -230,10 +224,10 @@ export function WaitlistDialog({
               className="w-full"
             >
               <TabsList className="grid grid-cols-4 w-full">
+                <TabsTrigger value="parent" className="text-xs">Parent</TabsTrigger>
                 <TabsTrigger value="athlete" className="text-xs">Athlete</TabsTrigger>
                 <TabsTrigger value="trainer" className="text-xs">Trainer</TabsTrigger>
                 <TabsTrigger value="coach" className="text-xs">Coach</TabsTrigger>
-                <TabsTrigger value="organization" className="text-xs">Organization</TabsTrigger>
               </TabsList>
             </Tabs>
           </div>
