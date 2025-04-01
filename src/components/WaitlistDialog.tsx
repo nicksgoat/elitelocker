@@ -7,6 +7,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Loader2, Check, AlertCircle } from "lucide-react";
 import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export function WaitlistDialog({
   isOpen,
@@ -21,7 +23,7 @@ export function WaitlistDialog({
     name: "",
     email: "",
     phone: "",
-    role: "",
+    role: "athlete", // Default role
     username: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -160,7 +162,7 @@ export function WaitlistDialog({
         name: "",
         email: "",
         phone: "",
-        role: "",
+        role: "athlete",
         username: ""
       });
       onClose();
@@ -217,6 +219,25 @@ export function WaitlistDialog({
           Get ahead of the competition. Secure your spot for early access and insider updates!
         </p>
         <form onSubmit={handleSubmit} className="space-y-4 mt-4">
+          {/* Role selector tabs - moved to the top */}
+          <div>
+            <Label className="block text-sm font-medium mb-2">
+              Your role
+            </Label>
+            <Tabs 
+              value={formData.role} 
+              onValueChange={(value) => setFormData({...formData, role: value})}
+              className="w-full"
+            >
+              <TabsList className="grid grid-cols-4 w-full">
+                <TabsTrigger value="athlete" className="text-xs">Athlete</TabsTrigger>
+                <TabsTrigger value="trainer" className="text-xs">Trainer</TabsTrigger>
+                <TabsTrigger value="coach" className="text-xs">Coach</TabsTrigger>
+                <TabsTrigger value="organization" className="text-xs">Organization</TabsTrigger>
+              </TabsList>
+            </Tabs>
+          </div>
+          
           <div>
             <Label htmlFor="name" className="block text-sm font-medium mb-1">
               Name <span className="text-red-500">*</span>
@@ -303,27 +324,6 @@ export function WaitlistDialog({
               <p className="text-red-500 text-xs mt-1">{validationErrors.username}</p>
             )}
             <p className="text-xs text-gray-500 mt-1">Your username will be used to identify you on the platform.</p>
-          </div>
-          <div>
-            <Label htmlFor="role" className="block text-sm font-medium mb-1">
-              Your role <span className="text-gray-500">(Optional)</span>
-            </Label>
-            <select 
-              id="role" 
-              className="w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary text-black bg-white" 
-              value={formData.role} 
-              onChange={e => setFormData({
-                ...formData,
-                role: e.target.value
-              })}
-              disabled={isSubmitting}
-            >
-              <option value="">Select your role</option>
-              <option value="athlete">Athlete</option>
-              <option value="trainer">Trainer</option>
-              <option value="coach">Coach</option>
-              <option value="organization">Organization</option>
-            </select>
           </div>
           <Button 
             type="submit" 
