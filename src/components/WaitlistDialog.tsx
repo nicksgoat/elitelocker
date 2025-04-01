@@ -27,6 +27,7 @@ export function WaitlistDialog({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [usernameStatus, setUsernameStatus] = useState<"available" | "unavailable" | "checking" | "empty" | "error">("empty");
   const [validationErrors, setValidationErrors] = useState<{[key: string]: string}>({});
+  const { toast } = useToast(); // Properly destructure toast from useToast
 
   const validateForm = () => {
     const errors: {[key: string]: string} = {};
