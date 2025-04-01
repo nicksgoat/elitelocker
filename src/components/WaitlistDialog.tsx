@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
@@ -8,6 +9,7 @@ import { Loader2, Check, AlertCircle } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { RoleSurveyDialog } from "./RoleSurveyDialog";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 export function WaitlistDialog({
   isOpen,
@@ -28,6 +30,7 @@ export function WaitlistDialog({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [usernameStatus, setUsernameStatus] = useState<"available" | "unavailable" | "checking" | "empty" | "error">("empty");
   const [validationErrors, setValidationErrors] = useState<{[key: string]: string}>({});
+  const [serverError, setServerError] = useState<string | null>(null);
   const { toast } = useToast();
   const [showSurvey, setShowSurvey] = useState(false);
   const [waitlistId, setWaitlistId] = useState<string>("");
@@ -99,6 +102,7 @@ export function WaitlistDialog({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setServerError(null);
     
     if (!validateForm()) {
       toast({
@@ -149,6 +153,7 @@ export function WaitlistDialog({
 
       if (insertError) {
         console.error("Error inserting to waitlist:", insertError);
+        setServerError(insertError.message || "Failed to join the waitlist. Please try again.");
         throw insertError;
       }
 
@@ -172,6 +177,7 @@ export function WaitlistDialog({
         description: "There was a problem adding you to the waitlist. Please try again.",
         variant: "destructive"
       });
+    } finally {
       setIsSubmitting(false);
     }
   };
@@ -187,6 +193,7 @@ export function WaitlistDialog({
     setShowSurvey(false);
     setWaitlistId("");
     setIsSubmitting(false);
+    setServerError(null);
     onClose();
   };
 
@@ -231,6 +238,13 @@ export function WaitlistDialog({
         <p className="text-sm text-gray-500">
           Get ahead of the competition. Secure your spot for early access and insider updates!
         </p>
+        
+        {serverError && (
+          <Alert variant="destructive" className="mb-4">
+            <AlertDescription>{serverError}</AlertDescription>
+          </Alert>
+        )}
+        
         <form onSubmit={handleSubmit} className="space-y-4 mt-4">
           <div>
             <Label className="block text-sm font-medium mb-2">
