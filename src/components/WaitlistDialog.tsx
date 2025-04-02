@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { Input } from "@/components/ui/input";
-import { supabase } from "@/integrations/supabase/client";
+import { supabase, checkUsernameAvailability as checkUsername } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Loader2, Check, AlertCircle } from "lucide-react";
 import { Label } from "@/components/ui/label";
@@ -71,15 +71,8 @@ export function WaitlistDialog({
     setUsernameStatus("checking");
     
     try {
-      const { data, error } = await supabase.rpc('is_username_available', { username });
-      
-      if (error) {
-        console.error("Error checking username availability:", error);
-        setUsernameStatus("error");
-        return;
-      }
-      
-      setUsernameStatus(data ? "available" : "unavailable");
+      const isAvailable = await checkUsername(username);
+      setUsernameStatus(isAvailable ? "available" : "unavailable");
     } catch (error) {
       console.error("Exception checking username availability:", error);
       setUsernameStatus("error");
