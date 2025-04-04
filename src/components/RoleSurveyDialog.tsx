@@ -194,21 +194,21 @@ const ROLE_SURVEYS: Record<string, SurveySection[]> = {
       questions: [
         {
           id: 'fairPrice',
-          question: "If this platform gave you elite-level training access, helped build your brand, and made it easier to grow as an athlete... What monthly price feels fair?",
+          question: "What monthly price feels fair for a real WR training system?",
           type: 'radio',
-          options: ['$10', '$15', '$20', '$25', '$30+']
+          options: ['$29', '$39', '$49', '$59', '$69+']
         },
         {
           id: 'tooLowPrice',
-          question: "What price would make you question the quality?",
+          question: "What montly price would make you question the quality?",
           type: 'radio',
-          options: ['Free', 'Under $5', '$5–10', 'I wouldn\'t question it if the content looks legit']
+          options: ['Under $20', 'Under $50', 'Under $100', 'It is not about price - it is about structure']
         },
         {
           id: 'tooHighPrice',
-          question: "What's too expensive right now?",
+          question: "What monthly price is too expensive right now?",
           type: 'radio',
-          options: ['$25+', '$30+', '$40+', 'I\'d pay more if it helped me reach the next level']
+          options: ['$59+', '$79+', '$99+', 'I\'d pay more if it helped me reach the next level']
         }
       ]
     }
