@@ -5112,15 +5112,11 @@ export type Database = {
     }
     Functions: {
       _ltree_compress: {
-        Args: {
-          "": unknown
-        }
+        Args: { "": unknown }
         Returns: unknown
       }
       _ltree_gist_options: {
-        Args: {
-          "": unknown
-        }
+        Args: { "": unknown }
         Returns: undefined
       }
       activate_program: {
@@ -5133,10 +5129,7 @@ export type Database = {
         Returns: string
       }
       calculate_working_weight: {
-        Args: {
-          p_training_max: number
-          p_percentage: number
-        }
+        Args: { p_training_max: number; p_percentage: number }
         Returns: number
       }
       get_club_leaderboards: {
@@ -5183,9 +5176,7 @@ export type Database = {
         }[]
       }
       get_exercise_stats: {
-        Args: {
-          exercise_id: string
-        }
+        Args: { exercise_id: string }
         Returns: {
           average_rating: number
           total_ratings: number
@@ -5193,11 +5184,7 @@ export type Database = {
         }[]
       }
       get_feed_items: {
-        Args: {
-          p_user_id: string
-          p_limit?: number
-          p_offset?: number
-        }
+        Args: { p_user_id: string; p_limit?: number; p_offset?: number }
         Returns: {
           type: string
           id: string
@@ -5226,9 +5213,7 @@ export type Database = {
         }[]
       }
       get_program_member_activity: {
-        Args: {
-          program_id_param: string
-        }
+        Args: { program_id_param: string }
         Returns: {
           user_id: string
           username: string
@@ -5240,10 +5225,7 @@ export type Database = {
         }[]
       }
       get_program_stats: {
-        Args: {
-          program_id_param: string
-          user_id_param: string
-        }
+        Args: { program_id_param: string; user_id_param: string }
         Returns: {
           total_volume: number
           total_workouts: number
@@ -5253,10 +5235,7 @@ export type Database = {
         }[]
       }
       get_program_week_stats: {
-        Args: {
-          p_program_id: string
-          p_week_number: number
-        }
+        Args: { p_program_id: string; p_week_number: number }
         Returns: {
           total_workouts: number
           completed_workouts: number
@@ -5266,10 +5245,7 @@ export type Database = {
         }[]
       }
       get_program_workouts_for_date: {
-        Args: {
-          p_date: string
-          p_user_id: string
-        }
+        Args: { p_date: string; p_user_id: string }
         Returns: {
           program_id: string
           workout_id: string
@@ -5283,10 +5259,7 @@ export type Database = {
         }[]
       }
       get_upcoming_program_workouts: {
-        Args: {
-          p_user_id: string
-          p_days?: number
-        }
+        Args: { p_user_id: string; p_days?: number }
         Returns: {
           schedule_id: string
           enrollment_id: string
@@ -5314,10 +5287,7 @@ export type Database = {
         }[]
       }
       get_workout_recommended_weights: {
-        Args: {
-          p_program_workout_id: string
-          p_user_id: string
-        }
+        Args: { p_program_workout_id: string; p_user_id: string }
         Returns: {
           exercise_id: string
           set_number: number
@@ -5330,10 +5300,7 @@ export type Database = {
         }[]
       }
       get_workout_stats: {
-        Args: {
-          workout_id_param: string
-          user_id_param?: string
-        }
+        Args: { workout_id_param: string; user_id_param?: string }
         Returns: {
           total_volume: number
           total_sets: number
@@ -5352,130 +5319,87 @@ export type Database = {
         }[]
       }
       is_club_member: {
-        Args: {
-          club_id: string
-          user_id: string
-        }
+        Args: { club_id: string; user_id: string }
         Returns: boolean
       }
       is_username_available: {
-        Args: {
-          username: string
-        }
+        Args: { username: string }
         Returns: boolean
       }
       lca: {
-        Args: {
-          "": unknown[]
-        }
+        Args: { "": unknown[] }
         Returns: unknown
       }
       lquery_in: {
-        Args: {
-          "": unknown
-        }
+        Args: { "": unknown }
         Returns: unknown
       }
       lquery_out: {
-        Args: {
-          "": unknown
-        }
+        Args: { "": unknown }
         Returns: unknown
       }
       lquery_recv: {
-        Args: {
-          "": unknown
-        }
+        Args: { "": unknown }
         Returns: unknown
       }
       lquery_send: {
-        Args: {
-          "": unknown
-        }
+        Args: { "": unknown }
         Returns: string
       }
       ltree_compress: {
-        Args: {
-          "": unknown
-        }
+        Args: { "": unknown }
         Returns: unknown
       }
       ltree_decompress: {
-        Args: {
-          "": unknown
-        }
+        Args: { "": unknown }
         Returns: unknown
       }
       ltree_gist_in: {
-        Args: {
-          "": unknown
-        }
+        Args: { "": unknown }
         Returns: unknown
       }
       ltree_gist_options: {
-        Args: {
-          "": unknown
-        }
+        Args: { "": unknown }
         Returns: undefined
       }
       ltree_gist_out: {
-        Args: {
-          "": unknown
-        }
+        Args: { "": unknown }
         Returns: unknown
       }
       ltree_in: {
-        Args: {
-          "": unknown
-        }
+        Args: { "": unknown }
         Returns: unknown
       }
       ltree_out: {
-        Args: {
-          "": unknown
-        }
+        Args: { "": unknown }
         Returns: unknown
       }
       ltree_recv: {
-        Args: {
-          "": unknown
-        }
+        Args: { "": unknown }
         Returns: unknown
       }
       ltree_send: {
-        Args: {
-          "": unknown
-        }
+        Args: { "": unknown }
         Returns: string
       }
       ltree2text: {
-        Args: {
-          "": unknown
-        }
+        Args: { "": unknown }
         Returns: string
       }
       ltxtq_in: {
-        Args: {
-          "": unknown
-        }
+        Args: { "": unknown }
         Returns: unknown
       }
       ltxtq_out: {
-        Args: {
-          "": unknown
-        }
+        Args: { "": unknown }
         Returns: unknown
       }
       ltxtq_recv: {
-        Args: {
-          "": unknown
-        }
+        Args: { "": unknown }
         Returns: unknown
       }
       ltxtq_send: {
-        Args: {
-          "": unknown
-        }
+        Args: { "": unknown }
         Returns: string
       }
       migrate_existing_users: {
@@ -5483,15 +5407,11 @@ export type Database = {
         Returns: undefined
       }
       nlevel: {
-        Args: {
-          "": unknown
-        }
+        Args: { "": unknown }
         Returns: number
       }
       text2ltree: {
-        Args: {
-          "": string
-        }
+        Args: { "": string }
         Returns: unknown
       }
       update_session_workout_progress: {
@@ -5503,10 +5423,7 @@ export type Database = {
         Returns: undefined
       }
       update_user_online_status: {
-        Args: {
-          p_user_id: string
-          p_is_online: boolean
-        }
+        Args: { p_user_id: string; p_is_online: boolean }
         Returns: undefined
       }
     }
@@ -5627,27 +5544,29 @@ export type Database = {
   }
 }
 
-type PublicSchema = Database[Extract<keyof Database, "public">]
+type DefaultSchema = Database[Extract<keyof Database, "public">]
 
 export type Tables<
-  PublicTableNameOrOptions extends
-    | keyof (PublicSchema["Tables"] & PublicSchema["Views"])
+  DefaultSchemaTableNameOrOptions extends
+    | keyof (DefaultSchema["Tables"] & DefaultSchema["Views"])
     | { schema: keyof Database },
-  TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
-    ? keyof (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
-        Database[PublicTableNameOrOptions["schema"]]["Views"])
+  TableName extends DefaultSchemaTableNameOrOptions extends {
+    schema: keyof Database
+  }
+    ? keyof (Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
+        Database[DefaultSchemaTableNameOrOptions["schema"]]["Views"])
     : never = never,
-> = PublicTableNameOrOptions extends { schema: keyof Database }
-  ? (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
-      Database[PublicTableNameOrOptions["schema"]]["Views"])[TableName] extends {
+> = DefaultSchemaTableNameOrOptions extends { schema: keyof Database }
+  ? (Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
+      Database[DefaultSchemaTableNameOrOptions["schema"]]["Views"])[TableName] extends {
       Row: infer R
     }
     ? R
     : never
-  : PublicTableNameOrOptions extends keyof (PublicSchema["Tables"] &
-        PublicSchema["Views"])
-    ? (PublicSchema["Tables"] &
-        PublicSchema["Views"])[PublicTableNameOrOptions] extends {
+  : DefaultSchemaTableNameOrOptions extends keyof (DefaultSchema["Tables"] &
+        DefaultSchema["Views"])
+    ? (DefaultSchema["Tables"] &
+        DefaultSchema["Views"])[DefaultSchemaTableNameOrOptions] extends {
         Row: infer R
       }
       ? R
@@ -5655,20 +5574,22 @@ export type Tables<
     : never
 
 export type TablesInsert<
-  PublicTableNameOrOptions extends
-    | keyof PublicSchema["Tables"]
+  DefaultSchemaTableNameOrOptions extends
+    | keyof DefaultSchema["Tables"]
     | { schema: keyof Database },
-  TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
-    ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
+  TableName extends DefaultSchemaTableNameOrOptions extends {
+    schema: keyof Database
+  }
+    ? keyof Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
     : never = never,
-> = PublicTableNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+> = DefaultSchemaTableNameOrOptions extends { schema: keyof Database }
+  ? Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
       Insert: infer I
     }
     ? I
     : never
-  : PublicTableNameOrOptions extends keyof PublicSchema["Tables"]
-    ? PublicSchema["Tables"][PublicTableNameOrOptions] extends {
+  : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
+    ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
         Insert: infer I
       }
       ? I
@@ -5676,20 +5597,22 @@ export type TablesInsert<
     : never
 
 export type TablesUpdate<
-  PublicTableNameOrOptions extends
-    | keyof PublicSchema["Tables"]
+  DefaultSchemaTableNameOrOptions extends
+    | keyof DefaultSchema["Tables"]
     | { schema: keyof Database },
-  TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
-    ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
+  TableName extends DefaultSchemaTableNameOrOptions extends {
+    schema: keyof Database
+  }
+    ? keyof Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
     : never = never,
-> = PublicTableNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+> = DefaultSchemaTableNameOrOptions extends { schema: keyof Database }
+  ? Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
       Update: infer U
     }
     ? U
     : never
-  : PublicTableNameOrOptions extends keyof PublicSchema["Tables"]
-    ? PublicSchema["Tables"][PublicTableNameOrOptions] extends {
+  : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
+    ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
         Update: infer U
       }
       ? U
@@ -5697,21 +5620,23 @@ export type TablesUpdate<
     : never
 
 export type Enums<
-  PublicEnumNameOrOptions extends
-    | keyof PublicSchema["Enums"]
+  DefaultSchemaEnumNameOrOptions extends
+    | keyof DefaultSchema["Enums"]
     | { schema: keyof Database },
-  EnumName extends PublicEnumNameOrOptions extends { schema: keyof Database }
-    ? keyof Database[PublicEnumNameOrOptions["schema"]]["Enums"]
+  EnumName extends DefaultSchemaEnumNameOrOptions extends {
+    schema: keyof Database
+  }
+    ? keyof Database[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"]
     : never = never,
-> = PublicEnumNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicEnumNameOrOptions["schema"]]["Enums"][EnumName]
-  : PublicEnumNameOrOptions extends keyof PublicSchema["Enums"]
-    ? PublicSchema["Enums"][PublicEnumNameOrOptions]
+> = DefaultSchemaEnumNameOrOptions extends { schema: keyof Database }
+  ? Database[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"][EnumName]
+  : DefaultSchemaEnumNameOrOptions extends keyof DefaultSchema["Enums"]
+    ? DefaultSchema["Enums"][DefaultSchemaEnumNameOrOptions]
     : never
 
 export type CompositeTypes<
   PublicCompositeTypeNameOrOptions extends
-    | keyof PublicSchema["CompositeTypes"]
+    | keyof DefaultSchema["CompositeTypes"]
     | { schema: keyof Database },
   CompositeTypeName extends PublicCompositeTypeNameOrOptions extends {
     schema: keyof Database
@@ -5720,6 +5645,134 @@ export type CompositeTypes<
     : never = never,
 > = PublicCompositeTypeNameOrOptions extends { schema: keyof Database }
   ? Database[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
-  : PublicCompositeTypeNameOrOptions extends keyof PublicSchema["CompositeTypes"]
-    ? PublicSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
+  : PublicCompositeTypeNameOrOptions extends keyof DefaultSchema["CompositeTypes"]
+    ? DefaultSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
     : never
+
+export const Constants = {
+  public: {
+    Enums: {
+      auth_provider: ["email", "google", "apple"],
+      auth_token_status: ["active", "expired", "revoked"],
+      category_type: [
+        "strength_training",
+        "speed_agility",
+        "endurance",
+        "plyometrics",
+        "sport_specific",
+      ],
+      club_content_type: ["text", "workout", "progress"],
+      club_leaderboard_type: [
+        "total_volume",
+        "workout_count",
+        "personal_records",
+        "posting_activity",
+        "engagement_score",
+      ],
+      club_member_role: ["member", "admin"],
+      club_post_type: ["text", "workout", "progress"],
+      club_status: ["active", "archived"],
+      collection_visibility: [
+        "public",
+        "private",
+        "paywalled",
+        "subscriber_only",
+      ],
+      content_type_enum: ["text", "workout", "progress", "session", "program"],
+      difficulty_level: ["beginner", "intermediate", "advanced"],
+      equipment_type: [
+        "barbell",
+        "dumbbell",
+        "kettlebell",
+        "bodyweight",
+        "machine",
+        "resistance_band",
+        "other",
+      ],
+      exercise_category: [
+        "strength",
+        "cardio",
+        "flexibility",
+        "balance",
+        "plyometrics",
+      ],
+      exercise_measurement_type: [
+        "weight_reps",
+        "time_based",
+        "distance_time",
+        "custom_metrics",
+        "distance",
+      ],
+      exercise_pr_type: ["weight", "reps", "volume", "time"],
+      exercise_tracking_mode: [
+        "sets",
+        "duration",
+        "distance",
+        "intervals",
+        "check_off",
+      ],
+      feed_item_type: [
+        "workout_completion",
+        "like",
+        "personal_record",
+        "share",
+      ],
+      import_status: ["pending", "processing", "completed", "failed"],
+      leaderboard_period: ["daily", "weekly", "monthly", "yearly", "all_time"],
+      liked_item_type: ["workout", "exercise", "program"],
+      measurement_unit_type: ["weight", "time", "distance", "height"],
+      membership_role: ["member", "admin", "founder"],
+      muscle_group: [
+        "chest",
+        "back",
+        "shoulders",
+        "biceps",
+        "triceps",
+        "legs",
+        "core",
+        "full_body",
+      ],
+      old_session_type: ["one_on_one", "group_class", "webinar"],
+      onboarding_status: ["not_started", "in_progress", "completed"],
+      order_status: [
+        "pending",
+        "processing",
+        "shipped",
+        "delivered",
+        "cancelled",
+        "refunded",
+      ],
+      payout_status: ["pending", "approved", "paid", "rejected"],
+      performance_metric_type: ["numeric", "time", "distance", "boolean"],
+      product_category: ["supplements", "apparel", "accessories", "equipment"],
+      program_visibility: ["private", "public", "clubs_only", "subscription"],
+      security_level: ["basic", "enhanced", "maximum"],
+      session_status: [
+        "scheduled",
+        "cancelled",
+        "completed",
+        "no_show",
+        "refunded",
+        "partially_refunded",
+      ],
+      session_type: ["one_on_one", "group_class", "webinar", "social"],
+      subscription_interval: ["month", "year"],
+      target_type: ["muscle_group", "movement_pattern", "category"],
+      testing_method: ["direct", "rep_max_calculation", "estimated"],
+      two_factor_method: ["none", "authenticator", "sms"],
+      waitlist_status: ["pending", "invited", "registered"],
+      workout_session_status: ["in_progress", "completed", "cancelled"],
+      workout_status: ["draft", "completed", "in_progress"],
+      workout_type: ["strength", "run", "cycle", "swim", "other"],
+      workout_visibility: [
+        "public",
+        "private",
+        "friends_only",
+        "followers_only",
+        "subscribers_only",
+        "paid",
+        "club_only",
+      ],
+    },
+  },
+} as const

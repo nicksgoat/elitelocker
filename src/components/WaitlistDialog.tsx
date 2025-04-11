@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
@@ -24,7 +23,7 @@ export function WaitlistDialog({
     name: "",
     email: "",
     phone: "",
-    role: "parent",
+    role: "athlete",
     username: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -180,7 +179,7 @@ export function WaitlistDialog({
       name: "",
       email: "",
       phone: "",
-      role: "parent",
+      role: "athlete",
       username: ""
     });
     setShowSurvey(false);
@@ -249,8 +248,8 @@ export function WaitlistDialog({
               className="w-full"
             >
               <TabsList className="grid grid-cols-4 w-full">
-                <TabsTrigger value="parent" className="text-xs">Parent</TabsTrigger>
                 <TabsTrigger value="athlete" className="text-xs">Athlete</TabsTrigger>
+                <TabsTrigger value="parent" className="text-xs">Parent</TabsTrigger>
                 <TabsTrigger value="trainer" className="text-xs">Trainer</TabsTrigger>
                 <TabsTrigger value="coach" className="text-xs">Coach</TabsTrigger>
               </TabsList>
