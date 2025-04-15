@@ -9,7 +9,6 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { RoleSurveyDialog } from "./RoleSurveyDialog";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-
 export function WaitlistDialog({
   isOpen,
   onClose,
@@ -40,6 +39,7 @@ export function WaitlistDialog({
   const [showSurvey, setShowSurvey] = useState(false);
   const [waitlistId, setWaitlistId] = useState<string>("");
 
+  // Initialize the email when the dialog opens or initialEmail changes
   useEffect(() => {
     if (initialEmail) {
       setFormData(prev => ({
@@ -48,7 +48,6 @@ export function WaitlistDialog({
       }));
     }
   }, [initialEmail, isOpen]);
-
   const validateForm = () => {
     const errors: {
       [key: string]: string;
@@ -72,7 +71,6 @@ export function WaitlistDialog({
     setValidationErrors(errors);
     return Object.keys(errors).length === 0;
   };
-
   const checkUsernameAvailability = async (username: string) => {
     if (!username.trim()) {
       setUsernameStatus("empty");
@@ -87,7 +85,6 @@ export function WaitlistDialog({
       setUsernameStatus("error");
     }
   };
-
   const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const username = e.target.value.trim();
     setFormData({
@@ -99,7 +96,6 @@ export function WaitlistDialog({
     }, 500);
     return () => clearTimeout(timeoutId);
   };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setServerError(null);
@@ -169,7 +165,6 @@ export function WaitlistDialog({
       setIsSubmitting(false);
     }
   };
-
   const resetForm = () => {
     setFormData({
       name: "",
@@ -184,7 +179,6 @@ export function WaitlistDialog({
     setServerError(null);
     onClose();
   };
-
   const renderUsernameStatus = () => {
     if (usernameStatus === "empty" || !formData.username) {
       return null;
@@ -206,7 +200,6 @@ export function WaitlistDialog({
     }
     return null;
   };
-
   return <>
     <Dialog open={isOpen && !showSurvey} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[425px]">
@@ -233,30 +226,10 @@ export function WaitlistDialog({
               role: value
             })} className="w-full">
               <TabsList className="grid grid-cols-4 w-full">
-                <TabsTrigger 
-                  value="athlete" 
-                  className="text-xs bg-blue-500 hover:bg-blue-600 text-white" 
-                >
-                  Athlete
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="parent" 
-                  className="text-xs bg-green-500 hover:bg-green-600 text-white" 
-                >
-                  Parent
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="trainer" 
-                  className="text-xs bg-purple-500 hover:bg-purple-600 text-white" 
-                >
-                  Trainer
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="coach" 
-                  className="text-xs bg-orange-500 hover:bg-orange-600 text-white" 
-                >
-                  Coach
-                </TabsTrigger>
+                <TabsTrigger value="athlete" className="text-xs">Athlete</TabsTrigger>
+                <TabsTrigger value="parent" className="text-xs">Parent</TabsTrigger>
+                <TabsTrigger value="trainer" className="text-xs">Trainer</TabsTrigger>
+                <TabsTrigger value="coach" className="text-xs">Coach</TabsTrigger>
               </TabsList>
             </Tabs>
           </div>
