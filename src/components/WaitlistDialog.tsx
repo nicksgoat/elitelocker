@@ -1,4 +1,5 @@
-import { useState } from "react";
+
+import { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { Input } from "@/components/ui/input";
@@ -13,11 +14,13 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 export function WaitlistDialog({
   isOpen,
   onClose,
-  title = "Join the Waitlist"
+  title = "Join the Waitlist",
+  initialEmail = ""
 }: {
   isOpen: boolean;
   onClose: () => void;
   title?: string;
+  initialEmail?: string;
 }) {
   const [formData, setFormData] = useState({
     name: "",
@@ -33,6 +36,16 @@ export function WaitlistDialog({
   const { toast } = useToast();
   const [showSurvey, setShowSurvey] = useState(false);
   const [waitlistId, setWaitlistId] = useState<string>("");
+
+  // Initialize the email when the dialog opens or initialEmail changes
+  useEffect(() => {
+    if (initialEmail) {
+      setFormData(prev => ({
+        ...prev,
+        email: initialEmail
+      }));
+    }
+  }, [initialEmail, isOpen]);
 
   const validateForm = () => {
     const errors: {[key: string]: string} = {};
