@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Home, LayoutGrid, Users, Library } from "lucide-react";
+import { Home, LayoutGrid, Users, Library, Shield } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface AppFooterProps {
@@ -36,8 +36,12 @@ export const AppFooter: React.FC<AppFooterProps> = ({
           </a>
         </div>
         
-        <div className="border-t border-[#222] py-2 text-center">
-          <Link to="/privacy-policy" className="text-sm text-gray-400 hover:text-white transition-colors">
+        <div className="border-t border-[#222] py-3 text-center flex items-center justify-center">
+          <Link 
+            to="/privacy-policy" 
+            className="text-sm text-gray-400 hover:text-white transition-colors flex items-center gap-2"
+          >
+            <Shield size={16} className="text-gray-400" />
             Privacy Policy
           </Link>
         </div>
