@@ -1,7 +1,6 @@
 
 import React from "react";
-import { Home, LayoutGrid, Users, Library, Shield } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Home, LayoutGrid, Users, Library } from "lucide-react";
 
 interface AppFooterProps {
   openComingSoonDialog: () => void;
@@ -35,17 +34,8 @@ export const AppFooter: React.FC<AppFooterProps> = ({
             <Library size={20} />
           </a>
         </div>
-        
-        <div className="text-center py-4 border-t border-[#222]">
-          <Link 
-            to="/privacy-policy" 
-            className="text-gray-400 hover:text-white transition-colors duration-200 flex items-center justify-center"
-          >
-            <Shield size={16} className="mr-2" />
-            Privacy Policy
-          </Link>
-        </div>
       </div>
     </footer>
   );
 };
+
