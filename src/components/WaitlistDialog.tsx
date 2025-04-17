@@ -235,25 +235,25 @@ export function WaitlistDialog({
               <TabsList className="grid grid-cols-4 w-full">
                 <TabsTrigger 
                   value="athlete" 
-                  className="text-xs bg-blue-500 hover:bg-blue-600 text-white" 
+                  className="text-xs hover:bg-gray-100" 
                 >
                   Athlete
                 </TabsTrigger>
                 <TabsTrigger 
                   value="parent" 
-                  className="text-xs bg-green-500 hover:bg-green-600 text-white" 
+                  className="text-xs hover:bg-gray-100" 
                 >
                   Parent
                 </TabsTrigger>
                 <TabsTrigger 
                   value="trainer" 
-                  className="text-xs bg-purple-500 hover:bg-purple-600 text-white" 
+                  className="text-xs hover:bg-gray-100" 
                 >
                   Trainer
                 </TabsTrigger>
                 <TabsTrigger 
                   value="coach" 
-                  className="text-xs bg-orange-500 hover:bg-orange-600 text-white" 
+                  className="text-xs hover:bg-gray-100" 
                 >
                   Coach
                 </TabsTrigger>
