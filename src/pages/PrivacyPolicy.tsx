@@ -129,10 +129,10 @@ const PrivacyPolicy: React.FC = () => {
             If you have any questions or concerns about this Privacy Policy, 
             please contact us at: <br />
             <a 
-              href="mailto:EliteLockerteam@elitelocker.io" 
+              href="mailto:team@elitelocker.io" 
               className="text-primary hover:underline"
             >
-              EliteLockerteam@elitelocker.io
+              team@elitelocker.io
             </a>
           </p>
         </section>
