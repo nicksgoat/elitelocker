@@ -1,13 +1,31 @@
 
 import React from 'react';
-import { Shield } from 'lucide-react';
+import { Shield, ArrowLeft } from 'lucide-react';
+import { Button } from "@/components/ui/button";
+import { useNavigate } from 'react-router-dom';
 
 const PrivacyPolicy: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleGoBack = () => {
+    navigate('/');
+  };
+
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
-      <div className="flex items-center mb-6">
-        <Shield className="mr-3 text-primary" size={32} />
-        <h1 className="text-3xl font-bold tracking-tight">Elite Locker Privacy Policy</h1>
+      <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center">
+          <Button 
+            variant="outline" 
+            size="icon" 
+            onClick={handleGoBack} 
+            className="mr-4"
+          >
+            <ArrowLeft className="h-4 w-4" />
+          </Button>
+          <Shield className="mr-3 text-primary" size={32} />
+          <h1 className="text-3xl font-bold tracking-tight">Elite Locker Privacy Policy</h1>
+        </div>
       </div>
       
       <div className="space-y-6 text-gray-300">
@@ -124,3 +142,4 @@ const PrivacyPolicy: React.FC = () => {
 };
 
 export default PrivacyPolicy;
+
