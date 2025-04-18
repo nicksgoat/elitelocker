@@ -8,14 +8,23 @@ export interface UTMParams {
 }
 
 export const getUTMParams = (): UTMParams => {
-  if (typeof window === 'undefined') return {};
-  
-  const urlParams = new URLSearchParams(window.location.search);
-  return {
-    utm_source: urlParams.get('utm_source') || undefined,
-    utm_medium: urlParams.get('utm_medium') || undefined,
-    utm_campaign: urlParams.get('utm_campaign') || undefined,
-    utm_content: urlParams.get('utm_content') || undefined,
-    utm_term: urlParams.get('utm_term') || undefined,
-  };
+  try {
+    if (typeof window === 'undefined') return {};
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    const params = {
+      utm_source: urlParams.get('utm_source') || undefined,
+      utm_medium: urlParams.get('utm_medium') || undefined,
+      utm_campaign: urlParams.get('utm_campaign') || undefined,
+      utm_content: urlParams.get('utm_content') || undefined,
+      utm_term: urlParams.get('utm_term') || undefined,
+    };
+
+    console.log('Captured UTM params:', params);
+    return params;
+  } catch (error) {
+    console.error('Error getting UTM params:', error);
+    return {};
+  }
 };
+

@@ -44,6 +44,7 @@ export function WaitlistDialog({
 
   useEffect(() => {
     const params = getUTMParams();
+    console.log('Initial UTM data:', params);
     setUtmData(params);
     
     if (initialEmail) {
@@ -116,8 +117,14 @@ export function WaitlistDialog({
       });
       return;
     }
+
     try {
       setIsSubmitting(true);
+      
+      // Capture UTM params again at submission time to ensure we have the latest values
+      const currentUtmParams = getUTMParams();
+      console.log('UTM params at submission:', currentUtmParams);
+
       const { data: existingEmails, error: checkError } = await supabase
         .from('waitlist')
         .select('email')
@@ -148,11 +155,11 @@ export function WaitlistDialog({
             phone: formData.phone,
             role: formData.role
           },
-          utm_source: utmData.utm_source,
-          utm_medium: utmData.utm_medium,
-          utm_campaign: utmData.utm_campaign,
-          utm_content: utmData.utm_content,
-          utm_term: utmData.utm_term,
+          utm_source: currentUtmParams.utm_source,
+          utm_medium: currentUtmParams.utm_medium,
+          utm_campaign: currentUtmParams.utm_campaign,
+          utm_content: currentUtmParams.utm_content,
+          utm_term: currentUtmParams.utm_term,
           landing_page: window.location.pathname,
           referral_path: document.referrer
         }])
