@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { RoleSurveyDialog } from "./RoleSurveyDialog";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { getUTMParams, type UTMParams } from "@/utils/utm";
+import { getUTMParams, clearUTMParams, type UTMParams } from "@/utils/utm";
 
 export function WaitlistDialog({
   isOpen,
@@ -123,7 +123,6 @@ export function WaitlistDialog({
     try {
       setIsSubmitting(true);
       
-      // Use the current UTM params from state
       console.log('Submitting with UTM params:', utmData);
 
       const { data: existingEmails, error: checkError } = await supabase
@@ -172,7 +171,6 @@ export function WaitlistDialog({
         throw insertError;
       }
       console.log("Successfully added to waitlist:", formData.username);
-      // Clear UTM params after successful submission
       clearUTMParams();
       
       toast({
