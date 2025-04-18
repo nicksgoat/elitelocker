@@ -4260,30 +4260,51 @@ export type Database = {
           email: string
           id: string
           invited_at: string | null
+          landing_page: string | null
           metadata: Json | null
+          referral_path: string | null
           registered_at: string | null
           status: Database["public"]["Enums"]["waitlist_status"] | null
           username: string
+          utm_campaign: string | null
+          utm_content: string | null
+          utm_medium: string | null
+          utm_source: string | null
+          utm_term: string | null
         }
         Insert: {
           created_at?: string
           email: string
           id?: string
           invited_at?: string | null
+          landing_page?: string | null
           metadata?: Json | null
+          referral_path?: string | null
           registered_at?: string | null
           status?: Database["public"]["Enums"]["waitlist_status"] | null
           username: string
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
         }
         Update: {
           created_at?: string
           email?: string
           id?: string
           invited_at?: string | null
+          landing_page?: string | null
           metadata?: Json | null
+          referral_path?: string | null
           registered_at?: string | null
           status?: Database["public"]["Enums"]["waitlist_status"] | null
           username?: string
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
         }
         Relationships: []
       }
@@ -5108,6 +5129,16 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      waitlist_attribution_stats: {
+        Row: {
+          campaign: string | null
+          medium: string | null
+          signup_date: string | null
+          signups: number | null
+          source: string | null
+        }
+        Relationships: []
       }
     }
     Functions: {

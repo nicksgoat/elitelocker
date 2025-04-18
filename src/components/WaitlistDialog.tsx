@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { RoleSurveyDialog } from "./RoleSurveyDialog";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { getUTMParams, type UTMParams } from "@/utils/utm";
 
 export function WaitlistDialog({
   isOpen,
@@ -39,8 +40,12 @@ export function WaitlistDialog({
   } = useToast();
   const [showSurvey, setShowSurvey] = useState(false);
   const [waitlistId, setWaitlistId] = useState<string>("");
+  const [utmData, setUtmData] = useState<UTMParams>({});
 
   useEffect(() => {
+    const params = getUTMParams();
+    setUtmData(params);
+    
     if (initialEmail) {
       setFormData(prev => ({
         ...prev,
@@ -113,14 +118,16 @@ export function WaitlistDialog({
     }
     try {
       setIsSubmitting(true);
-      const {
-        data: existingEmails,
-        error: checkError
-      } = await supabase.from('waitlist').select('email').eq('email', formData.email);
+      const { data: existingEmails, error: checkError } = await supabase
+        .from('waitlist')
+        .select('email')
+        .eq('email', formData.email);
+
       if (checkError) {
         console.error("Error checking for existing email:", checkError);
         throw checkError;
       }
+
       if (existingEmails && existingEmails.length > 0) {
         toast({
           title: "Already registered",
@@ -130,18 +137,27 @@ export function WaitlistDialog({
         setIsSubmitting(false);
         return;
       }
-      const {
-        data: insertedData,
-        error: insertError
-      } = await supabase.from('waitlist').insert([{
-        email: formData.email,
-        username: formData.username,
-        metadata: {
-          name: formData.name,
-          phone: formData.phone,
-          role: formData.role
-        }
-      }]).select();
+
+      const { data: insertedData, error: insertError } = await supabase
+        .from('waitlist')
+        .insert([{
+          email: formData.email,
+          username: formData.username,
+          metadata: {
+            name: formData.name,
+            phone: formData.phone,
+            role: formData.role
+          },
+          utm_source: utmData.utm_source,
+          utm_medium: utmData.utm_medium,
+          utm_campaign: utmData.utm_campaign,
+          utm_content: utmData.utm_content,
+          utm_term: utmData.utm_term,
+          landing_page: window.location.pathname,
+          referral_path: document.referrer
+        }])
+        .select();
+
       if (insertError) {
         console.error("Error inserting to waitlist:", insertError);
         setServerError(insertError.message || "Failed to join the waitlist. Please try again.");
