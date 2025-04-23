@@ -169,13 +169,6 @@ const Index = () => {
                   </div>
                   
                   <div className="flex flex-col sm:flex-row justify-center items-center gap-3 mt-12 md:mt-16 max-w-md mx-auto">
-                    <Input
-                      type="email"
-                      placeholder="Enter your email"
-                      value={emailInput}
-                      onChange={(e) => setEmailInput(e.target.value)}
-                      className="w-full sm:w-auto flex-grow bg-white/90 text-black placeholder:text-gray-500"
-                    />
                     <button 
                       onClick={() => {
                         setIsDialogOpen(true);
@@ -250,13 +243,6 @@ const Index = () => {
             <p className="text-lg md:text-xl text-gray-300 mb-6 md:mb-8 max-w-2xl mx-auto font-medium">Your competition didn't.</p>
             
             <div className="flex flex-col sm:flex-row justify-center items-center gap-3 max-w-md mx-auto">
-              <Input
-                type="email"
-                placeholder="Enter your email"
-                value={emailInput}
-                onChange={(e) => setEmailInput(e.target.value)}
-                className="w-full sm:w-auto flex-grow bg-white/90 text-black placeholder:text-gray-500"
-              />
               <button 
                 onClick={() => {
                   setIsDialogOpen(true);
