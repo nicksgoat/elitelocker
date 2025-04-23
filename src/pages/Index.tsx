@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Users, Rocket, CalendarDays, TrendingUp, Trophy, Activity } from "lucide-react";
@@ -17,7 +16,7 @@ import { TopNavTabs } from "@/components/TopNavTabs";
 import { Input } from "@/components/ui/input";
 
 const Index = () => {
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(true);
   const [dialogTitle, setDialogTitle] = useState("Join the Waitlist");
   const [emailInput, setEmailInput] = useState("");
   const isMobile = useIsMobile();
@@ -124,7 +123,6 @@ const Index = () => {
       </section>
     </>;
 
-  // Function to render content based on active tab
   const renderTabContent = () => {
     switch (activeTab) {
       case "featured":
@@ -240,7 +238,6 @@ const Index = () => {
       <AppHeader openDialog={openDialog} openComingSoonDialog={openComingSoonDialog} />
       
       <main className="pt-16">
-        {/* Added TopNavTabs component for the main navigation */}
         <TopNavTabs activeTab={activeTab} setActiveTab={setActiveTab} />
         
         <div className="mt-0">
