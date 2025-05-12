@@ -252,9 +252,7 @@ const LeBlanc = () => {
             }} transition={{
               duration: 0.5,
               delay: 0.1
-            }} className="text-xl text-gray-300 max-w-2xl mx-auto">
-                Experience the difference with our comprehensive training tools
-              </motion.p>
+            }} className="text-xl text-gray-300 max-w-2xl mx-auto">Experience the difference with our comprehensive offering</motion.p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
