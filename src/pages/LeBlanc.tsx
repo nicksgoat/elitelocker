@@ -130,9 +130,7 @@ const LeBlanc = () => {
               duration: 0.6
             }} className="text-left">
                 <p className="text-lg md:text-xl text-gray-300 uppercase tracking-wider mb-1 font-medium">CRAIG LEBLANC</p>
-                <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 md:mb-6">
-                  LeBlanc Athletes
-                </h1>
+                <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 md:mb-6">now live</h1>
                 
                 <div className="h-[4.5em] overflow-hidden mb-6">
                   <h2 className="sm:text-3xl md:text-5xl font-bold text-4xl">
