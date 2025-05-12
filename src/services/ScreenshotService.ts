@@ -1,49 +1,54 @@
 
+/**
+ * ScreenshotService.ts
+ * 
+ * This service is responsible for retrieving screenshots for SEO purposes.
+ * It interfaces with our Supabase storage to get screenshots of pages.
+ */
+
 import { supabase } from '@/integrations/supabase/client';
 
-/**
- * Service for handling automated screenshots for SEO purposes
- */
-export const ScreenshotService = {
-  /**
-   * Generate or retrieve a screenshot for a specific page
-   * @param pagePath The page path to screenshot
-   * @returns URL to the screenshot
-   */
-  async getScreenshotUrl(pagePath: string): Promise<string> {
-    // Remove leading slash if present
-    const normalizedPath = pagePath.startsWith('/') ? pagePath.substring(1) : pagePath;
-    
-    // Format screenshot filename
-    const screenshotFilename = `${normalizedPath || 'home'}-desktop.png`;
-    const screenshotBucket = 'screenshots';
-    const screenshotPath = `${screenshotFilename}`;
-    
-    try {
-      // Check if screenshot already exists
-      const { data: existingFile } = await supabase.storage
-        .from(screenshotBucket)
-        .getPublicUrl(screenshotPath);
-      
-      if (existingFile) {
-        return existingFile.publicUrl;
-      }
-      
-      // If we reach here, screenshot doesn't exist yet
-      // For now, return default image
-      return "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/logos/leblanc/main%20logo/Screenshot_2025-05-12_100332-removebg-preview.png";
-      
-      // TODO: In the future, implement actual screenshot capture
-      // This would require a server-side component or external service
-    } catch (error) {
-      console.error('Error getting screenshot:', error);
-      // Return default image on error
-      return "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/logos/leblanc/main%20logo/Screenshot_2025-05-12_100332-removebg-preview.png";
-    }
-  }
-};
+// Base URL for screenshots in Supabase storage
+const SCREENSHOTS_BUCKET = 'screenshots';
 
-// Export a function to use in API routes
-export async function getScreenshot(path: string) {
-  return ScreenshotService.getScreenshotUrl(path);
+/**
+ * Get a screenshot for a specific page path
+ * @param path The path of the page to get a screenshot for (e.g., '/leblanc')
+ * @returns URL to the screenshot image
+ */
+export async function getScreenshot(path: string): Promise<string> {
+  // Clean the path to create a valid filename
+  const cleanPath = path.replace(/^\/?|\/?$/g, ''); // Remove leading/trailing slashes
+  const filename = cleanPath || 'index'; // Default to 'index' for home page
+  
+  try {
+    // First check if screenshot exists in Supabase storage
+    const { data: existingFile, error: checkError } = await supabase
+      .storage
+      .from(SCREENSHOTS_BUCKET)
+      .list('', {
+        search: `${filename}.png`
+      });
+    
+    if (checkError) {
+      console.error('Error checking for screenshot:', checkError);
+      throw new Error('Failed to check for screenshot');
+    }
+    
+    // If screenshot exists, return its URL
+    if (existingFile && existingFile.length > 0) {
+      const { data: { publicUrl } } = supabase
+        .storage
+        .from(SCREENSHOTS_BUCKET)
+        .getPublicUrl(`${filename}.png`);
+      
+      return publicUrl;
+    }
+    
+    // If no screenshot exists, return a fallback image URL
+    return 'https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/logos/leblanc/main%20logo/Screenshot_2025-05-12_100332-removebg-preview.png';
+  } catch (error) {
+    console.error('Error fetching screenshot:', error);
+    return 'https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/logos/leblanc/main%20logo/Screenshot_2025-05-12_100332-removebg-preview.png';
+  }
 }

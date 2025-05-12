@@ -4262,6 +4262,7 @@ export type Database = {
           invited_at: string | null
           landing_page: string | null
           metadata: Json | null
+          referral_code: string | null
           referral_path: string | null
           registered_at: string | null
           status: Database["public"]["Enums"]["waitlist_status"] | null
@@ -4279,6 +4280,7 @@ export type Database = {
           invited_at?: string | null
           landing_page?: string | null
           metadata?: Json | null
+          referral_code?: string | null
           referral_path?: string | null
           registered_at?: string | null
           status?: Database["public"]["Enums"]["waitlist_status"] | null
@@ -4296,6 +4298,7 @@ export type Database = {
           invited_at?: string | null
           landing_page?: string | null
           metadata?: Json | null
+          referral_code?: string | null
           referral_path?: string | null
           registered_at?: string | null
           status?: Database["public"]["Enums"]["waitlist_status"] | null
@@ -5129,6 +5132,15 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      referral_metrics: {
+        Row: {
+          first_signup: string | null
+          latest_signup: string | null
+          referral_code: string | null
+          signup_count: number | null
+        }
+        Relationships: []
       }
       waitlist_attribution_stats: {
         Row: {
