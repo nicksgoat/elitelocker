@@ -67,20 +67,20 @@ const LeBlanc = () => {
   }];
   
   const whyChooseUs = [{
-    title: "Proven Results",
-    description: "Our athletes see measurable improvements within weeks",
+    title: "Biomechanical Efficiency and Movement Mastery",
+    description: "Our training is designed to create understanding and fluidity through movement, ensuring every action is intentional and effective.",
     icon: <Check className="h-6 w-6 text-primary" />
   }, {
-    title: "Elite Community",
-    description: "Join a network of dedicated athletes pushing each other to excel",
+    title: "Expert Guidance with Precision and Purpose",
+    description: "Our team of experts is deeply committed to their craft, bringing a detail-oriented approach to every training session.",
     icon: <Users className="h-6 w-6 text-primary" />
   }, {
-    title: "Cutting-Edge Technology",
-    description: "Access the latest in sports performance technology",
+    title: "Your Path to Becoming the Best",
+    description: "At 2 LIVE CULTURE, we don’t just train athletes—we build champions. Our holistic approach ensures that every athlete is given the attention, guidance, and expertise they need to reach their highest potential.",
     icon: <Zap className="h-6 w-6 text-primary" />
   }, {
-    title: "Professional Support",
-    description: "Get help whenever you need it from our team of experts",
+    title: "Sharpening Skills, Perfecting Performance",
+    description: "At 2 LIVE CULTURE, our mission is clear: to refine and elevate the skills of quarterbacks, wide receivers, running backs, and defensive backs. We believe that details matter.",
     icon: <Shield className="h-6 w-6 text-primary" />
   }];
   
