@@ -11,6 +11,7 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/
 import { Progress } from "@/components/ui/progress";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Toaster } from "@/components/ui/toaster";
+import NFLLogo from "@/assets/logos/nfl-logo";
 
 const LeBlanc = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -196,7 +197,7 @@ const LeBlanc = () => {
                 transition={{ delay: 0.3 }}
                 className="h-12"
               >
-                <img src={nflLogo} alt="NFL" className="h-full w-auto" />
+                <NFLLogo />
               </motion.div>
               <motion.div 
                 initial={{ opacity: 0 }}
