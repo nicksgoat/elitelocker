@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { Progress } from "@/components/ui/progress";
 import { useIsMobile } from "@/hooks/use-mobile";
+
 const LeBlanc = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [dialogTitle, setDialogTitle] = useState("Join LeBlanc's Waitlist");
@@ -147,21 +148,18 @@ const LeBlanc = () => {
                   </h2>
                 </div>
                 
-                
-                
-                <div className="flex flex-wrap gap-4 mb-6">
-                  
-                  
-                  
-                </div>
-                
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button onClick={openDialog} className="metal-gradient text-white px-8 py-4 rounded-md text-lg font-bold hover:opacity-90 transition-opacity inline-flex items-center justify-center group">
-                    Join Waitlist
-                    <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                  
-                  
+                  <div className="w-full md:w-auto">
+                    <Button 
+                      onClick={openDialog} 
+                      variant="waitlist" 
+                      size="waitlist" 
+                      className="flex items-center justify-center group fixed-size-button"
+                    >
+                      Join Waitlist
+                      <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </div>
                 </div>
                 
                 <div className="mt-6 text-sm text-gray-400">
