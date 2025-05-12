@@ -10,20 +10,25 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { Progress } from "@/components/ui/progress";
 import { useIsMobile } from "@/hooks/use-mobile";
+
 const LeBlanc = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [dialogTitle, setDialogTitle] = useState("Join LeBlanc's Waitlist");
   const [videoLoaded, setVideoLoaded] = useState(false);
   const isMobile = useIsMobile();
+  
   const typingWords = ["ATHLETES FIRST", "BETTER TRAINING", "PROVEN RESULTS", "COMPETITIVE ADVANTAGE"];
+  
   const openDialog = () => {
     setDialogTitle("Join LeBlanc's Waitlist");
     setIsDialogOpen(true);
   };
+  
   const openComingSoonDialog = () => {
     setDialogTitle("Coming soon...");
     setIsDialogOpen(true);
   };
+  
   useEffect(() => {
     const videoId = isMobile ? "leblanc-mobile-video" : "leblanc-desktop-video";
     const video = document.getElementById(videoId) as HTMLVideoElement;
@@ -37,6 +42,7 @@ const LeBlanc = () => {
   // Video URLs for desktop and mobile
   const desktopVideoUrl = "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/videos/athlete_training.mp4";
   const mobileVideoUrl = "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/videos/athlete_training.mp4";
+  
   const features = [{
     title: "Advanced Analytics",
     description: "Track your progress with detailed analytics and visualizations",
@@ -53,6 +59,7 @@ const LeBlanc = () => {
     icon: <Zap className="h-6 w-6 text-primary" />,
     image: "/placeholder.svg"
   }];
+  
   const whyChooseUs = [{
     title: "Proven Results",
     description: "Our athletes see measurable improvements within weeks",
@@ -70,6 +77,7 @@ const LeBlanc = () => {
     description: "Get help whenever you need it from our team of experts",
     icon: <Shield className="h-6 w-6 text-primary" />
   }];
+  
   const faqs = [{
     question: "How soon can I expect results?",
     answer: "Most athletes see measurable improvements within 2-3 weeks of consistent training with our program."
@@ -83,6 +91,7 @@ const LeBlanc = () => {
     question: "How does the waitlist work?",
     answer: "Join our waitlist to be among the first to gain access when we launch. Early waitlist members receive exclusive bonuses."
   }];
+  
   const testimonials = [{
     name: "Khyra B.",
     role: "Parent",
@@ -99,6 +108,7 @@ const LeBlanc = () => {
     content: "Best to do it, ton of opportunities and a loving community and brotherhood",
     rating: 5
   }];
+  
   return <div className="min-h-screen w-full overflow-x-hidden bg-background">
       <WaitlistDialog isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)} title={dialogTitle} sourcePage="leblanc" />
       
@@ -226,27 +236,37 @@ const LeBlanc = () => {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {features.map((feature, index) => <motion.div key={feature.title} initial={{
-              opacity: 0,
-              y: 20
-            }} whileInView={{
-              opacity: 1,
-              y: 0
-            }} viewport={{
-              once: true
-            }} transition={{
-              duration: 0.5,
-              delay: index * 0.1 + 0.2
-            }} className="bg-black/50 border border-white/10 rounded-xl p-6 hover:bg-white/5 transition-colors">
+              {features.map((feature, index) => (
+                <motion.div 
+                  key={feature.title} 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
+                  className="bg-black/50 border border-white/10 rounded-xl p-6 hover:bg-white/5 transition-colors"
+                >
                   <div className="flex items-center mb-4">
                     {feature.icon}
                     <h3 className="text-xl font-bold ml-2">{feature.title}</h3>
                   </div>
                   <p className="text-gray-300 mb-6">{feature.description}</p>
                   <div className="aspect-[16/9] rounded-lg overflow-hidden bg-black/40 flex items-center justify-center">
-                    <p className="text-gray-400">Feature Preview</p>
+                    {feature.image ? (
+                      <img 
+                        src={feature.image} 
+                        alt={feature.title}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          console.error(`Error loading image for ${feature.title}:`, e);
+                          e.currentTarget.src = "/placeholder.svg";
+                        }}
+                      />
+                    ) : (
+                      <p className="text-gray-400">Feature Preview</p>
+                    )}
                   </div>
-                </motion.div>)}
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
@@ -468,4 +488,5 @@ const LeBlanc = () => {
       <AppFooter openComingSoonDialog={openComingSoonDialog} />
     </div>;
 };
+
 export default LeBlanc;
