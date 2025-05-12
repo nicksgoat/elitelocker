@@ -12,6 +12,7 @@ import { Progress } from "@/components/ui/progress";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Toaster } from "@/components/ui/toaster";
 import NFLLogo from "@/assets/logos/nfl-logo";
+import { LogoDisplay } from "@/components/LogoDisplay";
 
 const LeBlanc = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -111,6 +112,30 @@ const LeBlanc = () => {
     rating: 5
   }];
   
+  // Logos data from Supabase
+  const logos = [
+    {
+      url: "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/logos/leblanc/nfl-logo.png",
+      alt: "NFL Logo",
+      delay: 0.3
+    },
+    {
+      url: "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/logos/leblanc/ncaa-football-logo.png",
+      alt: "NCAA Football Logo",
+      delay: 0.4
+    },
+    {
+      url: "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/logos/leblanc/ua-logo.png",
+      alt: "Under Armour Logo",
+      delay: 0.5
+    },
+    {
+      url: "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/logos/leblanc/nike-logo.png",
+      alt: "Nike Logo",
+      delay: 0.6
+    }
+  ];
+
   return <div className="min-h-screen w-full overflow-x-hidden bg-background">
       <WaitlistDialog isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)} title={dialogTitle} sourcePage="leblanc" />
       
@@ -191,22 +216,14 @@ const LeBlanc = () => {
           <div className="container mx-auto px-4">
             <p className="text-center text-sm text-gray-400 mb-6">TRUSTED BY ELITE ATHLETES FROM</p>
             <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
-              <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.3 }}
-                className="h-12"
-              >
-                <NFLLogo />
-              </motion.div>
-              <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.4 }}
-                className="text-white font-bold text-xl"
-              >
-                NCAA Football
-              </motion.div>
+              {logos.map((logo, index) => (
+                <LogoDisplay 
+                  key={index}
+                  logoUrl={logo.url}
+                  alt={logo.alt}
+                  delay={logo.delay}
+                />
+              ))}
             </div>
           </div>
         </section>
