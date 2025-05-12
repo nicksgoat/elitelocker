@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
@@ -15,12 +16,14 @@ export function WaitlistDialog({
   isOpen,
   onClose,
   title = "Join the Waitlist",
-  initialEmail = ""
+  initialEmail = "",
+  sourcePage = ""
 }: {
   isOpen: boolean;
   onClose: () => void;
   title?: string;
   initialEmail?: string;
+  sourcePage?: string;
 }) {
   const [formData, setFormData] = useState({
     name: "",
@@ -153,7 +156,8 @@ export function WaitlistDialog({
           metadata: {
             name: formData.name,
             phone: formData.phone,
-            role: formData.role
+            role: formData.role,
+            source_page: sourcePage || 'index'
           },
           utm_source: utmData.utm_source,
           utm_medium: utmData.utm_medium,

@@ -226,6 +226,7 @@ const Index = () => {
         onClose={() => setIsDialogOpen(false)} 
         title={dialogTitle} 
         initialEmail={emailInput}
+        sourcePage="index"
       />
       
       <AppHeader openDialog={openDialog} openComingSoonDialog={openComingSoonDialog} />
