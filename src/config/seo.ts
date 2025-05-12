@@ -21,13 +21,13 @@ export const seoConfigs: SeoConfigs = {
   },
   leblanc: {
     title: "Craig LeBlanc | Elite Training Program",
-    description: "Join Craig LeBlanc's elite training program for football players, featuring quality coaching, personalized training, and proven results.",
+    description: "You've been invited to Elite Locker by Craig LeBlanc.",
     keywords: "Craig LeBlanc, football training, elite athletes, quarterback training, NFL, training program",
     structuredData: {
       "@context": "https://schema.org",
       "@type": "SportsTeam",
       "name": "LeBlanc Elite Training",
-      "description": "Elite training program for football players.",
+      "description": "You've been invited to Elite Locker by Craig LeBlanc.",
       "sport": "Football",
       "coach": {
         "@type": "Person",
