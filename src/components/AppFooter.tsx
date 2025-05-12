@@ -17,7 +17,7 @@ export const AppFooter: React.FC<AppFooterProps> = ({
   return (
     <footer className="app-footer">
       <div className="container mx-auto px-0">
-        <div className="grid grid-cols-4 py-[19px] bg-[transparen] bg-transparent">
+        <div className="grid grid-cols-4 py-4 bg-transparent">
           <a href="/" onClick={handleFooterClick} className="footer-item active">
             <Home size={20} />
           </a>
@@ -38,4 +38,3 @@ export const AppFooter: React.FC<AppFooterProps> = ({
     </footer>
   );
 };
-
