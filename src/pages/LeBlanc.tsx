@@ -130,12 +130,12 @@ const LeBlanc = () => {
       delay: 0.4
     },
     {
-      url: "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/logos/leblanc/723bd63df8c99b52946eea1062428aef.png",
+      url: "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/logos/leblanc/372a206f3bd3baf1cc2a1ae666c66eee.png",
       alt: "Under Armour Logo",
       delay: 0.5
     },
     {
-      url: "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/logos/leblanc/d65d6ce8381eb833ce07cebf7ae43af5.png",
+      url: "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/logos/leblanc/2293a3f97b0ef8e032e3c0fbb25a82c5.png",
       alt: "Nike Logo",
       delay: 0.6
     }
