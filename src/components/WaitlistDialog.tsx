@@ -349,13 +349,27 @@ export function WaitlistDialog({
             <p className="text-xs text-gray-500 mt-1">Your username will be used to identify you on the platform.</p>
           </div>
           
-          {/* Hidden referral code field (auto-populated) */}
-          <Input 
-            type="hidden" 
-            id="referralCode" 
-            name="referralCode" 
-            value={formData.referralCode} 
-          />
+          {/* Referral code field - visible now */}
+          <div>
+            <Label htmlFor="referralCode" className="block text-sm font-medium mb-1">
+              Referral Code
+            </Label>
+            <Input 
+              id="referralCode" 
+              type="text" 
+              placeholder="Enter referral code (if any)"
+              value={formData.referralCode} 
+              onChange={(e) => setFormData({
+                ...formData,
+                referralCode: e.target.value
+              })}
+              className="text-black bg-zinc-50"
+              disabled={isSubmitting} 
+            />
+            {formData.referralCode && (
+              <p className="text-xs text-green-500 mt-1">Referral code applied!</p>
+            )}
+          </div>
           
           <Button type="submit" disabled={isSubmitting} className="w-full text-white py-3 rounded-md font-semibold transition-colors bg-zinc-500 hover:bg-zinc-400">
             {isSubmitting ? <>
