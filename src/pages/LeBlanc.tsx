@@ -324,7 +324,7 @@ const LeBlanc = () => {
             }} transition={{
               duration: 0.5
             }} className="text-3xl md:text-4xl font-bold mb-4">
-                Why Choose LeBlanc
+                Why Join
               </motion.h2>
               <motion.p initial={{
               opacity: 0,
@@ -338,7 +338,7 @@ const LeBlanc = () => {
               duration: 0.5,
               delay: 0.1
             }} className="text-xl text-gray-300 max-w-2xl mx-auto">
-                We're not just another training program. We're a revolution in athletic development.
+                A Journey of Faith, Family & Football
               </motion.p>
             </div>
             
@@ -394,7 +394,7 @@ const LeBlanc = () => {
               duration: 0.5,
               delay: 0.1
             }} className="text-xl text-gray-300 max-w-2xl mx-auto">
-                Real results from real athletes using our program
+                Testimonials: The 2 Live Impact
               </motion.p>
             </div>
             
@@ -453,7 +453,7 @@ const LeBlanc = () => {
               duration: 0.5,
               delay: 0.1
             }} className="text-xl text-gray-300 max-w-2xl mx-auto">
-                Get answers to common questions about the LeBlanc program
+                Get answers to common questions
               </motion.p>
             </div>
             
