@@ -84,24 +84,19 @@ const LeBlanc = () => {
     answer: "Join our waitlist to be among the first to gain access when we launch. Early waitlist members receive exclusive bonuses."
   }];
   const testimonials = [{
-    name: "Michael T.",
-    role: "College Athlete",
-    content: "LeBlanc's training program transformed my performance. I've never been in better shape.",
+    name: "Khyra B.",
+    role: "Parent",
+    content: "2 Live has been one of the greatest blessings for my family, specifically my two oldest boys. They have grown leaps and bounds since taking lessons with Craig and it has shown on the field in big ways. 2 Live is also such a great community of people who truly care and are always there for you. Happy to be part of the 2 Live family!",
     rating: 5
   }, {
-    name: "Sarah L.",
-    role: "Professional Runner",
-    content: "The personalized approach makes all the difference. My recovery time has improved dramatically.",
+    name: "Brandon L.",
+    role: "Athlete",
+    content: "2 Live Culture is the epitome of brotherhood, selflessness, & surrounding yourself with people who all have the same vision & dreams.",
     rating: 5
   }, {
-    name: "Jason K.",
+    name: "Ricky B.",
     role: "High School Coach",
-    content: "I've implemented LeBlanc's techniques with my team and seen incredible results across the board.",
-    rating: 5
-  }, {
-    name: "Emma W.",
-    role: "Competitive Swimmer",
-    content: "The analytics helped me identify weaknesses in my technique I never knew existed.",
+    content: "Best to do it, ton of opportunities and a loving community and brotherhood",
     rating: 5
   }];
   return <div className="min-h-screen w-full overflow-x-hidden bg-background">
