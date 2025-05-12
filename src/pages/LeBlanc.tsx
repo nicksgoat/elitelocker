@@ -10,25 +10,20 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { Progress } from "@/components/ui/progress";
 import { useIsMobile } from "@/hooks/use-mobile";
-
 const LeBlanc = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [dialogTitle, setDialogTitle] = useState("Join LeBlanc's Waitlist");
   const [videoLoaded, setVideoLoaded] = useState(false);
   const isMobile = useIsMobile();
-  
   const typingWords = ["ATHLETES FIRST", "BETTER TRAINING", "PROVEN RESULTS", "COMPETITIVE ADVANTAGE"];
-  
   const openDialog = () => {
     setDialogTitle("Join LeBlanc's Waitlist");
     setIsDialogOpen(true);
   };
-  
   const openComingSoonDialog = () => {
     setDialogTitle("Coming soon...");
     setIsDialogOpen(true);
   };
-  
   useEffect(() => {
     const videoId = isMobile ? "leblanc-mobile-video" : "leblanc-desktop-video";
     const video = document.getElementById(videoId) as HTMLVideoElement;
@@ -38,11 +33,10 @@ const LeBlanc = () => {
       return () => video.removeEventListener('loadeddata', handleVideoLoaded);
     }
   }, [isMobile]);
-  
+
   // Video URLs for desktop and mobile
   const desktopVideoUrl = "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/videos/athlete_training.mp4";
   const mobileVideoUrl = "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/videos/athlete_training.mp4";
-  
   const features = [{
     title: "Advanced Analytics",
     description: "Track your progress with detailed analytics and visualizations",
@@ -59,7 +53,6 @@ const LeBlanc = () => {
     icon: <Zap className="h-6 w-6 text-primary" />,
     image: "/placeholder.svg"
   }];
-  
   const whyChooseUs = [{
     title: "Proven Results",
     description: "Our athletes see measurable improvements within weeks",
@@ -77,7 +70,6 @@ const LeBlanc = () => {
     description: "Get help whenever you need it from our team of experts",
     icon: <Shield className="h-6 w-6 text-primary" />
   }];
-  
   const faqs = [{
     question: "How soon can I expect results?",
     answer: "Most athletes see measurable improvements within 2-3 weeks of consistent training with our program."
@@ -91,7 +83,6 @@ const LeBlanc = () => {
     question: "How does the waitlist work?",
     answer: "Join our waitlist to be among the first to gain access when we launch. Early waitlist members receive exclusive bonuses."
   }];
-  
   const testimonials = [{
     name: "Michael T.",
     role: "College Athlete",
@@ -113,7 +104,6 @@ const LeBlanc = () => {
     content: "The analytics helped me identify weaknesses in my technique I never knew existed.",
     rating: 5
   }];
-  
   return <div className="min-h-screen w-full overflow-x-hidden bg-background">
       <WaitlistDialog isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)} title={dialogTitle} sourcePage="leblanc" />
       
@@ -128,31 +118,11 @@ const LeBlanc = () => {
               </div>}
             
             {/* Conditionally render desktop or mobile video */}
-            {!isMobile ? (
-              <video 
-                id="leblanc-desktop-video" 
-                autoPlay 
-                muted 
-                loop 
-                playsInline 
-                className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
-                src={desktopVideoUrl}
-              >
+            {!isMobile ? <video id="leblanc-desktop-video" autoPlay muted loop playsInline className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`} src={desktopVideoUrl}>
                 Your browser does not support the video tag.
-              </video>
-            ) : (
-              <video 
-                id="leblanc-mobile-video" 
-                autoPlay 
-                muted 
-                loop 
-                playsInline 
-                className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
-                src={mobileVideoUrl}
-              >
+              </video> : <video id="leblanc-mobile-video" autoPlay muted loop playsInline className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`} src={mobileVideoUrl}>
                 Your browser does not support the video tag.
-              </video>
-            )}
+              </video>}
             
             <div className="absolute inset-0 bg-black/50 z-10"></div>
           </div>
@@ -197,7 +167,7 @@ const LeBlanc = () => {
                 </div>
                 
                 <div className="mt-6 text-sm text-gray-400">
-                  <p>Join 500+ athletes already on our waitlist</p>
+                  <p className="">200+ athletes already on the waitlist</p>
                 </div>
               </motion.div>
             </div>
@@ -518,5 +488,4 @@ const LeBlanc = () => {
       <AppFooter openComingSoonDialog={openComingSoonDialog} />
     </div>;
 };
-
 export default LeBlanc;
