@@ -15,6 +15,7 @@ import NFLLogo from "@/assets/logos/nfl-logo";
 import { LogoDisplay } from "@/components/LogoDisplay";
 import { SEO } from "@/components/SEO";
 import { getSeoConfig } from "@/config/seo";
+
 const LeBlanc = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [dialogTitle, setDialogTitle] = useState("Join LeBlanc's Waitlist");
@@ -26,11 +27,17 @@ const LeBlanc = () => {
 
   // Custom SEO configurations (override any values from the default config)
   const customSeo = {
+    title: "Craig LeBlanc | Elite Training Program",
+    description: "You've been invited to Elite Locker by Craig LeBlanc.",
     ogUrl: window.location.href,
     pagePath: currentPath
   };
+  
+  // Use the specific "leblanc" key to get the right SEO config and merge with custom values
   const seoConfig = getSeoConfig("leblanc", customSeo);
+  
   const typingWords = ["ATHLETES FIRST", "BETTER TRAINING", "PROVEN RESULTS", "COMPETITIVE ADVANTAGE"];
+  
   const openDialog = () => {
     setDialogTitle("Join LeBlanc's Waitlist");
     setIsDialogOpen(true);
@@ -489,4 +496,5 @@ const LeBlanc = () => {
       <AppFooter openComingSoonDialog={openComingSoonDialog} />
     </div>;
 };
+
 export default LeBlanc;

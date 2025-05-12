@@ -31,7 +31,7 @@ export const SEO: React.FC<SEOProps> = ({
 }) => {
   // Determine what image to use for Apple platforms
   // If useAutomatedScreenshot is true, construct URL to screenshot service
-  const baseUrl = window.location.origin;
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : '';
   const screenshotServiceUrl = `${baseUrl}/api/screenshot?path=`;
   
   // Use auto screenshot if enabled and pagePath is provided
@@ -39,6 +39,9 @@ export const SEO: React.FC<SEOProps> = ({
     (useAutomatedScreenshot && pagePath ? 
       `${screenshotServiceUrl}${encodeURIComponent(pagePath)}` : 
       ogImage);
+  
+  // Log SEO details for debugging
+  console.log('SEO Props:', { title, description, ogImage, iosImage, pagePath });
   
   return (
     <Helmet>

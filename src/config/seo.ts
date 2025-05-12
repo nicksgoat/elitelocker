@@ -56,11 +56,20 @@ export const seoConfigs: SeoConfigs = {
 
 // Helper function to get SEO config based on page key
 export const getSeoConfig = (key: string, customizations?: Partial<SeoConfig>): SeoConfig => {
+  console.log(`Getting SEO config for key: ${key}`);
+  
   const baseConfig = seoConfigs[key] || {
     title: "Training App",
     description: "Join our training program for athletes of all levels."
   };
   
+  // Log the base config and customizations for debugging
+  console.log('Base SEO config:', baseConfig);
+  console.log('Customizations:', customizations);
+  
   // Merge customizations with base config if provided
-  return customizations ? { ...baseConfig, ...customizations } : baseConfig;
+  const finalConfig = customizations ? { ...baseConfig, ...customizations } : baseConfig;
+  console.log('Final SEO config:', finalConfig);
+  
+  return finalConfig;
 };
