@@ -44,20 +44,20 @@ const LeBlanc = () => {
   const mobileVideoUrl = "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/videos/athlete_training.mp4";
   
   const features = [{
-    title: "Advanced Analytics",
-    description: "Track your progress with detailed analytics and visualizations",
+    title: "Elevating Together",
+    description: "2 Live Culture, Where Passion Meets Purpose in the Game of Life",
     icon: <Trophy className="h-6 w-6 text-primary" />,
     image: "https://img1.wsimg.com/isteam/ip/3dedd2a6-edda-4a31-ac66-ca9cbafb9f90/Untitled%20design%20-%202024-11-21T100251.823.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true"
   }, {
-    title: "Personalized Training",
-    description: "Get customized workout plans tailored to your specific needs",
+    title: "Unyielding Brotherhood",
+    description: "The Extraordinary Bond Powering 2 Live Culture's Rise",
     icon: <Star className="h-6 w-6 text-primary" />,
-    image: "/placeholder.svg"
+    image: "https://img1.wsimg.com/isteam/ip/3dedd2a6-edda-4a31-ac66-ca9cbafb9f90/49F611F6-F187-4E01-B970-B4FDCFFE37C6.jpeg/:/cr=t:22.93%25,l:10.71%25,w:89.29%25,h:66.97%25/rs=w:600,h:600,cg:true,m"
   }, {
-    title: "Expert Coaching",
-    description: "Learn from the best with guidance from experienced coaches",
+    title: "United in Success",
+    description: "Cultivating Personal Brands, Collective Growth at 2 Live Culture",
     icon: <Zap className="h-6 w-6 text-primary" />,
-    image: "/placeholder.svg"
+    image: "https://img1.wsimg.com/isteam/ip/3dedd2a6-edda-4a31-ac66-ca9cbafb9f90/10882AF8-8EB2-44FD-A40E-306E794F7243.jpeg/:/cr=t:18.35%25,l:0%25,w:100%25,h:66.79%25/rs=w:600,h:600,cg:true"
   }];
   
   const whyChooseUs = [{
