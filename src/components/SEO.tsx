@@ -11,7 +11,9 @@ export interface SEOProps {
   canonicalUrl?: string;
   structuredData?: Record<string, any>;
   noindex?: boolean;
-  appleImage?: string; // New prop for Apple-specific image
+  appleImage?: string; // Specific image for Apple platforms
+  useAutomatedScreenshot?: boolean; // Flag to use auto-generated screenshot
+  pagePath?: string; // Path of the current page for auto screenshots
 }
 
 export const SEO: React.FC<SEOProps> = ({
@@ -24,9 +26,19 @@ export const SEO: React.FC<SEOProps> = ({
   structuredData,
   noindex = false,
   appleImage, // Use this specific image for Apple platforms if provided
+  useAutomatedScreenshot = false,
+  pagePath,
 }) => {
-  // Use appleImage if provided, otherwise fall back to ogImage
-  const iosImage = appleImage || ogImage;
+  // Determine what image to use for Apple platforms
+  // If useAutomatedScreenshot is true, construct URL to screenshot service
+  const baseUrl = window.location.origin;
+  const screenshotServiceUrl = `${baseUrl}/api/screenshot?path=`;
+  
+  // Use auto screenshot if enabled and pagePath is provided
+  const iosImage = appleImage || 
+    (useAutomatedScreenshot && pagePath ? 
+      `${screenshotServiceUrl}${encodeURIComponent(pagePath)}` : 
+      ogImage);
   
   return (
     <Helmet>

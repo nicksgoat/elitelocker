@@ -22,9 +22,13 @@ const LeBlanc = () => {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const isMobile = useIsMobile();
   
+  // Get the current path for automated screenshots
+  const currentPath = window.location.pathname;
+  
   // Custom SEO configurations (override any values from the default config)
   const customSeo = {
-    ogUrl: window.location.href
+    ogUrl: window.location.href,
+    pagePath: currentPath
   };
   
   const seoConfig = getSeoConfig("leblanc", customSeo);
