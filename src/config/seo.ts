@@ -25,7 +25,8 @@ export const seoConfigs: SeoConfigs = {
     description: "You've been invited to Elite Locker by Craig LeBlanc.",
     keywords: "Craig LeBlanc, football training, elite athletes, quarterback training, NFL, training program",
     ogImage: "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/logos/leblanc/main%20logo/Screenshot_2025-05-12_100332-removebg-preview.png",
-    appleImage: "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/logos/leblanc/main%20logo/Screenshot_2025-05-12_100332-removebg-preview.png", // Using same image for now
+    // Using a desktop screenshot of the landing page for iMessage previews
+    appleImage: "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/screenshots/leblanc-landing-desktop.png", 
     structuredData: {
       "@context": "https://schema.org",
       "@type": "SportsTeam",

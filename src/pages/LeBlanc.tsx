@@ -24,7 +24,6 @@ const LeBlanc = () => {
   
   // Custom SEO configurations (override any values from the default config)
   const customSeo = {
-    ogImage: "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/logos/leblanc/main%20logo/Screenshot_2025-05-12_100332-removebg-preview.png",
     ogUrl: window.location.href
   };
   
