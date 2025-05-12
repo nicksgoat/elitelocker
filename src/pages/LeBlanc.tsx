@@ -41,7 +41,7 @@ const LeBlanc = () => {
     title: "Advanced Analytics",
     description: "Track your progress with detailed analytics and visualizations",
     icon: <Trophy className="h-6 w-6 text-primary" />,
-    image: "/placeholder.svg"
+    image: "https://img1.wsimg.com/isteam/ip/3dedd2a6-edda-4a31-ac66-ca9cbafb9f90/Untitled%20design%20-%202024-11-21T100251.823.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true"
   }, {
     title: "Personalized Training",
     description: "Get customized workout plans tailored to your specific needs",
