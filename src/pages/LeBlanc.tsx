@@ -46,6 +46,9 @@ const LeBlanc = () => {
   const desktopVideoUrl = "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/videos/athlete_training.mp4";
   const mobileVideoUrl = "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/videos/athlete_training.mp4";
   
+  // Main LeBlanc logo
+  const mainLogoUrl = "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/logos/leblanc/main%20logo/Screenshot_2025-05-12_100332-removebg-preview.png";
+  
   const features = [{
     title: "Elevating Together",
     description: "2 Live Culture, Where Passion Meets Purpose in the Game of Life",
@@ -209,8 +212,12 @@ const LeBlanc = () => {
             }} transition={{
               duration: 0.6,
               delay: 0.2
-            }} className="relative rounded-xl overflow-hidden border border-white/10">
-                
+            }} className="relative rounded-xl overflow-hidden">
+                <LogoDisplay 
+                  logoUrl={mainLogoUrl}
+                  alt="LeBlanc Main Logo"
+                  className="h-full max-h-[400px] w-auto mx-auto"
+                />
               </motion.div>
             </div>
           </div>
