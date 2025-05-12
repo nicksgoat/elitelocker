@@ -10,7 +10,6 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { Progress } from "@/components/ui/progress";
 import { useIsMobile } from "@/hooks/use-mobile";
-
 const LeBlanc = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [dialogTitle, setDialogTitle] = useState("Join LeBlanc's Waitlist");
@@ -150,12 +149,7 @@ const LeBlanc = () => {
                 
                 <div className="flex flex-col sm:flex-row gap-4">
                   <div className="w-full md:w-auto">
-                    <Button 
-                      onClick={openDialog} 
-                      variant="waitlist" 
-                      size="waitlist" 
-                      className="flex items-center justify-center group"
-                    >
+                    <Button onClick={openDialog} variant="waitlist" size="waitlist" className="flex items-center justify-center group">
                       JOIN WAITLIST 
                       <ArrowRight className="ml-1 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </Button>
