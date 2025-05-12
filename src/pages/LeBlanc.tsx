@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { Progress } from "@/components/ui/progress";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { Toaster } from "@/components/ui/toaster";
 
 const LeBlanc = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -189,15 +190,22 @@ const LeBlanc = () => {
           <div className="container mx-auto px-4">
             <p className="text-center text-sm text-gray-400 mb-6">TRUSTED BY ELITE ATHLETES FROM</p>
             <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
-              {['NFL', 'NCAA Football'].map((org, i) => <motion.div key={org} initial={{
-              opacity: 0
-            }} animate={{
-              opacity: 1
-            }} transition={{
-              delay: i * 0.1 + 0.3
-            }} className="text-gray-400 font-bold text-xl">
-                  {org}
-                </motion.div>)}
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3 }}
+                className="h-12"
+              >
+                <img src={nflLogo} alt="NFL" className="h-full w-auto" />
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4 }}
+                className="text-white font-bold text-xl"
+              >
+                NCAA Football
+              </motion.div>
             </div>
           </div>
         </section>
