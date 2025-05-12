@@ -30,7 +30,8 @@ export function WaitlistDialog({
     email: "",
     phone: "",
     role: "athlete",
-    username: ""
+    username: "",
+    referralCode: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [usernameStatus, setUsernameStatus] = useState<"available" | "unavailable" | "checking" | "empty" | "error">("empty");
@@ -38,12 +39,25 @@ export function WaitlistDialog({
     [key: string]: string;
   }>({});
   const [serverError, setServerError] = useState<string | null>(null);
-  const {
-    toast
-  } = useToast();
+  const { toast } = useToast();
   const [showSurvey, setShowSurvey] = useState(false);
   const [waitlistId, setWaitlistId] = useState<string>("");
   const [utmData, setUtmData] = useState<UTMParams>({});
+
+  // Extract referral code from URL path
+  useEffect(() => {
+    // Get the current path without leading slash
+    const path = window.location.pathname.substring(1);
+    
+    // If path exists and doesn't contain additional slashes (meaning it's a direct route)
+    if (path && !path.includes('/')) {
+      setFormData(prev => ({
+        ...prev,
+        referralCode: path
+      }));
+      console.log('Detected referral code from path:', path);
+    }
+  }, []);
 
   useEffect(() => {
     if (isOpen) {
@@ -153,6 +167,7 @@ export function WaitlistDialog({
         .insert([{
           email: formData.email,
           username: formData.username,
+          referral_code: formData.referralCode || null, // Store the referral code
           metadata: {
             name: formData.name,
             phone: formData.phone,
@@ -205,7 +220,8 @@ export function WaitlistDialog({
       email: "",
       phone: "",
       role: "athlete",
-      username: ""
+      username: "",
+      referralCode: ""
     });
     setShowSurvey(false);
     setWaitlistId("");
@@ -332,6 +348,15 @@ export function WaitlistDialog({
             {validationErrors.username && <p className="text-red-500 text-xs mt-1">{validationErrors.username}</p>}
             <p className="text-xs text-gray-500 mt-1">Your username will be used to identify you on the platform.</p>
           </div>
+          
+          {/* Hidden referral code field (auto-populated) */}
+          <Input 
+            type="hidden" 
+            id="referralCode" 
+            name="referralCode" 
+            value={formData.referralCode} 
+          />
+          
           <Button type="submit" disabled={isSubmitting} className="w-full text-white py-3 rounded-md font-semibold transition-colors bg-zinc-500 hover:bg-zinc-400">
             {isSubmitting ? <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
