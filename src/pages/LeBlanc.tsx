@@ -163,7 +163,7 @@ const LeBlanc = () => {
                 </div>
                 
                 <div className="mt-6 text-sm text-gray-400">
-                  <p className="">200+ athletes already on the waitlist</p>
+                  <p className=""><span className="font-bold text-white">200+</span> athletes already on the waitlist</p>
                 </div>
               </motion.div>
             </div>
