@@ -115,6 +115,11 @@ const LeBlanc = () => {
   // Logos data from Supabase
   const logos = [
     {
+      url: "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/logos/leblanc/d65d6ce8381eb833ce07cebf7ae43af5.png",
+      alt: "Elite Sports Logo",
+      delay: 0.2
+    },
+    {
       url: "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/logos/leblanc/nfl-logo.png",
       alt: "NFL Logo",
       delay: 0.3
