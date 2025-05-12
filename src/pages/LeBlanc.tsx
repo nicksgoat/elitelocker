@@ -120,22 +120,22 @@ const LeBlanc = () => {
       delay: 0.2
     },
     {
-      url: "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/logos/leblanc/nfl-logo.png",
+      url: "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/logos/leblanc/723bd63df8c99b52946eea1062428aef.png",
       alt: "NFL Logo",
       delay: 0.3
     },
     {
-      url: "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/logos/leblanc/ncaa-football-logo.png",
+      url: "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/logos/leblanc/2a8f7cc7ecccd60942290a29fa7344a3.png",
       alt: "NCAA Football Logo",
       delay: 0.4
     },
     {
-      url: "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/logos/leblanc/ua-logo.png",
+      url: "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/logos/leblanc/723bd63df8c99b52946eea1062428aef.png",
       alt: "Under Armour Logo",
       delay: 0.5
     },
     {
-      url: "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/logos/leblanc/nike-logo.png",
+      url: "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/logos/leblanc/d65d6ce8381eb833ce07cebf7ae43af5.png",
       alt: "Nike Logo",
       delay: 0.6
     }
