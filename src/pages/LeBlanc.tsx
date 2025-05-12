@@ -15,36 +15,30 @@ import NFLLogo from "@/assets/logos/nfl-logo";
 import { LogoDisplay } from "@/components/LogoDisplay";
 import { SEO } from "@/components/SEO";
 import { getSeoConfig } from "@/config/seo";
-
 const LeBlanc = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [dialogTitle, setDialogTitle] = useState("Join LeBlanc's Waitlist");
   const [videoLoaded, setVideoLoaded] = useState(false);
   const isMobile = useIsMobile();
-  
+
   // Get the current path for automated screenshots
   const currentPath = window.location.pathname;
-  
+
   // Custom SEO configurations (override any values from the default config)
   const customSeo = {
     ogUrl: window.location.href,
     pagePath: currentPath
   };
-  
   const seoConfig = getSeoConfig("leblanc", customSeo);
-  
   const typingWords = ["ATHLETES FIRST", "BETTER TRAINING", "PROVEN RESULTS", "COMPETITIVE ADVANTAGE"];
-  
   const openDialog = () => {
     setDialogTitle("Join LeBlanc's Waitlist");
     setIsDialogOpen(true);
   };
-  
   const openComingSoonDialog = () => {
     setDialogTitle("Coming soon...");
     setIsDialogOpen(true);
   };
-  
   useEffect(() => {
     const videoId = isMobile ? "leblanc-mobile-video" : "leblanc-desktop-video";
     const video = document.getElementById(videoId) as HTMLVideoElement;
@@ -58,10 +52,9 @@ const LeBlanc = () => {
   // Video URLs for desktop and mobile
   const desktopVideoUrl = "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/videos/athlete_training.mp4";
   const mobileVideoUrl = "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/videos/athlete_training.mp4";
-  
+
   // Main LeBlanc logo
   const mainLogoUrl = "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/logos/leblanc/main%20logo/Screenshot_2025-05-12_100332-removebg-preview.png";
-  
   const features = [{
     title: "Elevating Together",
     description: "2 Live Culture, Where Passion Meets Purpose in the Game of Life",
@@ -78,7 +71,6 @@ const LeBlanc = () => {
     icon: <Zap className="h-6 w-6 text-primary" />,
     image: "https://img1.wsimg.com/isteam/ip/3dedd2a6-edda-4a31-ac66-ca9cbafb9f90/10882AF8-8EB2-44FD-A40E-306E794F7243.jpeg/:/cr=t:18.35%25,l:0%25,w:100%25,h:66.79%25/rs=w:600,h:600,cg:true"
   }];
-  
   const whyChooseUs = [{
     title: "Biomechanical Efficiency and Movement Mastery",
     description: "Our training is designed to create understanding and fluidity through movement, ensuring every action is intentional and effective.",
@@ -96,7 +88,6 @@ const LeBlanc = () => {
     description: "At 2 LIVE CULTURE, our mission is clear: to refine and elevate the skills of quarterbacks, wide receivers, running backs, and defensive backs. We believe that details matter.",
     icon: <Shield className="h-6 w-6 text-primary" />
   }];
-  
   const faqs = [{
     question: "How soon can I expect results?",
     answer: "Most athletes see measurable improvements within 2-3 weeks of consistent training with our program."
@@ -110,7 +101,6 @@ const LeBlanc = () => {
     question: "How does the waitlist work?",
     answer: "Join our waitlist to be among the first to gain access when we launch. Early waitlist members receive exclusive bonuses."
   }];
-  
   const testimonials = [{
     name: "Khyra B.",
     role: "Parent",
@@ -127,38 +117,30 @@ const LeBlanc = () => {
     content: "Best to do it, ton of opportunities and a loving community and brotherhood",
     rating: 5
   }];
-  
-  // Logos data from Supabase
-  const logos = [
-    {
-      url: "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/logos/leblanc/d65d6ce8381eb833ce07cebf7ae43af5.png",
-      alt: "Elite Sports Logo",
-      delay: 0.2
-    },
-    {
-      url: "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/logos/leblanc/723bd63df8c99b52946eea1062428aef.png",
-      alt: "NFL Logo",
-      delay: 0.3
-    },
-    {
-      url: "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/logos/leblanc/2a8f7cc7ecccd60942290a29fa7344a3.png",
-      alt: "NCAA Football Logo",
-      delay: 0.4
-    },
-    {
-      url: "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/logos/leblanc/372a206f3bd3baf1cc2a1ae666c66eee.png",
-      alt: "Under Armour Logo",
-      delay: 0.5
-    },
-    {
-      url: "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/logos/leblanc/2293a3f97b0ef8e032e3c0fbb25a82c5.png",
-      alt: "Nike Logo",
-      delay: 0.6
-    }
-  ];
 
-  return (
-    <div className="min-h-screen w-full overflow-x-hidden bg-background">
+  // Logos data from Supabase
+  const logos = [{
+    url: "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/logos/leblanc/d65d6ce8381eb833ce07cebf7ae43af5.png",
+    alt: "Elite Sports Logo",
+    delay: 0.2
+  }, {
+    url: "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/logos/leblanc/723bd63df8c99b52946eea1062428aef.png",
+    alt: "NFL Logo",
+    delay: 0.3
+  }, {
+    url: "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/logos/leblanc/2a8f7cc7ecccd60942290a29fa7344a3.png",
+    alt: "NCAA Football Logo",
+    delay: 0.4
+  }, {
+    url: "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/logos/leblanc/372a206f3bd3baf1cc2a1ae666c66eee.png",
+    alt: "Under Armour Logo",
+    delay: 0.5
+  }, {
+    url: "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/logos/leblanc/2293a3f97b0ef8e032e3c0fbb25a82c5.png",
+    alt: "Nike Logo",
+    delay: 0.6
+  }];
+  return <div className="min-h-screen w-full overflow-x-hidden bg-background">
       <SEO {...seoConfig} />
       <WaitlistDialog isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)} title={dialogTitle} sourcePage="leblanc" />
       
@@ -228,11 +210,7 @@ const LeBlanc = () => {
               duration: 0.6,
               delay: 0.2
             }} className="relative rounded-xl overflow-hidden flex justify-center items-center p-4">
-                <LogoDisplay 
-                  logoUrl={mainLogoUrl}
-                  alt="LeBlanc Main Logo"
-                  className="w-full max-w-[400px]"
-                />
+                <LogoDisplay logoUrl={mainLogoUrl} alt="LeBlanc Main Logo" className="w-full max-w-[400px]" />
               </motion.div>
             </div>
           </div>
@@ -243,14 +221,7 @@ const LeBlanc = () => {
           <div className="container mx-auto px-4">
             <p className="text-center text-sm text-gray-400 mb-6">TRUSTED BY ELITE ATHLETES FROM</p>
             <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
-              {logos.map((logo, index) => (
-                <LogoDisplay 
-                  key={index}
-                  logoUrl={logo.url}
-                  alt={logo.alt}
-                  delay={logo.delay}
-                />
-              ))}
+              {logos.map((logo, index) => <LogoDisplay key={index} logoUrl={logo.url} alt={logo.alt} delay={logo.delay} />)}
             </div>
           </div>
         </section>
@@ -269,9 +240,7 @@ const LeBlanc = () => {
               once: true
             }} transition={{
               duration: 0.5
-            }} className="text-3xl md:text-4xl font-bold mb-4">
-                Features That Set Us Apart
-              </motion.h2>
+            }} className="text-3xl md:text-4xl font-bold mb-4">What Sets Us Apart</motion.h2>
               <motion.p initial={{
               opacity: 0,
               y: 20
@@ -289,37 +258,30 @@ const LeBlanc = () => {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {features.map((feature, index) => (
-                <motion.div 
-                  key={feature.title} 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
-                  className="bg-black/50 border border-white/10 rounded-xl p-6 hover:bg-white/5 transition-colors"
-                >
+              {features.map((feature, index) => <motion.div key={feature.title} initial={{
+              opacity: 0,
+              y: 20
+            }} whileInView={{
+              opacity: 1,
+              y: 0
+            }} viewport={{
+              once: true
+            }} transition={{
+              duration: 0.5,
+              delay: index * 0.1 + 0.2
+            }} className="bg-black/50 border border-white/10 rounded-xl p-6 hover:bg-white/5 transition-colors">
                   <div className="flex items-center mb-4">
                     {feature.icon}
                     <h3 className="text-xl font-bold ml-2">{feature.title}</h3>
                   </div>
                   <p className="text-gray-300 mb-6">{feature.description}</p>
                   <div className="aspect-[16/9] rounded-lg overflow-hidden bg-black/40 flex items-center justify-center">
-                    {feature.image ? (
-                      <img 
-                        src={feature.image} 
-                        alt={feature.title}
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                          console.error(`Error loading image for ${feature.title}:`, e);
-                          e.currentTarget.src = "/placeholder.svg";
-                        }}
-                      />
-                    ) : (
-                      <p className="text-gray-400">Feature Preview</p>
-                    )}
+                    {feature.image ? <img src={feature.image} alt={feature.title} className="w-full h-full object-cover" onError={e => {
+                  console.error(`Error loading image for ${feature.title}:`, e);
+                  e.currentTarget.src = "/placeholder.svg";
+                }} /> : <p className="text-gray-400">Feature Preview</p>}
                   </div>
-                </motion.div>
-              ))}
+                </motion.div>)}
             </div>
           </div>
         </section>
@@ -539,8 +501,6 @@ const LeBlanc = () => {
       </main>
       
       <AppFooter openComingSoonDialog={openComingSoonDialog} />
-    </div>
-  );
+    </div>;
 };
-
 export default LeBlanc;
