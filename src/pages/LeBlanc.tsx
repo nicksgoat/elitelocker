@@ -9,11 +9,13 @@ import { AthleteSection } from "@/components/AthleteSection";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { Progress } from "@/components/ui/progress";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const LeBlanc = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [dialogTitle, setDialogTitle] = useState("Join LeBlanc's Waitlist");
   const [videoLoaded, setVideoLoaded] = useState(false);
+  const isMobile = useIsMobile();
   
   const typingWords = ["ATHLETES FIRST", "BETTER TRAINING", "PROVEN RESULTS", "COMPETITIVE ADVANTAGE"];
   
@@ -28,16 +30,18 @@ const LeBlanc = () => {
   };
   
   useEffect(() => {
-    const video = document.getElementById("leblanc-video") as HTMLVideoElement;
+    const videoId = isMobile ? "leblanc-mobile-video" : "leblanc-desktop-video";
+    const video = document.getElementById(videoId) as HTMLVideoElement;
     if (video) {
       const handleVideoLoaded = () => setVideoLoaded(true);
       video.addEventListener('loadeddata', handleVideoLoaded);
       return () => video.removeEventListener('loadeddata', handleVideoLoaded);
     }
-  }, []);
+  }, [isMobile]);
   
-  // Updated video URL to use a different background video
-  const videoUrl = "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/videos/athlete_training.mp4";
+  // Video URLs for desktop and mobile
+  const desktopVideoUrl = "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/videos/athlete_training.mp4";
+  const mobileVideoUrl = "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/videos/athlete_training.mp4";
   
   const features = [{
     title: "Advanced Analytics",
@@ -123,9 +127,32 @@ const LeBlanc = () => {
                 <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
               </div>}
             
-            <video id="leblanc-video" autoPlay muted loop playsInline className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`} src={videoUrl}>
-              Your browser does not support the video tag.
-            </video>
+            {/* Conditionally render desktop or mobile video */}
+            {!isMobile ? (
+              <video 
+                id="leblanc-desktop-video" 
+                autoPlay 
+                muted 
+                loop 
+                playsInline 
+                className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
+                src={desktopVideoUrl}
+              >
+                Your browser does not support the video tag.
+              </video>
+            ) : (
+              <video 
+                id="leblanc-mobile-video" 
+                autoPlay 
+                muted 
+                loop 
+                playsInline 
+                className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
+                src={mobileVideoUrl}
+              >
+                Your browser does not support the video tag.
+              </video>
+            )}
             
             <div className="absolute inset-0 bg-black/50 z-10"></div>
           </div>
