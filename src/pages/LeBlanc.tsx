@@ -147,9 +147,7 @@ const LeBlanc = () => {
                   </h2>
                 </div>
                 
-                <p className="text-xl mb-8 text-gray-300">
-                  Join the exclusive training program that's transforming athletes around the world. Limited spots available.
-                </p>
+                
                 
                 <div className="flex flex-wrap gap-4 mb-6">
                   
@@ -158,7 +156,7 @@ const LeBlanc = () => {
                 </div>
                 
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button onClick={openDialog} className="metal-gradient text-white px-6 py-3 md:px-8 md:py-4 rounded-md text-base md:text-lg font-bold hover:opacity-90 transition-opacity inline-flex items-center justify-center group">
+                  <Button onClick={openDialog} className="metal-gradient text-white px-8 py-4 rounded-md text-lg font-bold hover:opacity-90 transition-opacity inline-flex items-center justify-center group">
                     Join Waitlist
                     <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
                   </Button>
@@ -183,12 +181,7 @@ const LeBlanc = () => {
               duration: 0.6,
               delay: 0.2
             }} className="relative rounded-xl overflow-hidden border border-white/10">
-                <div className="aspect-[4/3] bg-black/40 backdrop-blur flex items-center justify-center">
-                  <div className="text-center p-6">
-                    <h3 className="text-2xl font-bold mb-4">Preview Coming Soon</h3>
-                    <p className="text-gray-300">Be the first to see our revolutionary training platform</p>
-                  </div>
-                </div>
+                
               </motion.div>
             </div>
           </div>
