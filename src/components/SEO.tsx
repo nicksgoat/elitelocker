@@ -11,6 +11,7 @@ export interface SEOProps {
   canonicalUrl?: string;
   structuredData?: Record<string, any>;
   noindex?: boolean;
+  appleImage?: string; // New prop for Apple-specific image
 }
 
 export const SEO: React.FC<SEOProps> = ({
@@ -22,7 +23,11 @@ export const SEO: React.FC<SEOProps> = ({
   canonicalUrl,
   structuredData,
   noindex = false,
+  appleImage, // Use this specific image for Apple platforms if provided
 }) => {
+  // Use appleImage if provided, otherwise fall back to ogImage
+  const iosImage = appleImage || ogImage;
+  
   return (
     <Helmet>
       {/* Basic metadata */}
@@ -42,6 +47,19 @@ export const SEO: React.FC<SEOProps> = ({
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       {ogImage && <meta name="twitter:image" content={ogImage} />}
+      
+      {/* Apple-specific meta tags for iMessage */}
+      {iosImage && (
+        <>
+          <meta name="apple-mobile-web-app-title" content={title} />
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="630" />
+          <link rel="apple-touch-icon" href={iosImage} />
+          {/* Apple specific messaging preview */}
+          <meta name="apple-mobile-web-app-capable" content="yes" />
+          <meta property="al:ios:url" content={ogUrl} />
+        </>
+      )}
       
       {/* Canonical URL */}
       {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
