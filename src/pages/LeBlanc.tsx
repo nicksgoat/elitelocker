@@ -212,11 +212,11 @@ const LeBlanc = () => {
             }} transition={{
               duration: 0.6,
               delay: 0.2
-            }} className="relative rounded-xl overflow-hidden">
+            }} className="relative rounded-xl overflow-hidden flex justify-center items-center p-4">
                 <LogoDisplay 
                   logoUrl={mainLogoUrl}
                   alt="LeBlanc Main Logo"
-                  className="h-full max-h-[400px] w-auto mx-auto"
+                  className="w-full max-w-[400px]"
                 />
               </motion.div>
             </div>
