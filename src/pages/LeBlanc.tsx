@@ -190,7 +190,7 @@ const LeBlanc = () => {
           <div className="container mx-auto px-4">
             <p className="text-center text-sm text-gray-400 mb-6">TRUSTED BY ELITE ATHLETES FROM</p>
             <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
-              {['NBA', 'NFL', 'MLB', 'NHL', 'NCAA'].map((org, i) => <motion.div key={org} initial={{
+              {['NFL', 'NCAA Football'].map((org, i) => <motion.div key={org} initial={{
               opacity: 0
             }} animate={{
               opacity: 1
