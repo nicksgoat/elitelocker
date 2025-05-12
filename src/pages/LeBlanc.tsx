@@ -9,19 +9,24 @@ import { AthleteSection } from "@/components/AthleteSection";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { Progress } from "@/components/ui/progress";
+
 const LeBlanc = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [dialogTitle, setDialogTitle] = useState("Join LeBlanc's Waitlist");
   const [videoLoaded, setVideoLoaded] = useState(false);
+  
   const typingWords = ["ATHLETES FIRST", "BETTER TRAINING", "PROVEN RESULTS", "COMPETITIVE ADVANTAGE"];
+  
   const openDialog = () => {
     setDialogTitle("Join LeBlanc's Waitlist");
     setIsDialogOpen(true);
   };
+  
   const openComingSoonDialog = () => {
     setDialogTitle("Coming soon...");
     setIsDialogOpen(true);
   };
+  
   useEffect(() => {
     const video = document.getElementById("leblanc-video") as HTMLVideoElement;
     if (video) {
@@ -30,7 +35,10 @@ const LeBlanc = () => {
       return () => video.removeEventListener('loadeddata', handleVideoLoaded);
     }
   }, []);
-  const videoUrl = "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/videos/C6466_Proxy.mp4";
+  
+  // Updated video URL to use a different background video
+  const videoUrl = "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/videos/athlete_training.mp4";
+  
   const features = [{
     title: "Advanced Analytics",
     description: "Track your progress with detailed analytics and visualizations",
@@ -47,6 +55,7 @@ const LeBlanc = () => {
     icon: <Zap className="h-6 w-6 text-primary" />,
     image: "/placeholder.svg"
   }];
+  
   const whyChooseUs = [{
     title: "Proven Results",
     description: "Our athletes see measurable improvements within weeks",
@@ -64,6 +73,7 @@ const LeBlanc = () => {
     description: "Get help whenever you need it from our team of experts",
     icon: <Shield className="h-6 w-6 text-primary" />
   }];
+  
   const faqs = [{
     question: "How soon can I expect results?",
     answer: "Most athletes see measurable improvements within 2-3 weeks of consistent training with our program."
@@ -77,6 +87,7 @@ const LeBlanc = () => {
     question: "How does the waitlist work?",
     answer: "Join our waitlist to be among the first to gain access when we launch. Early waitlist members receive exclusive bonuses."
   }];
+  
   const testimonials = [{
     name: "Michael T.",
     role: "College Athlete",
@@ -98,6 +109,7 @@ const LeBlanc = () => {
     content: "The analytics helped me identify weaknesses in my technique I never knew existed.",
     rating: 5
   }];
+  
   return <div className="min-h-screen w-full overflow-x-hidden bg-background">
       <WaitlistDialog isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)} title={dialogTitle} sourcePage="leblanc" />
       
@@ -479,4 +491,5 @@ const LeBlanc = () => {
       <AppFooter openComingSoonDialog={openComingSoonDialog} />
     </div>;
 };
+
 export default LeBlanc;
