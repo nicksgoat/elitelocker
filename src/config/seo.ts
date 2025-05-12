@@ -1,4 +1,3 @@
-
 export interface SeoConfig {
   title: string;
   description: string;
@@ -22,6 +21,27 @@ export const seoConfigs: SeoConfigs = {
     keywords: "training, athletes, sports, fitness",
     useAutomatedScreenshot: true,
   },
+  // Partner pages have a standardized SEO config pattern 
+  // that can be programmatically built for any partner
+  partner: {
+    title: "{name} | Elite Training Program",
+    description: "You've been invited to Elite Locker by {name}.",
+    keywords: "{name}, training, elite athletes, training program",
+    ogImage: "{logoUrl}",
+    useAutomatedScreenshot: true,
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "{name} Training",
+      "description": "You've been invited to Elite Locker by {name}.",
+      "sport": "Sports",
+      "coach": {
+        "@type": "Person",
+        "name": "{name}"
+      }
+    }
+  },
+  // Keep existing specific partner configs for backward compatibility
   leblanc: {
     title: "Craig LeBlanc | Elite Training Program",
     description: "You've been invited to Elite Locker by Craig LeBlanc.",
@@ -70,6 +90,45 @@ export const getSeoConfig = (key: string, customizations?: Partial<SeoConfig>): 
   // Merge customizations with base config if provided
   const finalConfig = customizations ? { ...baseConfig, ...customizations } : baseConfig;
   console.log('Final SEO config:', finalConfig);
+  
+  return finalConfig;
+};
+
+// Helper function to get partner SEO config with placeholders replaced
+export const getPartnerSeoConfig = (partnerId: string, partnerData: any): SeoConfig => {
+  console.log(`Getting partner SEO config for: ${partnerId}`);
+  
+  // Try to use partner-specific config if it exists
+  if (seoConfigs[partnerId]) {
+    return getSeoConfig(partnerId);
+  }
+  
+  // Otherwise, use the generic partner template and replace placeholders
+  const baseConfig = { ...seoConfigs.partner };
+  
+  // Replace placeholders in strings with actual partner data
+  Object.keys(baseConfig).forEach(key => {
+    if (typeof baseConfig[key] === 'string') {
+      baseConfig[key] = baseConfig[key].replace('{name}', partnerData.name)
+                                      .replace('{logoUrl}', partnerData.mainLogoUrl);
+    } else if (key === 'structuredData' && baseConfig.structuredData) {
+      // Handle structured data separately (it's a nested object)
+      baseConfig.structuredData = JSON.parse(
+        JSON.stringify(baseConfig.structuredData)
+          .replace(/\{name\}/g, partnerData.name)
+      );
+    }
+  });
+  
+  // Add any additional customizations
+  const customizations = {
+    ogUrl: typeof window !== 'undefined' ? window.location.href : '',
+    pagePath: typeof window !== 'undefined' ? window.location.pathname : ''
+  };
+  
+  // Merge everything together
+  const finalConfig = { ...baseConfig, ...customizations };
+  console.log('Final partner SEO config:', finalConfig);
   
   return finalConfig;
 };

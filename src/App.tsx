@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -9,6 +8,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import LeBlanc from "./pages/LeBlanc";
+import PartnerPage from "./pages/PartnerPage";
 
 const queryClient = new QueryClient();
 
@@ -23,7 +23,13 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              
+              {/* Existing hardcoded partner page for backward compatibility */}
               <Route path="/leblanc" element={<LeBlanc />} />
+              
+              {/* New dynamic partner route */}
+              <Route path="/partner/:partnerId" element={<PartnerPage />} />
+              
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
