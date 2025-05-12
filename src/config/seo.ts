@@ -1,0 +1,60 @@
+
+export interface SeoConfig {
+  title: string;
+  description: string;
+  keywords?: string;
+  ogImage?: string;
+  ogUrl?: string;
+  canonicalUrl?: string;
+  structuredData?: Record<string, any>;
+  noindex?: boolean;
+}
+
+export type SeoConfigs = Record<string, SeoConfig>;
+
+// Define SEO configurations for each page
+export const seoConfigs: SeoConfigs = {
+  home: {
+    title: "Home | Training App",
+    description: "Join our training program for athletes of all levels.",
+    keywords: "training, athletes, sports, fitness",
+  },
+  leblanc: {
+    title: "Craig LeBlanc | Elite Training Program",
+    description: "Join Craig LeBlanc's elite training program for football players, featuring quality coaching, personalized training, and proven results.",
+    keywords: "Craig LeBlanc, football training, elite athletes, quarterback training, NFL, training program",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "LeBlanc Elite Training",
+      "description": "Elite training program for football players.",
+      "sport": "Football",
+      "coach": {
+        "@type": "Person",
+        "name": "Craig LeBlanc"
+      }
+    }
+  },
+  privacyPolicy: {
+    title: "Privacy Policy | Training App",
+    description: "Read our privacy policy to understand how we handle your data.",
+    keywords: "privacy policy, terms of service, data protection",
+    noindex: true
+  },
+  notFound: {
+    title: "Page Not Found | Training App",
+    description: "The page you're looking for could not be found.",
+    noindex: true
+  }
+};
+
+// Helper function to get SEO config based on page key
+export const getSeoConfig = (key: string, customizations?: Partial<SeoConfig>): SeoConfig => {
+  const baseConfig = seoConfigs[key] || {
+    title: "Training App",
+    description: "Join our training program for athletes of all levels."
+  };
+  
+  // Merge customizations with base config if provided
+  return customizations ? { ...baseConfig, ...customizations } : baseConfig;
+};

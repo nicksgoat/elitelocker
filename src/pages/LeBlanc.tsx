@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Trophy, Star, Zap, Shield, Check, Users, HelpCircle, Download } from "lucide-react";
+import { ArrowRight, Trophy, Star, Zap, Shield, Check, Users, HelpCircle } from "lucide-react";
 import { WaitlistDialog } from "@/components/WaitlistDialog";
 import { AppHeader } from "@/components/AppHeader";
 import { AppFooter } from "@/components/AppFooter";
@@ -13,12 +13,22 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { Toaster } from "@/components/ui/toaster";
 import NFLLogo from "@/assets/logos/nfl-logo";
 import { LogoDisplay } from "@/components/LogoDisplay";
+import { SEO } from "@/components/SEO";
+import { getSeoConfig } from "@/config/seo";
 
 const LeBlanc = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [dialogTitle, setDialogTitle] = useState("Join LeBlanc's Waitlist");
   const [videoLoaded, setVideoLoaded] = useState(false);
   const isMobile = useIsMobile();
+  
+  // Custom SEO configurations (override any values from the default config)
+  const customSeo = {
+    ogImage: "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/logos/leblanc/main%20logo/Screenshot_2025-05-12_100332-removebg-preview.png",
+    ogUrl: window.location.href
+  };
+  
+  const seoConfig = getSeoConfig("leblanc", customSeo);
   
   const typingWords = ["ATHLETES FIRST", "BETTER TRAINING", "PROVEN RESULTS", "COMPETITIVE ADVANTAGE"];
   
@@ -144,7 +154,9 @@ const LeBlanc = () => {
     }
   ];
 
-  return <div className="min-h-screen w-full overflow-x-hidden bg-background">
+  return (
+    <div className="min-h-screen w-full overflow-x-hidden bg-background">
+      <SEO {...seoConfig} />
       <WaitlistDialog isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)} title={dialogTitle} sourcePage="leblanc" />
       
       <AppHeader openDialog={openDialog} openComingSoonDialog={openComingSoonDialog} />
@@ -524,7 +536,8 @@ const LeBlanc = () => {
       </main>
       
       <AppFooter openComingSoonDialog={openComingSoonDialog} />
-    </div>;
+    </div>
+  );
 };
 
 export default LeBlanc;

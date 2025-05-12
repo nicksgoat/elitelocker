@@ -1,0 +1,60 @@
+
+import React from 'react';
+import { Helmet } from 'react-helmet-async';
+
+export interface SEOProps {
+  title: string;
+  description: string;
+  keywords?: string;
+  ogImage?: string;
+  ogUrl?: string;
+  canonicalUrl?: string;
+  structuredData?: Record<string, any>;
+  noindex?: boolean;
+}
+
+export const SEO: React.FC<SEOProps> = ({
+  title,
+  description,
+  keywords,
+  ogImage = "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/logos/leblanc/main%20logo/Screenshot_2025-05-12_100332-removebg-preview.png",
+  ogUrl,
+  canonicalUrl,
+  structuredData,
+  noindex = false,
+}) => {
+  return (
+    <Helmet>
+      {/* Basic metadata */}
+      <title>{title}</title>
+      <meta name="description" content={description} />
+      {keywords && <meta name="keywords" content={keywords} />}
+      
+      {/* Open Graph / Social Media */}
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={description} />
+      <meta property="og:type" content="website" />
+      {ogImage && <meta property="og:image" content={ogImage} />}
+      {ogUrl && <meta property="og:url" content={ogUrl} />}
+      
+      {/* Twitter Card */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      {ogImage && <meta name="twitter:image" content={ogImage} />}
+      
+      {/* Canonical URL */}
+      {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+      
+      {/* No index directive if specified */}
+      {noindex && <meta name="robots" content="noindex,nofollow" />}
+      
+      {/* Structured data for SEO */}
+      {structuredData && (
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+      )}
+    </Helmet>
+  );
+};
