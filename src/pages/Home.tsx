@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Check, Star, HelpCircle } from "lucide-react";
@@ -8,10 +9,13 @@ import { LogoDisplay } from "@/components/LogoDisplay";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { SEO } from "@/components/SEO";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Home = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [dialogTitle, setDialogTitle] = useState("Join the Waitlist");
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const isMobile = useIsMobile();
   
   const openDialog = () => {
     setDialogTitle("Join the Waitlist");
@@ -22,6 +26,15 @@ const Home = () => {
     setDialogTitle("Coming soon...");
     setIsDialogOpen(true);
   };
+
+  useEffect(() => {
+    const video = document.getElementById(isMobile ? "mobile-video" : "desktop-video") as HTMLVideoElement;
+    if (video) {
+      const handleVideoLoaded = () => setVideoLoaded(true);
+      video.addEventListener('loadeddata', handleVideoLoaded);
+      return () => video.removeEventListener('loadeddata', handleVideoLoaded);
+    }
+  }, [isMobile]);
   
   // Mock testimonials
   const testimonials = [
@@ -134,6 +147,8 @@ const Home = () => {
     }
   ];
   
+  const videoUrl = "https://xvekpoznjivvqcteiyxo.supabase.co/storage/v1/object/public/videos/C6466_Proxy.mp4";
+  
   return (
     <>
       <SEO
@@ -153,9 +168,31 @@ const Home = () => {
         <AppHeader openDialog={openDialog} openComingSoonDialog={openComingSoonDialog} />
         
         <main className="pt-16">
-          {/* Hero Section */}
-          <section className="relative py-16 md:py-24 px-4">
-            <div className="container mx-auto">
+          {/* Hero Section with Background Video */}
+          <section className="relative py-16 md:py-24 px-4 min-h-[80vh] flex items-center">
+            <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
+              {!videoLoaded && (
+                <div className="absolute inset-0 bg-black/70 flex items-center justify-center">
+                  <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+                </div>
+              )}
+              
+              <video 
+                id={isMobile ? "mobile-video" : "desktop-video"} 
+                autoPlay 
+                muted 
+                loop 
+                playsInline 
+                className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`} 
+                src={videoUrl}
+              >
+                Your browser does not support the video tag.
+              </video>
+              
+              <div className="absolute inset-0 bg-black/50 z-10"></div>
+            </div>
+            
+            <div className="container mx-auto relative z-20">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <motion.div 
                   initial={{ opacity: 0, y: 20 }} 
