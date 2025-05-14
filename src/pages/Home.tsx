@@ -5,7 +5,6 @@ import { WaitlistDialog } from "@/components/WaitlistDialog";
 import { AppHeader } from "@/components/AppHeader";
 import { AppFooter } from "@/components/AppFooter";
 import { LogoDisplay } from "@/components/LogoDisplay";
-import { TopNavTabs } from "@/components/TopNavTabs";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { SEO } from "@/components/SEO";
@@ -166,8 +165,12 @@ const Home = () => {
           sourcePage="home" 
         />
         
-        <AppHeader openDialog={openDialog} openComingSoonDialog={openComingSoonDialog} />
-        <TopNavTabs activeTab={activeTab} setActiveTab={setActiveTab} />
+        <AppHeader 
+          openDialog={openDialog} 
+          openComingSoonDialog={openComingSoonDialog}
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+        />
         
         <main>
           {/* Hero Section with Background Video */}
