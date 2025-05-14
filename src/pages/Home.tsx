@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Check, Star, HelpCircle } from "lucide-react";
@@ -160,7 +159,7 @@ const Home = () => {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <motion.div 
                   initial={{ opacity: 0, y: 20 }} 
-                  animate={{ opacity: A1, y: 0 }} 
+                  animate={{ opacity: 1, y: 0 }} 
                   transition={{ duration: 0.6 }} 
                   className="text-left"
                 >
