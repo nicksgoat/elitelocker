@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Check, Star, HelpCircle } from "lucide-react";
@@ -6,6 +5,7 @@ import { WaitlistDialog } from "@/components/WaitlistDialog";
 import { AppHeader } from "@/components/AppHeader";
 import { AppFooter } from "@/components/AppFooter";
 import { LogoDisplay } from "@/components/LogoDisplay";
+import { TopNavTabs } from "@/components/TopNavTabs";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { SEO } from "@/components/SEO";
@@ -15,6 +15,7 @@ const Home = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [dialogTitle, setDialogTitle] = useState("Join the Waitlist");
   const [videoLoaded, setVideoLoaded] = useState(false);
+  const [activeTab, setActiveTab] = useState("featured");
   const isMobile = useIsMobile();
   
   const openDialog = () => {
@@ -166,8 +167,9 @@ const Home = () => {
         />
         
         <AppHeader openDialog={openDialog} openComingSoonDialog={openComingSoonDialog} />
+        <TopNavTabs activeTab={activeTab} setActiveTab={setActiveTab} />
         
-        <main className="pt-16">
+        <main>
           {/* Hero Section with Background Video */}
           <section className="relative py-16 md:py-24 px-4 min-h-[80vh] flex items-center">
             <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
