@@ -1,19 +1,15 @@
-
 import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ListOrdered, Activity, Dumbbell } from "lucide-react";
-
 interface TopNavTabsProps {
   activeTab: string;
   setActiveTab: (value: string) => void;
 }
-
 export const TopNavTabs: React.FC<TopNavTabsProps> = ({
   activeTab,
   setActiveTab
 }) => {
-  return (
-    <div className="bg-black/80 backdrop-blur-lg border-b border-[#222] sticky top-16 z-10 w-full">
+  return <div className="bg-black/80 backdrop-blur-lg border-b border-[#222] sticky top-16 z-10 w-full">
       <div className="container mx-auto py-[11px]">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="flex justify-center w-full bg-transparent py-4">
@@ -32,6 +28,5 @@ export const TopNavTabs: React.FC<TopNavTabsProps> = ({
           </TabsList>
         </Tabs>
       </div>
-    </div>
-  );
+    </div>;
 };
